@@ -11,42 +11,28 @@
 <style>
 /* Layout: a building you ride through. Sticky elevator panel on the left, one floor per section, lobby facade as the hero. */
 :root {
-  --bg: #FBF6F8;
-  --surface: #FFFFFF;
-  --surface-2: #F5EBF0;
-  --ink: #26121F;
-  --muted: #6F5966;
-  --line: #EADBE2;
-  --rouge: #B02E5C;
-  --rouge-soft: #F8E1EA;
+  /* Daytime nude palette: ivory, sand, blush nude, taupe, cocoa. Deliberately light in every theme. */
+  --bg: #FAF5EF;
+  --surface: #FFFDFA;
+  --surface-2: #F3E8DE;
+  --ink: #33241E;
+  --muted: #7A665B;
+  --line: #E8D9CB;
+  --rouge: #A45446;
+  --rouge-soft: #F4E1D8;
   --on-rouge: #FFFFFF;
-  --gold: #9C7845;
-  --gold-soft: #F3E9D9;
-  --night: #2B1029;
-  --night-2: #3C1A39;
-  --on-night: #FBEFF4;
-  --ok: #2F7D5B;
-  --shadow: 0 1px 2px rgba(60, 20, 45, .06), 0 8px 24px rgba(60, 20, 45, .07);
+  --gold: #946F42;
+  --gold-soft: #F2E6D5;
+  --night: #EBDACB;
+  --night-2: #E2CCBA;
+  --on-night: #33241E;
+  --ok: #4F7A5A;
+  --shadow: 0 1px 2px rgba(90, 60, 40, .06), 0 8px 24px rgba(90, 60, 40, .08);
   --f-display: "Bodoni Moda", "Didot", "Bodoni 72", Georgia, serif;
   --f-body: "Manrope", "Avenir Next", "Segoe UI", system-ui, sans-serif;
   --r: 14px;
   --r-sm: 9px;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #150B13; --surface: #20141E; --surface-2: #2A1B27; --ink: #F7ECF1; --muted: #BCA6B3;
-    --line: #3A2837; --rouge: #EC6C96; --rouge-soft: #3A1A2A; --on-rouge: #1A0B14;
-    --gold: #D9B47C; --gold-soft: #33281C; --night: #241020; --night-2: #331A30; --on-night: #FBEFF4;
-    --ok: #6CCB9E; --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
-    color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --bg: #150B13; --surface: #20141E; --surface-2: #2A1B27; --ink: #F7ECF1; --muted: #BCA6B3;
-  --line: #3A2837; --rouge: #EC6C96; --rouge-soft: #3A1A2A; --on-rouge: #1A0B14;
-  --gold: #D9B47C; --gold-soft: #33281C; --night: #241020; --night-2: #331A30; --on-night: #FBEFF4;
-  --ok: #6CCB9E; --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 * { box-sizing: border-box; }
@@ -75,7 +61,7 @@ button { cursor: pointer; }
 .btn:active { transform: scale(.97); }
 .btn.ghost { background: transparent; color: var(--ink); border-color: var(--line); }
 .btn.ghost:hover { border-color: var(--rouge); color: var(--rouge); }
-.btn.gold { background: var(--gold); color: var(--night); }
+.btn.gold { background: var(--gold); color: #FFFDFA; }
 .btn.sm { padding: 6px 13px; font-size: 13px; }
 .btn[disabled] { opacity: .45; cursor: not-allowed; filter: none; }
 .chips { display: flex; flex-wrap: wrap; gap: 8px; }
@@ -227,7 +213,7 @@ button { cursor: pointer; }
 .tut .thumb::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(20,6,16,.55), transparent 60%); }
 .tut .thumb > * { position: relative; z-index: 1; }
 .tut .thumb .dur { font-family: var(--f-display); font-size: 30px; font-style: italic; line-height: 1; text-shadow: 0 2px 10px rgba(0,0,0,.25); }
-.tut .play { width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,.92); color: #2B1029; display: grid; place-items: center; align-self: flex-end; }
+.tut .play { width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,.92); color: #33241E; display: grid; place-items: center; align-self: flex-end; }
 .tut .meta { display: flex; gap: 6px; flex-wrap: wrap; }
 .creator { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); }
 .av { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; font-size: 11px; font-weight: 700; color: #fff; flex: none; }
@@ -409,23 +395,23 @@ dialog::backdrop { background: rgba(20, 6, 16, .55); }
 /* Vibrez universe: the outside map. A deliberate night scene in both themes. */
 body:not(.in-universe) .universe { display: none; }
 body.in-universe .top, body.in-universe .hero, body.in-universe .building, body.in-universe .foot-note { display: none; }
-body.in-universe::before { background: #120817; }
-.universe { position: relative; overflow: hidden; color: #FBEFF4; background: linear-gradient(180deg, #120817 0%, #24102B 45%, #4A1C3E 100%); }
-.u-stars { position: absolute; inset: 0 0 45% 0; pointer-events: none; opacity: .8;
+body.in-universe::before { background: #DDE5EA; }
+.universe { position: relative; overflow: hidden; color: #33241E; background: radial-gradient(60% 50% at 78% 8%, rgba(255, 240, 220, .9), transparent 70%), linear-gradient(180deg, #DDE5EA 0%, #EFE6DD 42%, #EAD6C6 100%); }
+.u-stars { display: none; position: absolute; inset: 0 0 45% 0; pointer-events: none; opacity: .8;
   background-image: radial-gradient(1.5px 1.5px at 8% 20%, #fff, transparent), radial-gradient(1px 1px at 18% 62%, #fff, transparent), radial-gradient(1.5px 1.5px at 27% 34%, #F1DCAA, transparent), radial-gradient(1px 1px at 39% 12%, #fff, transparent), radial-gradient(1px 1px at 52% 48%, #fff, transparent), radial-gradient(1.5px 1.5px at 63% 22%, #fff, transparent), radial-gradient(1px 1px at 74% 70%, #F1DCAA, transparent), radial-gradient(1.5px 1.5px at 83% 30%, #fff, transparent), radial-gradient(1px 1px at 93% 14%, #fff, transparent), radial-gradient(1px 1px at 46% 80%, #fff, transparent);
   animation: twinkle 5s ease-in-out infinite; }
 @keyframes twinkle { 50% { opacity: .45; } }
 .u-bar-in { display: flex; justify-content: space-between; align-items: center; gap: 12px; height: 60px; position: relative; }
 .u-brand { display: flex; align-items: baseline; gap: 10px; }
-.u-brand b { font-family: var(--f-display); font-size: 25px; font-weight: 600; font-style: italic; color: #FBEFF4; }
-.u-brand span { font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: #F1DCAA; font-weight: 700; }
-.u-online { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: rgba(251, 239, 244, .78); }
-.universe .live-dot { background: #EC6C96; }
+.u-brand b { font-family: var(--f-display); font-size: 25px; font-weight: 600; font-style: italic; color: #33241E; }
+.u-brand span { font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: #946F42; font-weight: 700; }
+.u-online { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: rgba(51, 36, 30, .7); }
+.universe .live-dot { background: #A45446; }
 .u-intro { position: relative; text-align: center; padding-block: 18px 8px; }
-.u-intro .eyebrow { color: #F1DCAA; }
+.u-intro .eyebrow { color: #946F42; }
 .u-intro h1 { font-family: var(--f-display); font-weight: 500; font-size: clamp(34px, 5vw, 58px); line-height: 1.04; letter-spacing: -.015em; margin-top: 8px; }
-.u-intro p { max-width: 52ch; margin: 12px auto 0; color: rgba(251, 239, 244, .78); }
-.street { position: relative; display: flex; align-items: flex-end; gap: clamp(14px, 3vw, 40px); overflow-x: auto; scrollbar-width: none; padding: 26px max(24px, env(safe-area-inset-right, 0px)) 0 max(24px, env(safe-area-inset-left, 0px)); background: linear-gradient(to bottom, transparent calc(100% - 66px), #2A1226 calc(100% - 66px), #1C0B19); }
+.u-intro p { max-width: 52ch; margin: 12px auto 0; color: #6A574D; }
+.street { position: relative; display: flex; align-items: flex-end; gap: clamp(14px, 3vw, 40px); overflow-x: auto; scrollbar-width: none; padding: 26px max(24px, env(safe-area-inset-right, 0px)) 0 max(24px, env(safe-area-inset-left, 0px)); background: linear-gradient(to bottom, transparent calc(100% - 66px), #DCC7B5 calc(100% - 66px), #D2BAA6); }
 .street::-webkit-scrollbar { display: none; }
 .lot { flex: none; display: flex; flex-direction: column; align-items: center; }
 .lot:first-child { margin-left: auto; }
@@ -435,28 +421,28 @@ body.in-universe::before { background: #120817; }
 .lot.soon { gap: 0; }
 .lot.soon svg { margin-bottom: calc(clamp(320px, 46vw, 600px) * .16); filter: blur(.4px); }
 .street { gap: clamp(4px, 1.2vw, 14px) !important; }
-.lot-label { height: 66px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-size: 11.5px; color: rgba(251, 239, 244, .6); line-height: 1.35; }
-.lot-label b { font-size: 13.5px; color: #FBEFF4; }
-.lot.main .lot-label b { font-family: var(--f-display); font-style: italic; font-size: 18px; font-weight: 500; color: #F1DCAA; }
+.lot-label { height: 66px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-size: 11.5px; color: #7A665B; line-height: 1.35; }
+.lot-label b { font-size: 13.5px; color: #33241E; }
+.lot.main .lot-label b { font-family: var(--f-display); font-style: italic; font-size: 18px; font-weight: 500; color: #7A5634; }
 .gh { display: flex; flex-direction: column; align-items: center; gap: 12px; }
 .gh-photo { position: relative; display: block; width: clamp(320px, 46vw, 600px); aspect-ratio: 1; transition: transform .4s ease, filter .4s ease; transform-origin: 49% 76%; }
 .gh-photo img { display: block; width: 100%; height: 100%; object-fit: cover; max-width: none;
   -webkit-mask-image: radial-gradient(ellipse 51% 53% at 50% 47%, #000 70%, transparent 100%); mask-image: radial-gradient(ellipse 51% 53% at 50% 47%, #000 70%, transparent 100%); filter: saturate(1.05) contrast(1.03); }
-.gh:hover .gh-photo, .gh:focus-visible .gh-photo { transform: translateY(-4px) scale(1.015); filter: brightness(1.1) drop-shadow(0 0 40px rgba(247, 168, 106, .35)); }
-.gh-badge { position: absolute; display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 999px; background: rgba(43, 16, 41, .82); color: #FBEFF4; font-size: 11.5px; font-weight: 700; backdrop-filter: blur(4px); border: 1px solid rgba(236, 108, 150, .55); white-space: nowrap; }
-.pin { position: relative; display: grid; gap: 2px; justify-items: center; background: #FBEFF4; color: #2B1029; border-radius: 14px; padding: 10px 16px 12px; font-size: 12px; box-shadow: 0 10px 30px rgba(0, 0, 0, .35); animation: bob 3.2s ease-in-out infinite; }
-.pin::after { content: ""; position: absolute; bottom: -7px; left: 50%; width: 14px; height: 14px; background: #FBEFF4; transform: translateX(-50%) rotate(45deg); border-radius: 2px; }
+.gh:hover .gh-photo, .gh:focus-visible .gh-photo { transform: translateY(-4px) scale(1.015); filter: brightness(1.05) drop-shadow(0 12px 30px rgba(120, 80, 50, .25)); }
+.gh-badge { position: absolute; display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 999px; background: rgba(255, 253, 250, .9); color: #33241E; font-size: 11.5px; font-weight: 700; backdrop-filter: blur(4px); border: 1px solid rgba(236, 108, 150, .55); white-space: nowrap; }
+.pin { position: relative; display: grid; gap: 2px; justify-items: center; background: #FFFDFA; color: #33241E; border-radius: 14px; padding: 10px 16px 12px; font-size: 12px; box-shadow: 0 10px 30px rgba(90, 60, 40, .22); animation: bob 3.2s ease-in-out infinite; }
+.pin::after { content: ""; position: absolute; bottom: -7px; left: 50%; width: 14px; height: 14px; background: #FFFDFA; transform: translateX(-50%) rotate(45deg); border-radius: 2px; }
 .pin b { font-family: var(--f-display); font-style: italic; font-size: 20px; font-weight: 500; line-height: 1.1; }
-.pin .pin-stats { display: inline-flex; align-items: center; gap: 6px; color: #B02E5C; font-weight: 700; }
-.pin .pin-cta { margin-top: 6px; background: #B02E5C; color: #fff; border-radius: 999px; padding: 5px 14px; font-weight: 700; font-size: 12.5px; position: relative; z-index: 1; }
+.pin .pin-stats { display: inline-flex; align-items: center; gap: 6px; color: #A45446; font-weight: 700; }
+.pin .pin-cta { margin-top: 6px; background: #A45446; color: #fff; border-radius: 999px; padding: 5px 14px; font-weight: 700; font-size: 12.5px; position: relative; z-index: 1; }
 @keyframes bob { 50% { transform: translateY(-5px); } }
-.u-legend { position: relative; display: flex; justify-content: center; flex-wrap: wrap; gap: 8px 22px; padding-block: 16px 30px; font-size: 12.5px; color: rgba(251, 239, 244, .7); background: #1C0B19; }
+.u-legend { position: relative; display: flex; justify-content: center; flex-wrap: wrap; gap: 8px 22px; padding-block: 16px 30px; font-size: 12.5px; color: #5E4B41; background: #D2BAA6; }
 .u-legend span { display: inline-flex; align-items: center; gap: 7px; }
 .u-legend i { width: 10px; height: 13px; border-radius: 5px 5px 1px 1px; display: inline-block; }
-.universe.entering .gh-photo { transform: scale(3); transition: transform .7s ease-in, filter .7s; filter: brightness(1.3); }
+.universe.entering .gh-photo { transform: scale(3); transition: transform .7s ease-in, filter .7s; filter: brightness(1.15); }
 .universe.entering .gh-badge { opacity: 0; }
 .universe.entering .pin, .universe.entering .lot.soon { opacity: 0; transition: opacity .3s; }
-.u-fade { position: fixed; inset: 0; background: #2B1029; opacity: 0; pointer-events: none; transition: opacity .55s ease; z-index: 200; }
+.u-fade { position: fixed; inset: 0; background: #FAF5EF; opacity: 0; pointer-events: none; transition: opacity .55s ease; z-index: 200; }
 .u-fade.on { opacity: 1; }
 .back { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: var(--muted); text-decoration: none; white-space: nowrap; padding: 6px 10px 6px 6px; border-radius: 999px; }
 .back:hover { color: var(--rouge); background: var(--surface-2); }
@@ -480,7 +466,7 @@ img.av { object-fit: cover; padding: 0; background: var(--surface-2); }
 .mc-feature { grid-template-columns: minmax(0, .7fr) minmax(0, 1.3fr) minmax(0, 1fr); }
 .mc-host { position: relative; border-radius: var(--r-sm); overflow: hidden; min-height: 220px; }
 .mc-host img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.mc-host .tag { position: absolute; left: 10px; top: 10px; background: rgba(43,16,41,.85); color: #FBEFF4; }
+.mc-host .tag { position: absolute; left: 10px; top: 10px; background: rgba(255,253,250,.9); color: #33241E; }
 .tut .thumb::after { background: linear-gradient(to top, rgba(20,6,16,.75), rgba(20,6,16,.05) 55%, rgba(20,6,16,.25)); }
 .faces { display: flex; align-items: center; gap: 14px; margin-top: 28px; flex-wrap: wrap; font-size: 14px; color: color-mix(in srgb, var(--on-night) 80%, transparent); }
 .faces b { color: var(--on-night); }
@@ -546,7 +532,7 @@ img.av { object-fit: cover; padding: 0; background: var(--surface-2); }
       <button class="lot-btn gh" id="enterGH" aria-label="Enter Glow House, the beauty building">
         <span class="pin"><b>Glow House</b><span>Makeup · skincare · fragrance</span><span class="pin-stats"><span class="live-dot"></span> 2,431 inside · class live</span><span class="pin-cta">Enter →</span></span>
         <span class="gh-photo">
-          <img src="assets/glow-house-facade.jpg" width="1100" height="1100" alt="Glow House at dusk: a terracotta department store with a lit dome, bulbs along the roofline, a dark canopy over the bronze entrance doors and glowing shop windows on a wet cobbled street">
+          <img src="assets/glow-house-facade.jpg" width="1100" height="1100" alt="Glow House in daylight: a cream-stone department store with a slate dome, a canopy reading The Glow House over bronze entrance doors, shop windows and lanterns on a sunny cobbled street">
           <span class="gh-badge" style="left:6%;top:36%"><span class="live-dot"></span> Masterclass live</span>
           <span class="gh-badge" style="right:5%;top:47%"><span class="live-dot"></span> Lounge chat</span>
         </span>
@@ -554,7 +540,7 @@ img.av { object-fit: cover; padding: 0; background: var(--surface-2); }
       <div class="lot-label"><b>Glow House</b><span>Beauty · open now</span></div>
     </div>
   </div>
-  <div class="u-legend"><span><i style="background:#F3C77E"></i> Glowing building: open now</span><span><i style="background:#EC6C96"></i> Pink badge: live right now</span><span><i style="background:#2A1530;outline:1px solid rgba(251,239,244,.3)"></i> Silhouettes: more buildings to come</span></div>
+  <div class="u-legend"><span><i style="background:#A45446"></i> Glow House: open now</span><span><i style="background:#FFFDFA;outline:1px solid #A45446"></i> White badge: live right now</span><span><i style="background:#DCC6B3;outline:1px solid #B89B85"></i> Neighbouring buildings: more passions to come</span></div>
 </section>
 <div class="u-fade" id="uFade" aria-hidden="true"></div>
 
@@ -691,7 +677,7 @@ img.av { object-fit: cover; padding: 0; background: var(--surface-2); }
           <span class="tag rouge"><span class="live-dot"></span> Live now · <span id="viewers">1,284</span> watching</span>
           <h3>Skin first: the editorial base that looks like nothing at all</h3>
           <p>Amara Okafor has prepped skin for runway shows for fifteen years. Tonight she works on three models with different skin types and tones, from dry and fair to deep and oily.</p>
-          <div class="hero-actions"><button class="btn gold" id="joinLive">Join the class</button><button class="btn ghost sm" id="remindLive" style="color: var(--on-night)">Save the replay</button></div>
+          <div class="hero-actions"><button class="btn gold" id="joinLive">Join the class</button><button class="btn ghost sm" id="remindLive" style="color: var(--on-night); border-color: var(--muted)">Save the replay</button></div>
         </div>
         <div class="stage" aria-live="polite" id="stage">
           <span class="eyebrow">Live questions</span>
@@ -866,7 +852,7 @@ img.av { object-fit: cover; padding: 0; background: var(--surface-2); }
     { id: 't2', img: 'jun', title: 'Smoky eye for monolids', mins: 18, level: 'Intermediate', by: 'Jun Park', tone: 1, color: '#4A3A55', tags: ['Monolids'], steps: ['Prime the whole lid up to the brow bone', 'Pack dark shade at the lash line, eyes open to check', 'Blend upward in small circles', 'Smudge pencil along the lower lash line', 'Add shimmer to the centre of the lid', 'Curl lashes and apply mascara'] },
     { id: 't3', img: 'nia', title: 'Bold red lip on deep skin', mins: 9, level: 'Beginner', by: 'Nia Adebayo', tone: 8, color: '#9E1F3F', tags: ['Lips'], steps: ['Exfoliate lips with a damp cloth', 'Line just outside the natural line with a berry liner', 'Fill with lipstick from the centre out', 'Blot and apply a second layer', 'Clean the edge with concealer on a flat brush'] },
     { id: 't4', img: 'claire', title: 'Glow for mature skin', mins: 15, level: 'Beginner', by: 'Claire Dubois', tone: 0, color: '#D9A07A', tags: ['Every age'], steps: ['Hydrating serum, then a rich cream', 'Foundation in thin layers with fingers', 'Cream highlighter on the top of cheekbones only', 'Lift brows with a tinted gel', 'Skip powder under the eyes'] },
-    { id: 't5', img: 'sofia', title: 'Graphic liner for hooded eyes', mins: 20, level: 'Advanced', by: 'Sofia Reyes', tone: 4, color: '#2B1029', tags: ['Hooded eyes'], steps: ['Map the wing with eyes open, looking straight ahead', 'Draw the flick toward the end of your brow', 'Connect to the lash line with a thin line', 'Fill the gap in the hood fold, eyes open', 'Sharpen with micellar water on a cotton bud'] },
+    { id: 't5', img: 'sofia', title: 'Graphic liner for hooded eyes', mins: 20, level: 'Advanced', by: 'Sofia Reyes', tone: 4, color: '#6E5244', tags: ['Hooded eyes'], steps: ['Map the wing with eyes open, looking straight ahead', 'Draw the flick toward the end of your brow', 'Connect to the lash line with a thin line', 'Fill the gap in the hood fold, eyes open', 'Sharpen with micellar water on a cotton bud'] },
     { id: 't6', img: 'theo', title: 'Skin and brows, for everyone', mins: 7, level: 'Beginner', by: 'Theo Martins', tone: 6, color: '#7A8C6A', tags: ['Gender-free'], steps: ['Gentle cleanse and moisturise', 'Tinted SPF for an even look', 'Colour-correct redness with a green-tinted balm', 'Brush brows up and set with clear gel', 'Lip balm to finish'] }
   ];
 
@@ -1063,7 +1049,7 @@ img.av { object-fit: cover; padding: 0; background: var(--surface-2); }
       const done = store.get('tut.' + t.id, []).length;
       return `<article class="card tut">
         <div class="thumb" style="background:${t.color} url('assets/photos/${t.img}.jpg') center/cover">
-          <div class="meta"><span class="tag" style="background:rgba(255,255,255,.9);color:#2B1029">${t.level}</span>${t.tags.map(x => `<span class="tag" style="background:rgba(255,255,255,.9);color:#2B1029">${esc(x)}</span>`).join('')}</div>
+          <div class="meta"><span class="tag" style="background:rgba(255,255,255,.9);color:#33241E">${t.level}</span>${t.tags.map(x => `<span class="tag" style="background:rgba(255,255,255,.9);color:#33241E">${esc(x)}</span>`).join('')}</div>
           <div style="display:flex;justify-content:space-between;align-items:end"><span class="dur">${t.mins} min</span><button class="play" data-tutopen="${t.id}" aria-label="Start ${esc(t.title)}"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4v16l13-8z"/></svg></button></div>
         </div>
         <div class="body"><h3>${esc(t.title)}</h3><div class="creator">${avatar(t.by, t.tone)} ${esc(t.by)} · ${t.steps.length} steps</div>
@@ -1318,33 +1304,33 @@ img.av { object-fit: cover; padding: 0; background: var(--surface-2); }
     const { w, h, roof, seed, side } = n; const top = 46; const H = h + top; const id = 'nb' + seed;
     const sc = matchMedia('(max-width: 620px)').matches ? .55 : 1;
     let r = '';
-    if (roof === 'gable') r = `<polygon points="6,${top} ${w / 2},${top - 40} ${w - 6},${top}" fill="url(#${id}g)"/><rect x="${w * .7}" y="${top - 34}" width="12" height="22" fill="#1A0B18"/>`;
+    if (roof === 'gable') r = `<polygon points="6,${top} ${w / 2},${top - 40} ${w - 6},${top}" fill="url(#${id}g)"/><rect x="${w * .7}" y="${top - 34}" width="12" height="22" fill="#B89B85"/>`;
     if (roof === 'mansard') {
       r = `<polygon points="4,${top} 22,${top - 34} ${w - 22},${top - 34} ${w - 4},${top}" fill="url(#${id}g)"/>`;
-      for (let x = 34; x < w - 40; x += 40) r += `<rect x="${x}" y="${top - 26}" width="14" height="18" fill="#140812"/><polygon points="${x - 3},${top - 26} ${x + 7},${top - 34} ${x + 17},${top - 26}" fill="#1A0B18"/>` + ((x + seed) % 3 === 0 ? `<rect x="${x + 3}" y="${top - 22}" width="8" height="12" fill="#E9A85A" opacity=".45"/>` : '');
-      r += `<rect x="${w * .2}" y="${top - 48}" width="14" height="16" fill="#1A0B18"/><rect x="${w * .72}" y="${top - 46}" width="18" height="14" fill="#1A0B18"/>`;
+      for (let x = 34; x < w - 40; x += 40) r += `<rect x="${x}" y="${top - 26}" width="14" height="18" fill="#8C9AA0"/><polygon points="${x - 3},${top - 26} ${x + 7},${top - 34} ${x + 17},${top - 26}" fill="#B89B85"/>` + ((x + seed) % 3 === 0 ? `<rect x="${x + 3}" y="${top - 22}" width="8" height="12" fill="#C9D6DC" opacity=".9"/>` : '');
+      r += `<rect x="${w * .2}" y="${top - 48}" width="14" height="16" fill="#B89B85"/><rect x="${w * .72}" y="${top - 46}" width="18" height="14" fill="#B89B85"/>`;
     }
-    if (roof === 'chimneys') r = `<rect x="4" y="${top - 8}" width="${w - 8}" height="8" fill="url(#${id}g)"/>` + [.15, .45, .8].map(f => `<rect x="${w * f}" y="${top - 30}" width="16" height="24" fill="#1A0B18"/><rect x="${w * f + 2}" y="${top - 34}" width="4" height="5" fill="#1A0B18"/><rect x="${w * f + 9}" y="${top - 34}" width="4" height="5" fill="#1A0B18"/>`).join('');
-    if (roof === 'dome') r = `<path d="M${w * .25} ${top} A${w * .25} ${w * .2} 0 0 1 ${w * .75} ${top} Z" fill="url(#${id}g)"/><rect x="${w / 2 - 2}" y="${top - w * .2 - 16}" width="4" height="18" fill="#1A0B18"/><rect x="6" y="${top - 6}" width="${w - 12}" height="6" fill="url(#${id}g)"/>`;
+    if (roof === 'chimneys') r = `<rect x="4" y="${top - 8}" width="${w - 8}" height="8" fill="url(#${id}g)"/>` + [.15, .45, .8].map(f => `<rect x="${w * f}" y="${top - 30}" width="16" height="24" fill="#B89B85"/><rect x="${w * f + 2}" y="${top - 34}" width="4" height="5" fill="#B89B85"/><rect x="${w * f + 9}" y="${top - 34}" width="4" height="5" fill="#B89B85"/>`).join('');
+    if (roof === 'dome') r = `<path d="M${w * .25} ${top} A${w * .25} ${w * .2} 0 0 1 ${w * .75} ${top} Z" fill="url(#${id}g)"/><rect x="${w / 2 - 2}" y="${top - w * .2 - 16}" width="4" height="18" fill="#B89B85"/><rect x="6" y="${top - 6}" width="${w - 12}" height="6" fill="url(#${id}g)"/>`;
     const cols = Math.max(2, Math.floor((w - 30) / 24)), rows = Math.floor((h - 70) / 38);
     const ox = (w - (cols * 24 - 12)) / 2; let win = '', glow = '';
     for (let y = 0; y < rows; y++) {
-      win += `<rect x="8" y="${top + 6 + y * 38}" width="${w - 16}" height="1.5" fill="#3A2035" opacity=".6"/>`;
+      win += `<rect x="8" y="${top + 6 + y * 38}" width="${w - 16}" height="1.5" fill="#B89B85" opacity=".7"/>`;
       for (let x = 0; x < cols; x++) {
         const lit = (y * 5 + x * 3 + seed * 7) % 9 < 2;
         const wx = ox + x * 24, wy = top + 14 + y * 38;
-        win += `<rect x="${wx}" y="${wy}" width="12" height="20" fill="${lit ? '#E9A85A' : '#0E050C'}" opacity="${lit ? .6 : .7}"/>`;
+        win += `<rect x="${wx}" y="${wy}" width="12" height="20" fill="${lit ? '#C9D6DC' : '#8C9AA0'}" opacity="${lit ? .9 : .75}"/>`;
         if (lit) glow += `<rect x="${wx - 2}" y="${wy - 2}" width="16" height="24" fill="#F7A86A"/>`;
       }
     }
     const rimX = side === 'L' ? w - 3 : 3;
     return `<svg viewBox="0 0 ${w} ${H}" width="${Math.round(w * sc)}" height="${Math.round(H * sc)}" aria-hidden="true" focusable="false">
-      <defs><linearGradient id="${id}g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2A1530"/><stop offset="1" stop-color="#140912"/></linearGradient>
-      <linearGradient id="${id}h" x1="0" y1="0" x2="0" y2="1"><stop offset=".55" stop-color="#4A1C3E" stop-opacity="0"/><stop offset="1" stop-color="#7A3550" stop-opacity=".35"/></linearGradient>
+      <defs><linearGradient id="${id}g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#DCC6B3"/><stop offset="1" stop-color="#C9AE98"/></linearGradient>
+      <linearGradient id="${id}h" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".25"/><stop offset=".6" stop-color="#FFFFFF" stop-opacity="0"/><stop offset="1" stop-color="#B8987F" stop-opacity=".35"/></linearGradient>
       <filter id="${id}b"><feGaussianBlur stdDeviation="4"/></filter></defs>
       ${r}<rect x="6" y="${top}" width="${w - 12}" height="${h}" fill="url(#${id}g)"/>
-      <g filter="url(#${id}b)" opacity=".35">${glow}</g>${win}
-      <rect x="${rimX - 1}" y="${top}" width="2" height="${h}" fill="#F7A86A" opacity=".18"/>
+      ${win}
+      <rect x="${rimX - 1}" y="${top}" width="2" height="${h}" fill="#FFFFFF" opacity=".35"/>
       <rect x="6" y="${top}" width="${w - 12}" height="${h}" fill="url(#${id}h)"/></svg>`;
   }
   function renderUniverse() {

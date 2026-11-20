@@ -18,7 +18,7 @@ Open `prototype/index.html` in a browser to walk through the clickable prototype
 
 The prototype now opens on the **Vibrez universe map**: a night street where each building is a passion. Glow House stands in the middle with its own facade, and the neighbouring lots are unnamed dusk silhouettes, so the street reads as one uniform skyline until other passion buildings are designed.
 
-- **The facade** is now a realistic, photo-style image (`prototype/assets/glow-house-facade.jpg`, generated with Canva): a terracotta department store at dusk inspired by London's grand Edwardian stores, with a domed roof outlined in lights, glowing windows, a canopy reading "The Glow House" over bronze entrance doors, lit shop windows and a wet cobbled street. On the map its edges fade into the night sky. The poster in the right shop window was retouched to read "VIBREZ UNIVERSE".
+- **The facade** is a realistic, photo-style daytime image (`prototype/assets/glow-house-facade.jpg`, generated with Canva): a cream-stone department store inspired by London's grand Edwardian stores, with a slate dome, a canopy reading "The Glow House" over bronze doors, shop windows, lanterns and a sunny cobbled street. Its edges fade into the soft day sky of the map. The poster in the right shop window was retouched to read "VIBREZ UNIVERSE". The earlier dusk version is kept as `glow-house-facade-night.jpg` (for example for an evening mode).
 - **Live badges** on the photo show what is live right now (masterclass, Lounge chat).
 - The earlier hand-drawn version is kept as `prototype/glow-house-facade.svg` (a scalable illustration, useful for icons or a zoomed-out map).
 - **Tap the building** (or its "Enter" pin) and the view zooms into the door, then opens the Glow House lobby. A "Universe" link in the header takes you back to the map.
@@ -52,9 +52,9 @@ The Boutique shows real, unbranded product photos, and real faces across every s
 
 ## Design language
 
-- Luxury without pretension: deep aubergine "night" facade with champagne gold, a rouge accent, soft blush-pearl surfaces.
+- Luxury without pretension, in daylight: a nude palette of ivory, sand, blush nude, taupe and cocoa, with a muted rose-terracotta accent and soft gold.
 - Bodoni Moda (italic, used sparingly) for a beauty-house feel; Manrope for clear, friendly reading.
-- Light and dark mode, phone-first layouts, keyboard accessible, respects reduced motion.
+- A deliberately light, daytime look, phone-first layouts, keyboard accessible, respects reduced motion.
 - Lively: lit windows on the facade, live dots, a live question feed, reactions, micro-interactions.
 
 ## Suggested next steps
