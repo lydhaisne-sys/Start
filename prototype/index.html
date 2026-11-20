@@ -474,6 +474,54 @@ img.av { object-fit: cover; padding: 0; background: var(--surface-2); }
 .faces .stack img { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; border: 2px solid var(--night); margin-left: -10px; }
 .faces .stack img:first-child { margin-left: 0; }
 @media (max-width: 900px) { .mc-feature { grid-template-columns: 1fr; } .mc-host { min-height: 260px; } }
+/* Glow Forward */
+.sensation { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 28px; background: var(--night); border-radius: var(--r); padding: 26px; position: relative; overflow: hidden; }
+.sensation::before { content: ""; position: absolute; right: -60px; top: -80px; width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(color-mix(in srgb, var(--rouge) 25%, transparent), transparent 70%); pointer-events: none; }
+.sensation > * { position: relative; }
+.sensation h3 { font-family: var(--f-display); font-weight: 500; font-size: clamp(26px, 3vw, 36px); line-height: 1.1; margin: 10px 0; }
+.sensation p { color: var(--muted); }
+.sensation .stats { margin-top: 14px; }
+.sensation .btn.ghost { border-color: var(--muted); }
+.judging ol { margin: 14px 0 0; padding-left: 20px; font-size: 13.5px; display: grid; gap: 4px; }
+.leader { background: var(--surface); border-radius: var(--r-sm); padding: 16px; display: grid; gap: 10px; align-content: start; }
+.finalist { display: grid; grid-template-columns: 22px 44px minmax(0, 1fr) auto; gap: 10px; align-items: center; }
+.finalist .rank { font-family: var(--f-display); font-size: 20px; color: var(--gold); text-align: center; }
+.finalist img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; }
+.finalist small { display: block; color: var(--muted); font-size: 12px; }
+.row-head { display: flex; justify-content: space-between; align-items: end; gap: 12px 20px; flex-wrap: wrap; }
+h3.sub { font-family: var(--f-display); font-weight: 500; font-size: 22px; margin: 4px 0; line-height: 1.15; }
+.entry { margin: 0; border-radius: var(--r-sm); overflow: hidden; border: 1px solid var(--line); background: var(--surface); }
+.entry img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; display: block; }
+.entry figcaption { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 10px 12px; font-size: 13px; }
+.entry small { display: block; color: var(--muted); font-size: 11.5px; }
+.giveaway { display: grid; grid-template-columns: 140px minmax(0, 1fr); gap: 18px; align-items: start; }
+.give-img { display: grid; gap: 8px; }
+.give-img img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 10px; display: block; }
+.countdown { margin: 14px 0; display: grid; gap: 2px; }
+.countdown span { font-family: var(--f-display); font-size: 26px; font-variant-numeric: tabular-nums; }
+.countdown small { color: var(--muted); font-size: 12.5px; }
+.fund { margin: 14px 0 6px; }
+.fund-bar { height: 10px; border-radius: 5px; background: var(--surface-2); overflow: hidden; }
+.fund-bar i { display: block; height: 100%; background: linear-gradient(90deg, var(--gold), var(--rouge)); transition: width .4s; }
+.fund-row { display: flex; gap: 8px; align-items: baseline; margin-top: 6px; font-variant-numeric: tabular-nums; }
+.fund-row b { font-family: var(--f-display); font-size: 22px; }
+.me-progress { min-width: 0; display: grid; gap: 6px; font-size: 13px; width: min(280px, 100%); }
+.ladder { list-style: none; margin: 18px 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.ladder li { position: relative; display: grid; gap: 4px; align-content: start; padding: 14px; border-radius: var(--r-sm); border: 1px solid var(--line); background: var(--surface); font-size: 13.5px; }
+.ladder li.here { border-color: var(--rouge); box-shadow: 0 0 0 1px var(--rouge); }
+.ladder .step-dot { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; background: var(--surface-2); color: var(--rouge); font-weight: 700; font-size: 12.5px; }
+.ladder li.here .step-dot { background: var(--rouge); color: var(--on-rouge); }
+.ladder b { font-family: var(--f-display); font-weight: 500; font-size: 19px; }
+.ladder small { color: var(--muted); font-size: 12.5px; }
+.ladder .perk { margin-top: 6px; font-size: 12px; font-weight: 600; color: var(--gold); }
+.mini { display: grid; gap: 8px; align-content: start; justify-items: start; }
+.faces-row { display: flex; margin: 4px 0 6px; }
+.faces-row img { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; border: 2px solid var(--surface); margin-left: -8px; }
+.faces-row img:first-child { margin-left: 0; }
+@media (max-width: 1080px) { .ladder { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 900px) { .sensation { grid-template-columns: 1fr; } }
+@media (max-width: 620px) { .ladder { grid-template-columns: 1fr; } .giveaway { grid-template-columns: 1fr; } .give-img { grid-template-columns: 1fr 1fr; } .finalist { grid-template-columns: 18px 40px minmax(0, 1fr) auto; } }
+
 /* Responsive */
 @media (max-width: 1080px) {
   .g4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -568,7 +616,7 @@ img.av { object-fit: cover; padding: 0; background: var(--surface-2); }
     <div class="hero-copy">
       <span class="eyebrow">Vibrez · Share your passion</span>
       <h1 id="heroTitle">Welcome to <em>Glow House</em>, the home of beauty lovers.</h1>
-      <p class="lede">Seven floors for makeup, skincare and fragrance. Shop shades matched to your skin, learn from artists live, read reviews from people who look like you, and book your next treatment nearby. Every face is welcome here.</p>
+      <p class="lede">Eight floors for makeup, skincare and fragrance, including one that gives back. Shop shades matched to your skin, learn from artists live, read reviews from people who look like you, and book your next treatment nearby. Every face is welcome here.</p>
       <div class="hero-actions">
         <a class="btn gold" href="#lobby">Create my beauty passport</a>
         <a class="btn ghost" href="#masterclass"><span class="live-dot"></span> Masterclass live now</a>
@@ -788,6 +836,71 @@ img.av { object-fit: cover; padding: 0; background: var(--surface-2); }
         </div>
       </div>
     </section>
+
+    <!-- 8: Glow Forward -->
+    <section class="floor" id="glow-forward" data-floor="8">
+      <div class="floor-head">
+        <div>
+          <div class="lvl"><i>8</i><span class="eyebrow">Glow Forward</span></div>
+          <h2>Give back, get seen</h2>
+          <p>Competitions, fair giveaways and scholarships. This is where members stand out, grow their audience and open doors for others.</p>
+        </div>
+      </div>
+
+      <div class="sensation">
+        <div>
+          <span class="tag rouge"><span class="live-dot"></span> Voting open · November</span>
+          <h3>Who will be the next beauty sensation?</h3>
+          <p>Submit one look before 30 November. The community votes, a panel of artists picks three finalists, and the winner gets a masterclass slot, the lobby spotlight and a paid brand collaboration.</p>
+          <div class="chips stats"><span class="tag gold">1,862 entries</span><span class="tag gold">9 days left</span><span class="tag gold">€5,000 prize</span></div>
+          <div class="hero-actions"><button class="btn" id="submitLook">Submit my look</button><button class="btn ghost sm" id="howJudging" aria-expanded="false">How judging works</button></div>
+          <div class="judging" id="judging" hidden>
+            <ol><li>Community votes count for 50%.</li><li>A panel of three artists scores technique, creativity and storytelling for the other 50%.</li><li>Every skin tone, age and gender competes in the same category. No filters allowed.</li></ol>
+          </div>
+        </div>
+        <div class="leader">
+          <span class="label">Top three right now</span>
+          <div id="finalists"></div>
+        </div>
+      </div>
+
+      <div class="panel" style="margin-top:18px">
+        <div class="row-head"><div><span class="eyebrow">Weekly challenge</span><h3 class="sub">The five-product face</h3><p class="muted" style="font-size:13.5px">Create a full look with five products or fewer. Most-loved entry is featured in the Tutorial Studio.</p></div><button class="btn sm" id="joinChallenge">Join the challenge</button></div>
+        <div class="grid g4" id="entries" style="margin-top:14px"></div>
+      </div>
+
+      <div class="grid g2" style="margin-top:18px">
+        <div class="panel giveaway">
+          <div class="give-img"><img src="assets/photos/p5.jpg" alt="Santal Dusk perfume"><img src="assets/photos/p2.jpg" alt="Velvet Lipstick"></div>
+          <div>
+            <span class="eyebrow">Giveaway</span>
+            <h3 class="sub">Win the Atelier Nuit signature set</h3>
+            <p class="muted" style="font-size:13.5px">Free to enter. No follows, no tagging friends. The winner is drawn live in the Lounge.</p>
+            <div class="countdown" aria-live="off"><span id="cd">2d 14h 05m 00s</span><small><b id="entrants">3,904</b> members entered</small></div>
+            <button class="btn" id="enterGiveaway">Enter the giveaway</button>
+          </div>
+        </div>
+        <div class="panel scholarship">
+          <span class="eyebrow">Glow Forward Scholarships</span>
+          <h3 class="sub">Talent shouldn't depend on money</h3>
+          <p class="muted" style="font-size:13.5px">Fully funded makeup-artistry and esthetician courses for members who can't afford the fees. Six places this spring, each with a mentor.</p>
+          <div class="fund"><div class="fund-bar"><i id="fundBar" style="width:73.6%"></i></div><div class="fund-row"><b id="fundAmt">€18,400</b><span class="muted">raised of €25,000</span></div></div>
+          <small class="muted">Funded by 2% of every Boutique order and our brand partners.</small>
+          <label class="switch" style="margin-top:12px"><input type="checkbox" id="roundUp"> Add €1 to my next order for the fund</label>
+          <div class="hero-actions" style="margin-top:14px"><button class="btn" id="applyScholarship">Apply for a scholarship</button></div>
+        </div>
+      </div>
+
+      <div class="panel" style="margin-top:18px">
+        <div class="row-head"><div><span class="eyebrow">Your creator path</span><h3 class="sub">How to stand out on Vibrez</h3></div><div class="me-progress"><span>You: <b>Member</b> · 120 of 500 glow points</span><div class="progress"><i style="width:24%"></i></div></div></div>
+        <ol class="ladder" id="ladder"></ol>
+      </div>
+
+      <div class="grid g2" style="margin-top:18px">
+        <div class="panel mini"><span class="eyebrow">Mentorship circles</span><h3 class="sub">Eight weeks with a professional</h3><p class="muted" style="font-size:13.5px">Six members, one artist or esthetician, a weekly live session and portfolio feedback.</p><div class="faces-row"><img src="assets/photos/amara.jpg" alt=""><img src="assets/photos/lea.jpg" alt=""><img src="assets/photos/arjun.jpg" alt=""><img src="assets/photos/ines.jpg" alt=""></div><button class="btn ghost sm" id="requestMentor">Request a mentor</button></div>
+        <div class="panel mini"><span class="eyebrow">Confidence Days</span><h3 class="sub">Free makeovers before a job interview</h3><p class="muted" style="font-size:13.5px">Partner salons donate an hour of hair and makeup for members heading to an interview. Bring your nerves, leave ready.</p><button class="btn ghost sm" data-go="salon">Find a partner salon</button></div>
+      </div>
+    </section>
   </main>
 </div>
 
@@ -826,6 +939,7 @@ img.av { object-fit: cover; padding: 0; background: var(--surface-2); }
   const CONCERNS = ['Breakouts', 'Dark spots', 'Fine lines', 'Redness', 'Dullness', 'Texture', 'Dark circles'];
 
   const FLOORS = [
+    { id: 'glow-forward', n: '8', name: 'Glow Forward', sub: 'Give back, get seen', win: [1, 'live', 1] },
     { id: 'advice', n: '7', name: 'Advice Bar', sub: 'Tips, routines, experts', win: [1, 1, 0] },
     { id: 'salon', n: '6', name: 'Spa & Salon', sub: 'Book a treatment', win: [1, 0, 1] },
     { id: 'lounge', n: '5', name: 'The Lounge', sub: 'Chat rooms', win: [1, 'live', 1] },
@@ -996,6 +1110,7 @@ img.av { object-fit: cover; padding: 0; background: var(--surface-2); }
 
   function renderHappening() {
     const items = [
+      { t: '9', s: 'days', h: 'Next Beauty Sensation: voting is open', p: 'Glow Forward · 1,862 entries', go: 'glow-forward' },
       { t: 'Live', s: 'now', h: 'Skin first, with Amara Okafor', p: 'Masterclass Atelier · 1,284 watching', go: 'masterclass' },
       { t: '18:00', s: 'today', h: 'Trend Watch: cherry-cola lips', p: 'The Lounge · hosted chat', go: 'lounge' },
       { t: '−20%', s: 'today', h: 'Atelier Nuit fragrance week', p: 'The Boutique · ends Sunday', go: 'boutique' },
@@ -1209,6 +1324,60 @@ img.av { object-fit: cover; padding: 0; background: var(--surface-2); }
     $('#qa').innerHTML = state.qa.map(x => `<div class="qa-item"><div class="q">${esc(x.q)}</div><div class="a">${x.a ? `${esc(x.a)}<br><b>${esc(x.by)}</b>` : '<span class="tag rouge">Waiting for an expert · usually within 24 hours</span>'}</div></div>`).join('');
   }
 
+  /* ---------- Glow Forward ---------- */
+  const FINALISTS = [
+    { who: 'Imani', img: 'imani', look: 'Copper glass skin', votes: 4210 },
+    { who: 'Lucía', img: 'lucia', look: 'Sunset graphic liner', votes: 3874 },
+    { who: 'Hana', img: 'hana', look: 'Porcelain rose', votes: 3502 }
+  ];
+  const ENTRIES = [
+    { who: 'Nia', img: 'nia', look: 'Bold berry, five products', loves: 812 },
+    { who: 'Theo', img: 'theo', look: 'Clean skin and brows', loves: 640 },
+    { who: 'Maya', img: 'maya', look: 'Soft glam in four', loves: 733 },
+    { who: 'Zoe', img: 'zoe', look: 'Freckle-friendly glow', loves: 591 }
+  ];
+  const LADDER = [
+    { name: 'Member', how: 'Create your passport and join a room.', perk: 'Vote, enter giveaways and challenges' },
+    { name: 'Rising', how: 'Post three looks or a tutorial.', perk: 'Rising badge, entry to mentorship circles' },
+    { name: 'Featured', how: 'Win a weekly challenge or reach 1,000 followers.', perk: 'Featured in the Tutorial Studio and Lobby' },
+    { name: 'Glow Star', how: 'Become a Next Beauty Sensation finalist or reach 10,000 followers.', perk: 'Paid brand collaborations, host a masterclass' }
+  ];
+  const gf = { voted: new Set(), loved: new Set(), entered: false };
+  function renderFinalists() {
+    const list = FINALISTS.map((f, i) => ({ ...f, v: f.votes + (gf.voted.has(i) ? 1 : 0), i })).sort((a, b) => b.v - a.v);
+    $('#finalists').innerHTML = list.map((f, r) => `<div class="finalist"><span class="rank">${r + 1}</span><img src="assets/photos/${f.img}.jpg" alt=""><div><b>${esc(f.who)}</b><small>${esc(f.look)} · ${f.v.toLocaleString('en')} votes</small></div><button class="btn sm ${gf.voted.has(f.i) ? 'ghost' : ''}" data-vote="${f.i}" aria-pressed="${gf.voted.has(f.i)}">${gf.voted.has(f.i) ? '✓ Voted' : 'Vote'}</button></div>`).join('');
+  }
+  function renderEntries() {
+    $('#entries').innerHTML = ENTRIES.map((e, i) => `<figure class="entry"><img src="assets/photos/${e.img}.jpg" alt="${esc(e.who)}'s challenge look"><figcaption><span><b>${esc(e.who)}</b><small>${esc(e.look)}</small></span><button class="helpful" data-love="${i}" aria-pressed="${gf.loved.has(i)}">♥ ${e.loves + (gf.loved.has(i) ? 1 : 0)}</button></figcaption></figure>`).join('');
+  }
+  function renderLadder() {
+    $('#ladder').innerHTML = LADDER.map((l, i) => `<li class="${i === 0 ? 'here' : ''}"><span class="step-dot">${i + 1}</span><b>${l.name}</b><small>${esc(l.how)}</small><span class="perk">${esc(l.perk)}</span></li>`).join('');
+  }
+  const cdEnd = Date.now() + ((2 * 24 + 14) * 3600 + 5 * 60) * 1000;
+  function tickCountdown() {
+    let t = Math.max(0, Math.floor((cdEnd - Date.now()) / 1000));
+    const d = Math.floor(t / 86400); t %= 86400; const h = Math.floor(t / 3600); t %= 3600; const m = Math.floor(t / 60); const sec = t % 60;
+    $('#cd').textContent = `${d}d ${String(h).padStart(2, '0')}h ${String(m).padStart(2, '0')}m ${String(sec).padStart(2, '0')}s`;
+  }
+  function openForm(kind) {
+    const dlg = $('#dlg');
+    const look = kind === 'look';
+    dlg.innerHTML = `<form method="dialog" id="gfForm"><div class="dlg-head"><div><span class="eyebrow">${look ? 'Next Beauty Sensation' : 'Glow Forward Scholarships'}</span><h3>${look ? 'Submit your look' : 'Apply for a scholarship'}</h3></div><button type="button" class="icon-btn" data-close aria-label="Close">✕</button></div>
+      <div class="dlg-body" style="display:grid;gap:14px">${look ? `
+        <div class="field"><label for="gfName">Name of your look</label><input type="text" id="gfName" required placeholder="e.g. Copper glass skin"></div>
+        <div class="field"><label for="gfPhoto">Photo or short video</label><input type="file" id="gfPhoto" accept="image/*,video/*"></div>
+        <div class="field"><label for="gfProducts">Products you used</label><textarea id="gfProducts" placeholder="One per line"></textarea></div>
+        <p class="muted" style="font-size:12.5px">No filters or face-editing apps. Entries are checked before voting opens.</p>` : `
+        <div class="field"><label for="gfCourse">Course</label><select id="gfCourse"><option>Makeup artistry (12 weeks)</option><option>Esthetician diploma (9 months)</option><option>Bridal and editorial makeup (6 weeks)</option></select></div>
+        <div class="field"><label for="gfName">Tell us your story and what you want to do with this course</label><textarea id="gfName" required minlength="20" placeholder="A few sentences are enough"></textarea></div>
+        <label class="switch"><input type="checkbox" id="gfNeed"> I can't afford the course fees myself</label>
+        <p class="muted" style="font-size:12.5px">Applications are reviewed by the Glow Forward panel. Shortlisted applicants are invited to a short video call.</p>`}
+        <button class="btn" type="submit" style="justify-self:start">${look ? 'Submit my look' : 'Send my application'}</button></div></form>`;
+    dlg.onchange = null; dlg.oninput = null;
+    $('#gfForm').addEventListener('submit', e => { e.preventDefault(); if (!$('#gfName').value.trim()) { $('#gfName').focus(); return; } dlg.close(); toast(look ? 'Look submitted. It joins the gallery once it is checked.' : 'Application sent. We reply within two weeks.'); });
+    dlg.showModal();
+  }
+
   /* ---------- Search ---------- */
   const INDEX = [
     ...PRODUCTS.map(p => ({ t: p.name, k: `${p.brand} ${p.cat}`, f: 'boutique', fl: '1 · Boutique' })),
@@ -1220,6 +1389,12 @@ img.av { object-fit: cover; padding: 0; background: var(--surface-2); }
     { t: 'Routine builder', k: 'skincare routine morning evening', f: 'advice', fl: '7 · Advice' },
     { t: 'Scent finder', k: 'fragrance perfume notes', f: 'advice', fl: '7 · Advice' },
     { t: 'Ask an expert', k: 'question dermatologist esthetician advice', f: 'advice', fl: '7 · Advice' },
+    { t: 'Next Beauty Sensation', k: 'competition contest vote talent star', f: 'glow-forward', fl: '8 · Glow Forward' },
+    { t: 'Weekly challenge', k: 'competition challenge five-product face', f: 'glow-forward', fl: '8 · Glow Forward' },
+    { t: 'Giveaway', k: 'giveaway win free prize', f: 'glow-forward', fl: '8 · Glow Forward' },
+    { t: 'Scholarships', k: 'scholarship tuition course fund training', f: 'glow-forward', fl: '8 · Glow Forward' },
+    { t: 'Creator path', k: 'popular followers stand out creator badge', f: 'glow-forward', fl: '8 · Glow Forward' },
+    { t: 'Mentorship', k: 'mentor coach professional', f: 'glow-forward', fl: '8 · Glow Forward' },
     { t: 'Find my foundation shade', k: 'passport skin tone undertone match', f: 'lobby', fl: 'G · Lobby' }
   ];
   function doSearch(q) {
@@ -1274,6 +1449,13 @@ img.av { object-fit: cover; padding: 0; background: var(--surface-2); }
     if (d.mood) { state.mood = d.mood; renderMoods(); return; }
     if (t.id === 'enterGH') { enterGlowHouse(); return; }
     if (d.soon) { toast(d.soon + ' opens soon in the Vibrez universe'); return; }
+    if (d.vote !== undefined) { const i = +d.vote; gf.voted.has(i) ? gf.voted.delete(i) : gf.voted.add(i); renderFinalists(); if (gf.voted.has(i)) toast('Vote counted. You can vote for each finalist once.'); return; }
+    if (d.love !== undefined) { const i = +d.love; gf.loved.has(i) ? gf.loved.delete(i) : gf.loved.add(i); renderEntries(); return; }
+    if (t.id === 'submitLook' || t.id === 'joinChallenge') { openForm('look'); return; }
+    if (t.id === 'applyScholarship') { openForm('scholarship'); return; }
+    if (t.id === 'howJudging') { const j = $('#judging'); j.hidden = !j.hidden; t.setAttribute('aria-expanded', !j.hidden); return; }
+    if (t.id === 'enterGiveaway') { if (!gf.entered) { gf.entered = true; $('#entrants').textContent = '3,905'; t.textContent = "✓ You're in. Good luck!"; t.classList.add('ghost'); toast('Entered. The draw is live in the Lounge.'); } return; }
+    if (t.id === 'requestMentor') { t.textContent = '✓ Request sent'; t.disabled = true; toast('We will match you with a mentor circle.'); return; }
     if (t.id === 'bagBtn') { openBag(true); return; }
     if (t.id === 'closeBag') { openBag(false); return; }
     if (t.id === 'checkout') { toast('Checkout opens in the full Vibrez app'); return; }
@@ -1367,6 +1549,8 @@ img.av { object-fit: cover; padding: 0; background: var(--surface-2); }
   renderTutFilters(); renderTutorials(); renderClasses();
   renderReviews(); renderRooms(); renderThread();
   renderSalons(); renderBooking(); renderRoutine(); renderMyths(); renderMoods(); renderQA();
+  renderFinalists(); renderEntries(); renderLadder(); tickCountdown(); setInterval(tickCountdown, 1000);
+  $('#roundUp').addEventListener('change', e => { const v = e.target.checked ? 18401 : 18400; $('#fundAmt').textContent = '€' + v.toLocaleString('en'); $('#fundBar').style.width = (v / 25000 * 100).toFixed(2) + '%'; if (e.target.checked) toast('Thank you. €1 will go to the scholarship fund.'); });
   watchFloors();
   renderUniverse(); route();
   liveTick(); liveTick(); liveTick();

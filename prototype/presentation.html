@@ -131,7 +131,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 <nav class="nav" aria-label="Presentation">
   <button class="arrow" id="prev" aria-label="Previous slide"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 18l-6-6 6-6"/></svg></button>
   <div class="dots" id="dots"></div>
-  <span class="count" id="count">1 / 15</span>
+  <span class="count" id="count">1 / 16</span>
   <button class="arrow" id="next" aria-label="Next slide"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 6l6 6-6 6"/></svg></button>
 </nav>
 
@@ -145,7 +145,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 
   const FLOORS = [
     { n: 'G', name: 'Lobby' }, { n: '1', name: 'The Boutique' }, { n: '2', name: 'Tutorial Studio' }, { n: '3', name: 'Masterclass Atelier' },
-    { n: '4', name: 'Review Lab' }, { n: '5', name: 'The Lounge' }, { n: '6', name: 'Spa & Salon' }, { n: '7', name: 'Advice Bar' }
+    { n: '4', name: 'Review Lab' }, { n: '5', name: 'The Lounge' }, { n: '6', name: 'Spa & Salon' }, { n: '7', name: 'Advice Bar' }, { n: '8', name: 'Glow Forward' }
   ];
   const floorSlide = (i, title, lede, bullets, extra = '') => ({
     view: 'floor', floor: i,
@@ -168,7 +168,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
       <p class="lede">Members walk a shared map and step inside the communities they love. Glow House is the first landmark: tap the facade and the doors open onto the lobby.</p>
       <div class="shots wide"><img src="assets/glow-house-facade.jpg" alt="Glow House facade in daylight"></div>
       <p class="note">Facade inspired by London's grand Edwardian department stores, in cream stone and soft daylight.</p>` },
-    { view: 'overview', html: `<div class="eyebrow">Inside the building</div><h2>Eight floors, one journey</h2>
+    { view: 'overview', html: `<div class="eyebrow">Inside the building</div><h2>A lobby and eight floors, one journey</h2>
       <p class="lede">An elevator links every floor, so people move from inspiration to purchase to community without leaving.</p>
       <ul>${FLOORS.slice().reverse().map(f => `<li><span><b>${f.n === 'G' ? 'Ground' : 'Floor ' + f.n}</b> · ${f.name}</span></li>`).join('')}</ul>
       <p class="note">Click any floor on the model to jump to it.</p>` },
@@ -195,6 +195,12 @@ button { font: inherit; color: inherit; cursor: pointer; }
     floorSlide(7, 'Tips, routines and straight answers', 'Advice from licensed estheticians, dermatologists and artists.',
       ['Morning and evening routine built for your skin type', 'Myth-or-fact cards and a scent finder by mood', 'Ask an expert and get a real answer'],
       `<div class="faces"><img src="${ph('ines')}" alt=""><img src="${ph('priya')}" alt=""><img src="${ph('sofia-sq')}" alt=""></div>`),
+    floorSlide(8, 'Give back, get seen', 'The top floor, under the dome: where members stand out and open doors for others.',
+      ['<b>Next Beauty Sensation:</b> a monthly talent search, community votes plus an artist panel, a paid brand collaboration to win',
+       '<b>Weekly challenges</b> and <b>fair giveaways</b>: free to enter, no follow-for-follow',
+       '<b>Glow Forward Scholarships:</b> funded makeup and esthetician courses for members who can\'t afford the fees, paid by 2% of Boutique sales and partners',
+       '<b>Creator path</b> from Member to Glow Star, plus mentorship circles and free Confidence Day makeovers before job interviews'],
+      `<div class="faces"><img src="${ph('imani')}" alt=""><img src="${ph('lucia')}" alt=""><img src="${ph('hana')}" alt=""><img src="${ph('nia')}" alt=""><img src="${ph('theo')}" alt=""><img src="${ph('zoe')}" alt=""></div>`),
     { view: 'wide', html: `<div class="eyebrow">What we stand for</div><h2>Inclusive, positive, genuine</h2>
       <ul><li><span><b>Inclusive:</b> every product shown on at least five skin tones; all ages and genders</span></li>
       <li><span><b>Positive:</b> hosted rooms, no skin or body shaming</span></li>

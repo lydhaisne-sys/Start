@@ -2,7 +2,7 @@
 
 **Vibrez: share your passion.** Glow House is the beauty building on Vibrez: one place for makeup, skincare and fragrance lovers to shop, learn, review, chat and book treatments.
 
-Open `prototype/index.html` in a browser to walk through the clickable prototype, or `prototype/presentation.html` for the interactive 3D presentation (15 slides: drag to turn the building, click a floor, use ← → to move). Names, products, artists and businesses in it are examples.
+Open `prototype/index.html` in a browser to walk through the clickable prototype, or `prototype/presentation.html` for the interactive 3D presentation (16 slides: drag to turn the building, click a floor, use ← → to move). Names, products, artists and businesses in it are examples.
 
 ## Why Glow House, and not Instagram, TikTok or YouTube
 
@@ -36,6 +36,7 @@ The prototype now opens on the **Vibrez universe map**: a night street where eac
 | 5 | **The Lounge** | Chat rooms: Trend Watch, Skincare Science, Fragrance Corner, First Steps (beginners). Each has a host and house rules. Reactions. |
 | 6 | **Spa & Salon** | Local beauty businesses with community ratings. Pick a treatment, day and time, request a booking. |
 | 7 | **Advice Bar** | Tip of the day, routine builder (AM/PM per skin type), myth-or-fact cards, scent finder by mood (note pyramid), "Ask an expert". |
+| 8 | **Glow Forward** (give back, get seen) | Next Beauty Sensation monthly talent search (community votes + artist panel, paid brand collaboration to win), weekly challenges, fair giveaways (free, no follow-for-follow), Glow Forward Scholarships (funded makeup and esthetician courses for members who can't afford them, paid by 2% of Boutique sales and partners), a creator path from Member to Glow Star, mentorship circles and free Confidence Day makeovers before job interviews. |
 
 Navigation is an **elevator**: the building facade in the hero, a sticky floor panel on desktop (a swipeable floor bar on phones), and a search bar that finds anything in any floor.
 
