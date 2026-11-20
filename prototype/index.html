@@ -1,0 +1,1197 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Vibrez Glow House</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Manrope:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: a building you ride through. Sticky elevator panel on the left, one floor per section, lobby facade as the hero. */
+:root {
+  --bg: #FBF6F8;
+  --surface: #FFFFFF;
+  --surface-2: #F5EBF0;
+  --ink: #26121F;
+  --muted: #6F5966;
+  --line: #EADBE2;
+  --rouge: #B02E5C;
+  --rouge-soft: #F8E1EA;
+  --on-rouge: #FFFFFF;
+  --gold: #9C7845;
+  --gold-soft: #F3E9D9;
+  --night: #2B1029;
+  --night-2: #3C1A39;
+  --on-night: #FBEFF4;
+  --ok: #2F7D5B;
+  --shadow: 0 1px 2px rgba(60, 20, 45, .06), 0 8px 24px rgba(60, 20, 45, .07);
+  --f-display: "Bodoni Moda", "Didot", "Bodoni 72", Georgia, serif;
+  --f-body: "Manrope", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --r: 14px;
+  --r-sm: 9px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #150B13; --surface: #20141E; --surface-2: #2A1B27; --ink: #F7ECF1; --muted: #BCA6B3;
+    --line: #3A2837; --rouge: #EC6C96; --rouge-soft: #3A1A2A; --on-rouge: #1A0B14;
+    --gold: #D9B47C; --gold-soft: #33281C; --night: #241020; --night-2: #331A30; --on-night: #FBEFF4;
+    --ok: #6CCB9E; --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #150B13; --surface: #20141E; --surface-2: #2A1B27; --ink: #F7ECF1; --muted: #BCA6B3;
+  --line: #3A2837; --rouge: #EC6C96; --rouge-soft: #3A1A2A; --on-rouge: #1A0B14;
+  --gold: #D9B47C; --gold-soft: #33281C; --night: #241020; --night-2: #331A30; --on-night: #FBEFF4;
+  --ok: #6CCB9E; --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; scroll-padding-top: calc(env(safe-area-inset-top, 0px) + 130px); }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; } }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font: 15px/1.6 var(--f-body);
+  -webkit-font-smoothing: antialiased;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 60; background: var(--surface); }
+h1, h2, h3, h4 { margin: 0; text-wrap: balance; }
+p { margin: 0; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:focus-visible { outline: 2px solid var(--rouge); outline-offset: 2px; border-radius: 6px; }
+.wrap { max-width: 1240px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.eyebrow { font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase; font-weight: 700; color: var(--gold); }
+.muted { color: var(--muted); }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* Buttons and chips */
+.btn { display: inline-flex; align-items: center; gap: 8px; border: 1px solid transparent; border-radius: 999px; padding: 9px 18px; font-weight: 600; font-size: 14px; background: var(--rouge); color: var(--on-rouge); transition: transform .15s, filter .15s; }
+.btn:hover { filter: brightness(1.06); }
+.btn:active { transform: scale(.97); }
+.btn.ghost { background: transparent; color: var(--ink); border-color: var(--line); }
+.btn.ghost:hover { border-color: var(--rouge); color: var(--rouge); }
+.btn.gold { background: var(--gold); color: var(--night); }
+.btn.sm { padding: 6px 13px; font-size: 13px; }
+.btn[disabled] { opacity: .45; cursor: not-allowed; filter: none; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 6px 13px; font-size: 13px; font-weight: 600; color: var(--muted); transition: all .15s; }
+.chip:hover { color: var(--ink); border-color: var(--muted); }
+.chip[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.tag { display: inline-flex; align-items: center; gap: 5px; font-size: 11.5px; font-weight: 700; padding: 3px 9px; border-radius: 999px; background: var(--surface-2); color: var(--muted); }
+.tag.rouge { background: var(--rouge-soft); color: var(--rouge); }
+.tag.gold { background: var(--gold-soft); color: var(--gold); }
+.live-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--rouge); display: inline-block; animation: pulse 1.6s infinite; }
+@keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--rouge) 60%, transparent); } 50% { box-shadow: 0 0 0 6px transparent; } }
+
+/* Header */
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50; background: color-mix(in srgb, var(--surface) 92%, transparent); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+.top .wrap { display: flex; align-items: center; gap: 16px; height: 64px; }
+.brand { display: flex; align-items: baseline; gap: 10px; text-decoration: none; color: var(--ink); white-space: nowrap; }
+.brand b { font-family: var(--f-display); font-size: 25px; font-weight: 600; font-style: italic; letter-spacing: -.01em; }
+.brand span { font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+.search { position: relative; flex: 1; max-width: 460px; margin-left: auto; }
+.search input { width: 100%; border: 1px solid var(--line); background: var(--surface-2); border-radius: 999px; padding: 9px 16px 9px 38px; font-size: 14px; }
+.search input:focus { outline: none; border-color: var(--rouge); background: var(--surface); }
+.search svg { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); color: var(--muted); }
+.results { position: absolute; top: calc(100% + 6px); left: 0; right: 0; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); box-shadow: var(--shadow); padding: 6px; max-height: 380px; overflow: auto; }
+.results button { display: flex; width: 100%; text-align: left; gap: 10px; align-items: center; background: none; border: 0; padding: 9px 10px; border-radius: 8px; }
+.results button:hover, .results button:focus-visible { background: var(--surface-2); }
+.results small { margin-left: auto; color: var(--muted); font-size: 11.5px; white-space: nowrap; }
+.icon-btn { position: relative; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line); background: var(--surface); flex: none; }
+.icon-btn:hover { border-color: var(--rouge); color: var(--rouge); }
+.badge { position: absolute; top: -4px; right: -4px; min-width: 18px; height: 18px; padding: 0 5px; border-radius: 9px; background: var(--rouge); color: var(--on-rouge); font-size: 11px; font-weight: 700; display: grid; place-items: center; }
+.me { display: flex; align-items: center; gap: 8px; border: 1px solid var(--line); border-radius: 999px; padding: 4px 12px 4px 4px; background: var(--surface); font-size: 13px; font-weight: 600; flex: none; }
+.me i { width: 30px; height: 30px; border-radius: 50%; display: block; border: 2px solid var(--surface); box-shadow: 0 0 0 1px var(--line); }
+
+/* Hero: the facade */
+.hero { background: var(--night); color: var(--on-night); overflow: hidden; position: relative; }
+.hero::before { content: ""; position: absolute; inset: 0; background: radial-gradient(60% 80% at 80% 10%, color-mix(in srgb, var(--rouge) 35%, transparent), transparent 70%), radial-gradient(40% 60% at 10% 100%, color-mix(in srgb, var(--gold) 22%, transparent), transparent 70%); pointer-events: none; }
+.hero .wrap { position: relative; display: grid; grid-template-columns: 1.1fr .9fr; gap: 48px; align-items: end; padding-block: 56px 0; }
+.hero h1 { font-family: var(--f-display); font-weight: 500; font-size: clamp(42px, 6.4vw, 84px); line-height: .98; letter-spacing: -.02em; }
+.hero h1 em { color: var(--gold); font-style: italic; }
+.hero .lede { font-size: 17px; max-width: 52ch; color: color-mix(in srgb, var(--on-night) 80%, transparent); margin-top: 20px; }
+.hero .eyebrow { color: var(--gold); margin-bottom: 18px; display: block; }
+.hero-copy { padding-bottom: 56px; }
+.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
+.hero .btn.ghost { color: var(--on-night); border-color: color-mix(in srgb, var(--on-night) 30%, transparent); }
+.hero .btn.ghost:hover { border-color: var(--gold); color: var(--gold); }
+.values { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 32px; font-size: 13px; color: color-mix(in srgb, var(--on-night) 70%, transparent); }
+.values span::before { content: "✦ "; color: var(--gold); }
+
+.facade { align-self: end; max-width: 420px; width: 100%; justify-self: center; }
+.facade .sign { text-align: center; font-family: var(--f-display); font-style: italic; font-size: 22px; color: var(--gold); padding: 10px 0 12px; border: 1px solid color-mix(in srgb, var(--gold) 50%, transparent); border-bottom: 0; border-radius: 120px 120px 0 0; background: var(--night-2); letter-spacing: .02em; }
+.facade .sign small { display: block; font-family: var(--f-body); font-style: normal; font-size: 10px; letter-spacing: .3em; text-transform: uppercase; color: color-mix(in srgb, var(--on-night) 60%, transparent); }
+.floorbtn { display: grid; grid-template-columns: 34px 1fr auto; align-items: center; gap: 12px; width: 100%; padding: 10px 14px; background: var(--night-2); border: 1px solid color-mix(in srgb, var(--gold) 50%, transparent); border-top: 0; color: var(--on-night); text-align: left; transition: background .2s; }
+.floorbtn:hover { background: color-mix(in srgb, var(--night-2) 70%, var(--rouge)); }
+.floorbtn .num { font-family: var(--f-display); font-size: 20px; color: var(--gold); text-align: center; }
+.floorbtn .nm { font-weight: 600; font-size: 14px; }
+.floorbtn .nm small { display: block; font-weight: 400; font-size: 11.5px; color: color-mix(in srgb, var(--on-night) 60%, transparent); }
+.windows { display: flex; gap: 4px; }
+.windows i { width: 9px; height: 14px; border-radius: 2px 2px 0 0; background: color-mix(in srgb, var(--gold) 25%, transparent); }
+.windows i.on { background: var(--gold); box-shadow: 0 0 8px color-mix(in srgb, var(--gold) 70%, transparent); animation: flicker 6s infinite; }
+.windows i.on:nth-child(2) { animation-delay: 2s; }
+.windows i.live { background: var(--rouge); box-shadow: 0 0 10px var(--rouge); }
+@keyframes flicker { 0%, 92%, 100% { opacity: 1; } 95% { opacity: .55; } }
+.facade .door { display: flex; justify-content: center; background: var(--night-2); border: 1px solid color-mix(in srgb, var(--gold) 50%, transparent); border-top: 0; padding-top: 10px; }
+.facade .door span { width: 72px; height: 44px; border-radius: 36px 36px 0 0; background: linear-gradient(var(--gold), color-mix(in srgb, var(--gold) 50%, var(--rouge))); opacity: .9; }
+
+/* Building layout */
+.building { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 40px; padding-block: 40px 80px; }
+.building > * { min-width: 0; }
+.elevator { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 84px); align-self: start; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 14px; box-shadow: var(--shadow); }
+.elevator .display { background: var(--night); color: var(--gold); border-radius: var(--r-sm); padding: 10px 12px; margin-bottom: 12px; font-size: 12px; }
+.elevator .display b { display: block; font-family: var(--f-display); font-size: 26px; line-height: 1.1; }
+.elevator .display span { color: color-mix(in srgb, var(--on-night) 70%, transparent); }
+.elevator nav { display: grid; gap: 4px; }
+.elevator a { display: grid; grid-template-columns: 30px 1fr; gap: 8px; align-items: center; padding: 7px 8px; border-radius: 8px; text-decoration: none; color: var(--muted); font-size: 13.5px; font-weight: 600; }
+.elevator a i { font-style: normal; width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--line); display: grid; place-items: center; font-family: var(--f-display); font-size: 14px; color: var(--ink); }
+.elevator a:hover { color: var(--ink); background: var(--surface-2); }
+.elevator a.active { color: var(--ink); background: var(--rouge-soft); }
+.elevator a.active i { background: var(--rouge); border-color: var(--rouge); color: var(--on-rouge); }
+
+.floor { padding-block: 24px 64px; border-bottom: 1px solid var(--line); }
+.floor:last-child { border-bottom: 0; }
+.floor-head { display: flex; justify-content: space-between; align-items: end; gap: 16px 24px; flex-wrap: wrap; margin-bottom: 26px; }
+.floor-head .lvl { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.floor-head .lvl i { font-style: normal; font-family: var(--f-display); font-size: 15px; width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; background: var(--night); color: var(--gold); }
+.floor-head h2 { font-family: var(--f-display); font-weight: 500; font-size: clamp(30px, 4vw, 44px); line-height: 1.05; letter-spacing: -.015em; }
+.floor-head p { max-width: 58ch; color: var(--muted); margin-top: 8px; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 22px; }
+.grid { display: grid; gap: 18px; }
+.g2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.g3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.g4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.label { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; display: block; }
+
+/* Lobby / passport */
+.lobby { grid-template-columns: 1.25fr 1fr; }
+.passport h3 { font-family: var(--f-display); font-size: 26px; font-weight: 500; }
+.passport .row { margin-top: 20px; }
+.tones { display: grid; grid-template-columns: repeat(10, 1fr); gap: 6px; }
+.tone { aspect-ratio: 1; max-width: 100%; border-radius: 50%; border: 2px solid var(--surface); box-shadow: 0 0 0 1px var(--line); padding: 0; transition: transform .15s; }
+.tone:hover { transform: scale(1.1); }
+.tone[aria-pressed="true"] { box-shadow: 0 0 0 2px var(--rouge); transform: scale(1.1); }
+.tone-read { display: flex; justify-content: space-between; margin-top: 8px; font-size: 13px; color: var(--muted); }
+.tone-read b { color: var(--ink); }
+.match-card { display: flex; align-items: center; gap: 14px; margin-top: 22px; padding: 14px; border-radius: var(--r-sm); background: var(--gold-soft); }
+.match-card .sw { width: 46px; height: 46px; border-radius: 50%; flex: none; box-shadow: inset 0 -6px 12px rgba(0,0,0,.12); }
+.match-card b { font-family: var(--f-display); font-size: 20px; }
+.happening { display: grid; gap: 12px; }
+.happen { display: grid; grid-template-columns: 54px 1fr auto; gap: 14px; align-items: center; padding: 12px; border-radius: var(--r-sm); border: 1px solid var(--line); background: var(--surface); text-align: left; width: 100%; }
+.happen:hover { border-color: var(--rouge); }
+.happen .t { font-family: var(--f-display); font-size: 18px; text-align: center; line-height: 1.1; color: var(--rouge); }
+.happen .t small { display: block; font-family: var(--f-body); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.happen h4 { font-size: 14.5px; }
+.happen p { font-size: 13px; color: var(--muted); }
+.promise { margin-top: 18px; padding: 16px 18px; border-radius: var(--r-sm); background: var(--night); color: var(--on-night); font-size: 13.5px; }
+.promise b { font-family: var(--f-display); font-style: italic; font-size: 18px; color: var(--gold); font-weight: 500; display: block; margin-bottom: 4px; }
+
+/* Product art */
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; display: flex; flex-direction: column; }
+.art { position: relative; aspect-ratio: 4 / 3.4; max-width: 100%; display: grid; place-items: center; background: var(--surface-2); overflow: hidden; }
+.art .tagl { position: absolute; top: 10px; left: 10px; display: flex; gap: 6px; flex-wrap: wrap; }
+.shape { position: relative; }
+.shape.bottle { width: 62px; height: 104px; border-radius: 14px 14px 18px 18px; background: linear-gradient(105deg, color-mix(in srgb, var(--c) 82%, white), var(--c) 45%, color-mix(in srgb, var(--c) 75%, black)); box-shadow: 0 14px 24px rgba(40,10,30,.22); margin-top: 26px; }
+.shape.bottle::before { content: ""; position: absolute; left: 14px; right: 14px; top: -30px; height: 32px; border-radius: 6px 6px 2px 2px; background: linear-gradient(90deg, #1d1219, #4a3644, #1d1219); }
+.shape.bottle::after, .shape.jar::after, .shape.perfume::after, .shape.tube::after { content: "VIBREZ"; position: absolute; left: 0; right: 0; bottom: 18px; text-align: center; font-size: 6.5px; letter-spacing: .3em; color: rgba(255,255,255,.75); font-weight: 700; }
+.shape.lip { width: 30px; height: 64px; border-radius: 4px; background: linear-gradient(90deg, #8a6a3b, #e5c68f, #8a6a3b); margin-top: 52px; box-shadow: 0 14px 24px rgba(40,10,30,.22); }
+.shape.lip::before { content: ""; position: absolute; left: 3px; right: 3px; bottom: 100%; height: 40px; border-radius: 12px 3px 2px 2px; background: linear-gradient(95deg, color-mix(in srgb, var(--c) 70%, white), var(--c) 50%, color-mix(in srgb, var(--c) 70%, black)); clip-path: polygon(0 18%, 100% 0, 100% 100%, 0 100%); }
+.shape.jar { width: 104px; height: 58px; border-radius: 10px 10px 18px 18px; background: linear-gradient(100deg, color-mix(in srgb, var(--c) 82%, white), var(--c) 50%, color-mix(in srgb, var(--c) 78%, black)); margin-top: 30px; box-shadow: 0 14px 24px rgba(40,10,30,.18); }
+.shape.jar::before { content: ""; position: absolute; left: -4px; right: -4px; top: -20px; height: 22px; border-radius: 8px; background: linear-gradient(90deg, #b8935a, #ecd4a3, #b8935a); }
+.shape.jar::after { bottom: 20px; }
+.shape.perfume { width: 82px; height: 82px; border-radius: 20px; background: linear-gradient(135deg, color-mix(in srgb, var(--c) 55%, white), color-mix(in srgb, var(--c) 85%, transparent)); border: 2px solid rgba(255,255,255,.5); margin-top: 34px; box-shadow: 0 14px 24px rgba(40,10,30,.18); }
+.shape.perfume::before { content: ""; position: absolute; left: 50%; top: -30px; width: 30px; height: 28px; transform: translateX(-50%); border-radius: 50%; background: linear-gradient(90deg, #b8935a, #ecd4a3, #b8935a); }
+.shape.perfume::after { bottom: 34px; }
+.shape.stick { width: 36px; height: 92px; border-radius: 18px; background: linear-gradient(90deg, #ead6cb, #fff, #ead6cb); margin-top: 18px; box-shadow: 0 14px 24px rgba(40,10,30,.18); overflow: hidden; }
+.shape.stick::before { content: ""; position: absolute; inset: 0 0 auto; height: 26px; background: var(--c); }
+.shape.tube { width: 50px; height: 110px; border-radius: 6px 6px 22px 22px / 6px 6px 10px 10px; background: linear-gradient(100deg, color-mix(in srgb, var(--c) 82%, white), var(--c) 50%, color-mix(in srgb, var(--c) 78%, black)); margin-top: 6px; box-shadow: 0 14px 24px rgba(40,10,30,.18); }
+.shape.tube::before { content: ""; position: absolute; left: 10px; right: 10px; bottom: -18px; height: 20px; border-radius: 4px; background: #24161f; }
+.shape.tube::after { bottom: 46px; transform: rotate(-90deg); }
+.card .body { padding: 16px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+.card .brandname { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; font-weight: 700; color: var(--muted); }
+.card h3 { font-size: 16px; font-weight: 700; line-height: 1.3; }
+.fit { font-size: 12.5px; color: var(--ok); font-weight: 600; }
+.price-row { display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding-top: 10px; gap: 8px; }
+.price { font-family: var(--f-display); font-size: 20px; font-variant-numeric: tabular-nums; }
+.swatches { display: flex; gap: 4px; align-items: center; }
+.swatches i { width: 14px; height: 14px; border-radius: 50%; border: 1px solid rgba(0,0,0,.08); }
+.swatches small { font-size: 11.5px; color: var(--muted); margin-left: 4px; }
+
+/* Tutorials */
+.tut .thumb { aspect-ratio: 16 / 10; max-width: 100%; position: relative; display: flex; flex-direction: column; justify-content: space-between; padding: 14px; color: #fff; overflow: hidden; }
+.tut .thumb::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(20,6,16,.55), transparent 60%); }
+.tut .thumb > * { position: relative; z-index: 1; }
+.tut .thumb .dur { font-family: var(--f-display); font-size: 30px; font-style: italic; line-height: 1; text-shadow: 0 2px 10px rgba(0,0,0,.25); }
+.tut .play { width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,.92); color: #2B1029; display: grid; place-items: center; align-self: flex-end; }
+.tut .meta { display: flex; gap: 6px; flex-wrap: wrap; }
+.creator { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); }
+.av { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; font-size: 11px; font-weight: 700; color: #fff; flex: none; }
+
+/* Masterclass */
+.mc { display: grid; grid-template-columns: 120px minmax(0, 1fr); }
+.mc .portrait { background: var(--night); display: grid; place-items: center; position: relative; }
+.mc .portrait b { font-family: var(--f-display); font-style: italic; font-size: 44px; color: var(--gold); font-weight: 500; }
+.mc .portrait small { position: absolute; bottom: 10px; font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: color-mix(in srgb, var(--on-night) 70%, transparent); }
+.mc .body { padding: 18px; }
+.mc h3 { font-family: var(--f-display); font-size: 21px; font-weight: 500; }
+.mc .when { font-size: 13px; color: var(--muted); }
+.seats { height: 5px; border-radius: 3px; background: var(--surface-2); overflow: hidden; margin: 10px 0 4px; }
+.seats span { display: block; height: 100%; background: var(--gold); }
+.mc-feature { background: var(--night); color: var(--on-night); border-radius: var(--r); padding: 26px; display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 28px; margin-bottom: 18px; position: relative; overflow: hidden; }
+.mc-feature::before { content: ""; position: absolute; right: -80px; top: -80px; width: 280px; height: 280px; border-radius: 50%; background: radial-gradient(color-mix(in srgb, var(--rouge) 45%, transparent), transparent 70%); }
+.mc-feature > * { position: relative; }
+.mc-feature h3 { font-family: var(--f-display); font-weight: 500; font-size: clamp(26px, 3vw, 36px); line-height: 1.1; margin: 10px 0; }
+.mc-feature p { color: color-mix(in srgb, var(--on-night) 78%, transparent); }
+.stage { border-radius: var(--r-sm); background: var(--night-2); padding: 14px; display: flex; flex-direction: column; gap: 10px; font-size: 13px; min-height: 180px; }
+.stage .q { background: color-mix(in srgb, var(--on-night) 8%, transparent); border-radius: 10px; padding: 8px 10px; }
+.stage .q b { color: var(--gold); font-weight: 600; }
+
+/* Reviews */
+.rev-tools { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+.switch { display: inline-flex; align-items: center; gap: 10px; font-weight: 600; font-size: 14px; cursor: pointer; }
+.switch input { appearance: none; width: 40px; height: 23px; border-radius: 12px; background: var(--line); position: relative; cursor: pointer; transition: background .2s; margin: 0; }
+.switch input::after { content: ""; position: absolute; top: 3px; left: 3px; width: 17px; height: 17px; border-radius: 50%; background: var(--surface); transition: transform .2s; box-shadow: 0 1px 3px rgba(0,0,0,.2); }
+.switch input:checked { background: var(--rouge); }
+.switch input:checked::after { transform: translateX(17px); }
+.review { padding: 18px; }
+.review .who { display: flex; align-items: center; gap: 10px; }
+.review .who .sw { width: 34px; height: 34px; border-radius: 50%; flex: none; }
+.review .who b { font-size: 14.5px; }
+.review .who small { display: block; color: var(--muted); font-size: 12px; }
+.stars { color: var(--gold); letter-spacing: 2px; font-size: 14px; }
+.review .prod { font-size: 13px; font-weight: 600; margin-top: 12px; }
+.review p.txt { margin-top: 6px; font-size: 14px; }
+.meters { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 14px; }
+.meter small { font-size: 11px; color: var(--muted); display: block; }
+.meter span { display: block; height: 4px; border-radius: 2px; background: var(--surface-2); margin-top: 4px; overflow: hidden; }
+.meter span i { display: block; height: 100%; background: var(--rouge); }
+.review .foot { display: flex; justify-content: space-between; align-items: center; margin-top: 14px; gap: 10px; flex-wrap: wrap; }
+.helpful { background: none; border: 1px solid var(--line); border-radius: 999px; padding: 4px 11px; font-size: 12.5px; font-weight: 600; color: var(--muted); }
+.helpful[aria-pressed="true"] { color: var(--rouge); border-color: var(--rouge); }
+.empty { padding: 30px; text-align: center; color: var(--muted); border: 1px dashed var(--line); border-radius: var(--r); }
+
+/* Form bits */
+.field { display: grid; gap: 6px; }
+.field label { font-size: 13px; font-weight: 600; }
+.field input[type="text"], .field select, .field textarea { border: 1px solid var(--line); background: var(--surface); border-radius: var(--r-sm); padding: 10px 12px; width: 100%; font-size: 14px; }
+.field textarea { resize: vertical; min-height: 84px; }
+.field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--rouge); }
+input[type="range"] { accent-color: var(--rouge); width: 100%; }
+.range-row { display: grid; grid-template-columns: 90px 1fr 28px; gap: 10px; align-items: center; font-size: 13px; }
+.range-row output { font-weight: 700; text-align: right; font-variant-numeric: tabular-nums; }
+
+/* Lounge */
+.lounge { display: grid; grid-template-columns: 240px minmax(0, 1fr); border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; background: var(--surface); min-height: 520px; }
+.rooms { border-right: 1px solid var(--line); padding: 14px; background: var(--surface-2); display: flex; flex-direction: column; gap: 4px; }
+.room { text-align: left; background: none; border: 0; border-radius: 10px; padding: 10px 12px; display: grid; gap: 2px; }
+.room b { font-size: 14px; }
+.room small { font-size: 12px; color: var(--muted); }
+.room:hover { background: var(--surface); }
+.room[aria-pressed="true"] { background: var(--surface); box-shadow: var(--shadow); }
+.room[aria-pressed="true"] b { color: var(--rouge); }
+.rules { margin-top: auto; font-size: 12px; color: var(--muted); padding: 12px; border-radius: 10px; border: 1px solid var(--line); background: var(--surface); }
+.rules b { color: var(--ink); display: block; margin-bottom: 4px; }
+.thread { display: flex; flex-direction: column; min-width: 0; }
+.thread-head { padding: 14px 18px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.thread-head h3 { font-family: var(--f-display); font-size: 22px; font-weight: 500; }
+.msgs { flex: 1; padding: 18px; display: flex; flex-direction: column; gap: 14px; overflow-y: auto; max-height: 440px; }
+.msg { display: grid; grid-template-columns: 32px minmax(0, 1fr); gap: 10px; }
+.msg .av { width: 32px; height: 32px; }
+.msg .bubble { background: var(--surface-2); padding: 9px 13px; border-radius: 4px 14px 14px 14px; font-size: 14px; max-width: 560px; overflow-wrap: anywhere; }
+.msg .meta { font-size: 12px; color: var(--muted); margin-bottom: 3px; }
+.msg .meta b { color: var(--ink); }
+.msg .meta .tag { margin-left: 6px; padding: 1px 7px; font-size: 10.5px; }
+.msg.mine { grid-template-columns: minmax(0, 1fr) 32px; }
+.msg.mine .content { justify-self: end; text-align: right; }
+.msg.mine .bubble { background: var(--rouge); color: var(--on-rouge); border-radius: 14px 4px 14px 14px; text-align: left; }
+.msg.mine .av { order: 2; }
+.reacts { display: flex; gap: 4px; margin-top: 4px; flex-wrap: wrap; }
+.msg.mine .reacts { justify-content: flex-end; }
+.react { border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 1px 8px; font-size: 12px; }
+.react[aria-pressed="true"] { border-color: var(--rouge); background: var(--rouge-soft); }
+.typing { font-size: 12.5px; color: var(--muted); padding: 0 18px 8px; min-height: 22px; }
+.composer { display: flex; gap: 10px; padding: 12px; border-top: 1px solid var(--line); }
+.composer input { flex: 1; min-width: 0; border: 1px solid var(--line); background: var(--surface-2); border-radius: 999px; padding: 10px 16px; }
+.composer input:focus { outline: none; border-color: var(--rouge); }
+
+/* Salon booking */
+.salon { padding: 0; }
+.salon-list { display: grid; gap: 12px; }
+.salon-opt { display: grid; grid-template-columns: 56px minmax(0, 1fr) auto; gap: 14px; align-items: center; padding: 14px; border: 1px solid var(--line); border-radius: var(--r-sm); background: var(--surface); text-align: left; width: 100%; }
+.salon-opt[aria-pressed="true"] { border-color: var(--rouge); box-shadow: 0 0 0 1px var(--rouge); }
+.salon-opt .mono { width: 56px; height: 56px; border-radius: 12px; display: grid; place-items: center; font-family: var(--f-display); font-style: italic; font-size: 24px; color: var(--gold); background: var(--night); }
+.salon-opt h4 { font-size: 15px; }
+.salon-opt p { font-size: 12.5px; color: var(--muted); }
+.salon-opt .rt { font-size: 13px; font-weight: 700; text-align: right; }
+.salon-opt .rt small { display: block; font-weight: 500; color: var(--muted); font-size: 11.5px; }
+.svc { display: flex; justify-content: space-between; align-items: center; width: 100%; text-align: left; padding: 11px 14px; border: 1px solid var(--line); border-radius: var(--r-sm); background: var(--surface); gap: 10px; }
+.svc[aria-pressed="true"] { border-color: var(--rouge); background: var(--rouge-soft); }
+.svc small { color: var(--muted); display: block; font-size: 12px; }
+.svc .p { font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.days { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; }
+.day { border: 1px solid var(--line); background: var(--surface); border-radius: 10px; padding: 8px 0; text-align: center; font-size: 11.5px; color: var(--muted); }
+.day b { display: block; font-size: 17px; color: var(--ink); font-family: var(--f-display); }
+.day[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+.day[aria-pressed="true"] b { color: var(--bg); }
+.slots { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
+.slot { border: 1px solid var(--line); background: var(--surface); border-radius: 8px; padding: 7px 0; font-size: 13px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.slot[aria-pressed="true"] { background: var(--rouge); border-color: var(--rouge); color: var(--on-rouge); }
+.slot[disabled] { text-decoration: line-through; opacity: .4; cursor: not-allowed; }
+.booking-summary { margin-top: 18px; padding: 14px; border-radius: var(--r-sm); background: var(--surface-2); font-size: 13.5px; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.confirm { padding: 22px; border-radius: var(--r); background: var(--night); color: var(--on-night); display: grid; gap: 6px; }
+.confirm b { font-family: var(--f-display); font-size: 24px; font-weight: 500; color: var(--gold); }
+
+/* Advice bar */
+.tip-day { background: var(--gold-soft); border-radius: var(--r); padding: 26px; display: grid; gap: 10px; }
+.tip-day blockquote { margin: 0; font-family: var(--f-display); font-size: clamp(21px, 2.4vw, 28px); line-height: 1.25; font-style: italic; }
+.tip-day .creator { color: var(--ink); }
+.routine ol { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; counter-reset: s; }
+.routine li { counter-increment: s; display: grid; grid-template-columns: 26px 1fr; gap: 10px; font-size: 14px; align-items: start; }
+.routine li::before { content: counter(s); width: 24px; height: 24px; border-radius: 50%; background: var(--surface-2); display: grid; place-items: center; font-size: 12px; font-weight: 700; color: var(--rouge); }
+.routine li small { display: block; color: var(--muted); font-size: 12.5px; }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; padding: 3px; background: var(--surface-2); }
+.seg button { border: 0; background: none; padding: 5px 14px; border-radius: 999px; font-size: 13px; font-weight: 600; color: var(--muted); }
+.seg button[aria-pressed="true"] { background: var(--surface); color: var(--ink); box-shadow: var(--shadow); }
+.myth { perspective: 900px; background: none; border: 0; padding: 0; text-align: left; min-height: 170px; }
+.myth .in { position: relative; height: 100%; min-height: 170px; transition: transform .6s; transform-style: preserve-3d; }
+.myth.flipped .in { transform: rotateY(180deg); }
+.myth .face { position: absolute; inset: 0; backface-visibility: hidden; border-radius: var(--r); padding: 18px; display: flex; flex-direction: column; gap: 8px; border: 1px solid var(--line); background: var(--surface); }
+.myth .face.back { transform: rotateY(180deg); background: var(--night); color: var(--on-night); border-color: var(--night); }
+.myth .face p { font-size: 14.5px; }
+.myth .face .eyebrow { color: var(--rouge); }
+.myth .face.back .eyebrow { color: var(--gold); }
+.myth .hint { margin-top: auto; font-size: 12px; color: var(--muted); }
+.myth .back .hint { color: color-mix(in srgb, var(--on-night) 60%, transparent); }
+.scent-out { margin-top: 16px; display: grid; gap: 10px; }
+.pyramid { display: grid; gap: 6px; }
+.pyramid div { display: grid; grid-template-columns: 70px 1fr; gap: 10px; font-size: 13.5px; align-items: baseline; }
+.pyramid small { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+.qa { display: grid; gap: 12px; }
+.qa-item { padding: 14px; border-radius: var(--r-sm); border: 1px solid var(--line); background: var(--surface); }
+.qa-item .q { font-weight: 700; font-size: 14px; }
+.qa-item .a { margin-top: 8px; font-size: 13.5px; color: var(--muted); }
+.qa-item .a b { color: var(--ink); }
+
+/* Drawer, dialog, toast */
+.scrim { position: fixed; inset: 0; background: rgba(20, 6, 16, .45); z-index: 80; }
+.drawer { position: fixed; top: 0; right: 0; bottom: 0; width: min(400px, 100%); background: var(--surface); z-index: 90; display: flex; flex-direction: column; box-shadow: -10px 0 40px rgba(0,0,0,.2); padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); padding-right: env(safe-area-inset-right, 0px); }
+.drawer header { display: flex; justify-content: space-between; align-items: center; padding: 18px 20px; border-bottom: 1px solid var(--line); }
+.drawer header h3 { font-family: var(--f-display); font-size: 24px; font-weight: 500; }
+.drawer .items { flex: 1; overflow: auto; padding: 14px 20px; display: grid; gap: 12px; align-content: start; }
+.bag-item { display: grid; grid-template-columns: 46px 1fr auto; gap: 12px; align-items: center; font-size: 13.5px; }
+.bag-item .sw { width: 46px; height: 46px; border-radius: 10px; }
+.bag-item small { color: var(--muted); display: block; }
+.drawer footer { border-top: 1px solid var(--line); padding: 18px 20px; display: grid; gap: 12px; }
+.drawer footer .tot { display: flex; justify-content: space-between; font-weight: 700; font-size: 16px; font-variant-numeric: tabular-nums; }
+dialog { border: 0; border-radius: var(--r); padding: 0; width: min(620px, calc(100% - 32px)); background: var(--surface); color: var(--ink); box-shadow: var(--shadow); }
+dialog::backdrop { background: rgba(20, 6, 16, .55); }
+.dlg-head { padding: 22px 22px 16px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; gap: 12px; align-items: start; }
+.dlg-head h3 { font-family: var(--f-display); font-size: 26px; font-weight: 500; line-height: 1.15; }
+.dlg-body { padding: 18px 22px 22px; max-height: 64vh; overflow: auto; }
+.steps { display: grid; gap: 8px; margin-top: 14px; }
+.step { display: grid; grid-template-columns: 24px 1fr; gap: 12px; align-items: start; padding: 12px; border-radius: var(--r-sm); border: 1px solid var(--line); cursor: pointer; font-size: 14px; }
+.step input { accent-color: var(--rouge); width: 18px; height: 18px; margin: 2px 0 0; }
+.step:has(input:checked) { background: var(--surface-2); }
+.step:has(input:checked) span { text-decoration: line-through; color: var(--muted); }
+.step small { display: block; color: var(--muted); font-size: 12.5px; }
+.progress { height: 6px; border-radius: 3px; background: var(--surface-2); overflow: hidden; }
+.progress i { display: block; height: 100%; background: var(--rouge); transition: width .3s; }
+.toast { position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%) translateY(20px); background: var(--ink); color: var(--bg); padding: 11px 18px; border-radius: 999px; font-size: 14px; font-weight: 600; z-index: 100; opacity: 0; transition: all .25s; pointer-events: none; max-width: calc(100% - 32px); text-align: center; }
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+.foot-note { text-align: center; color: var(--muted); font-size: 13px; padding-block: 30px 50px; border-top: 1px solid var(--line); }
+.foot-note b { font-family: var(--f-display); font-style: italic; font-size: 18px; color: var(--ink); font-weight: 500; }
+
+/* Responsive */
+@media (max-width: 1080px) {
+  .g4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .g3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 900px) {
+  .hero .wrap { grid-template-columns: 1fr; gap: 0; padding-top: 40px; }
+  .hero-copy { padding-bottom: 36px; }
+  .building { grid-template-columns: 1fr; gap: 0; padding-top: 0; }
+  .elevator { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 64px); z-index: 40; border-radius: 0; border-width: 0 0 1px; box-shadow: none; margin-left: calc(-1 * max(16px, env(safe-area-inset-left, 0px))); margin-right: calc(-1 * max(16px, env(safe-area-inset-right, 0px))); padding: 8px max(16px, env(safe-area-inset-right, 0px)) 8px max(16px, env(safe-area-inset-left, 0px)); background: color-mix(in srgb, var(--surface) 94%, transparent); backdrop-filter: blur(10px); }
+  .elevator .display { display: none; }
+  .elevator nav { display: flex; overflow-x: auto; gap: 6px; scrollbar-width: none; }
+  .elevator nav::-webkit-scrollbar { display: none; }
+  .elevator a { display: flex; white-space: nowrap; padding: 5px 12px 5px 5px; border: 1px solid var(--line); border-radius: 999px; }
+  .elevator a i { width: 24px; height: 24px; font-size: 12px; }
+  .lobby, .g2, .mc-feature { grid-template-columns: 1fr; }
+  .lounge { grid-template-columns: 1fr; }
+  .rooms { border-right: 0; border-bottom: 1px solid var(--line); flex-direction: row; overflow-x: auto; }
+  .room { flex: none; }
+  .rules { display: none; }
+  .brand span { display: none; }
+}
+@media (max-width: 620px) {
+  .g4, .g3 { grid-template-columns: 1fr; }
+  .top .wrap { gap: 10px; }
+  .me span { display: none; }
+  .me { padding: 4px; }
+  .search input { padding-right: 10px; }
+  .mc { grid-template-columns: 84px minmax(0, 1fr); }
+  .mc .portrait b { font-size: 32px; }
+  .tones { grid-template-columns: repeat(5, 1fr); }
+  .slots { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .day { font-size: 10px; }
+  .day b { font-size: 15px; }
+  .meters { grid-template-columns: 1fr 1fr 1fr; gap: 6px; }
+  .salon-opt { grid-template-columns: 44px minmax(0, 1fr); }
+  .salon-opt .mono { width: 44px; height: 44px; font-size: 19px; }
+  .salon-opt .rt { grid-column: 2; text-align: left; }
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#lobby" aria-label="Vibrez Glow House, back to the lobby"><b>Vibrez</b><span>Glow House</span></a>
+    <div class="search" role="search">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <label class="sr" for="q">Search the building</label>
+      <input id="q" type="search" placeholder="Search products, looks, classes, tips…" autocomplete="off">
+      <div class="results" id="results" hidden></div>
+    </div>
+    <button class="icon-btn" id="bagBtn" aria-label="Open your bag">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 8h14l-1.2 12H6.2L5 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+      <span class="badge" id="bagCount" hidden>0</span>
+    </button>
+    <a class="me" href="#lobby" aria-label="Your beauty passport"><i id="meTone"></i><span>My passport</span></a>
+  </div>
+</header>
+
+<section class="hero" aria-labelledby="heroTitle">
+  <div class="wrap">
+    <div class="hero-copy">
+      <span class="eyebrow">Vibrez · Share your passion</span>
+      <h1 id="heroTitle">Welcome to <em>Glow House</em>, the home of beauty lovers.</h1>
+      <p class="lede">Seven floors for makeup, skincare and fragrance. Shop shades matched to your skin, learn from artists live, read reviews from people who look like you, and book your next treatment nearby. Every face is welcome here.</p>
+      <div class="hero-actions">
+        <a class="btn gold" href="#lobby">Create my beauty passport</a>
+        <a class="btn ghost" href="#masterclass"><span class="live-dot"></span> Masterclass live now</a>
+      </div>
+      <div class="values"><span>All skin tones</span><span>All ages</span><span>All genders</span><span>Real, unfiltered skin</span></div>
+    </div>
+    <div class="facade" aria-label="Building directory">
+      <div class="sign">Glow House<small>est. on Vibrez</small></div>
+      <div id="facadeFloors"></div>
+      <div class="door"><span></span></div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap building">
+  <aside class="elevator" aria-label="Elevator, jump to a floor">
+    <div class="display"><span>Now on</span><b id="elevNum">G</b><span id="elevName">Lobby</span></div>
+    <nav id="elevNav"></nav>
+  </aside>
+
+  <main>
+    <!-- G: Lobby -->
+    <section class="floor" id="lobby" data-floor="G">
+      <div class="floor-head">
+        <div>
+          <div class="lvl"><i>G</i><span class="eyebrow">Lobby</span></div>
+          <h2>Your beauty passport</h2>
+          <p>Tell us about your skin once. Every floor adapts: shade matches in the Boutique, reviews from people like you, and a routine built for your skin type.</p>
+        </div>
+      </div>
+      <div class="grid lobby">
+        <div class="panel passport">
+          <h3>Tell us about you</h3>
+          <div class="row">
+            <span class="label" id="toneLabel">Skin tone</span>
+            <div class="tones" id="tones" role="group" aria-labelledby="toneLabel"></div>
+            <div class="tone-read"><span>Fair</span><span>Shade <b id="toneName"></b></span><span>Deep</span></div>
+          </div>
+          <div class="row">
+            <span class="label" id="utLabel">Undertone</span>
+            <div class="chips" id="undertones" role="group" aria-labelledby="utLabel"></div>
+          </div>
+          <div class="row">
+            <span class="label" id="stLabel">Skin type</span>
+            <div class="chips" id="skinTypes" role="group" aria-labelledby="stLabel"></div>
+          </div>
+          <div class="row">
+            <span class="label" id="ccLabel">What I'm working on</span>
+            <div class="chips" id="concerns" role="group" aria-labelledby="ccLabel"></div>
+          </div>
+          <div class="match-card">
+            <span class="sw" id="matchSw"></span>
+            <div><span class="eyebrow">Your foundation match</span><br><b id="matchShade"></b> <span class="muted" id="matchNote"></span></div>
+          </div>
+        </div>
+        <div>
+          <span class="label">Happening in the building today</span>
+          <div class="happening" id="happening"></div>
+          <div class="promise"><b>The Glow House promise</b>No filters on tutorials or reviews. No body or skin shaming. Every product is shown on at least five skin tones before it reaches the Boutique.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 1: Boutique -->
+    <section class="floor" id="boutique" data-floor="1">
+      <div class="floor-head">
+        <div>
+          <div class="lvl"><i>1</i><span class="eyebrow">The Boutique</span></div>
+          <h2>Shop with your shade already found</h2>
+          <p>Makeup, skincare and fragrance chosen by the community. Each product shows how well it works for people with your skin.</p>
+        </div>
+        <div class="chips" id="shopFilters" role="group" aria-label="Filter products"></div>
+      </div>
+      <div class="grid g4" id="products"></div>
+    </section>
+
+    <!-- 2: Studio -->
+    <section class="floor" id="studio" data-floor="2">
+      <div class="floor-head">
+        <div>
+          <div class="lvl"><i>2</i><span class="eyebrow">Tutorial Studio</span></div>
+          <h2>Learn a look, step by step</h2>
+          <p>Follow along at your own pace. Tick off each step as you go, and filter by how much time you have tonight.</p>
+        </div>
+        <div class="chips" id="tutFilters" role="group" aria-label="Filter tutorials"></div>
+      </div>
+      <div class="grid g3" id="tutorials"></div>
+    </section>
+
+    <!-- 3: Masterclass -->
+    <section class="floor" id="masterclass" data-floor="3">
+      <div class="floor-head">
+        <div>
+          <div class="lvl"><i>3</i><span class="eyebrow">Masterclass Atelier</span></div>
+          <h2>Learn from the artists behind the looks</h2>
+          <p>Live classes with professional makeup artists. Ask questions in real time and keep the replay forever.</p>
+        </div>
+      </div>
+      <div class="mc-feature">
+        <div>
+          <span class="tag rouge"><span class="live-dot"></span> Live now · <span id="viewers">1,284</span> watching</span>
+          <h3>Skin first: the editorial base that looks like nothing at all</h3>
+          <p>Amara Okafor has prepped skin for runway shows for fifteen years. Tonight she works on three models with different skin types and tones, from dry and fair to deep and oily.</p>
+          <div class="hero-actions"><button class="btn gold" id="joinLive">Join the class</button><button class="btn ghost sm" id="remindLive" style="color: var(--on-night)">Save the replay</button></div>
+        </div>
+        <div class="stage" aria-live="polite" id="stage">
+          <span class="eyebrow">Live questions</span>
+        </div>
+      </div>
+      <div class="grid g2" id="classes"></div>
+    </section>
+
+    <!-- 4: Review Lab -->
+    <section class="floor" id="reviews" data-floor="4">
+      <div class="floor-head">
+        <div>
+          <div class="lvl"><i>4</i><span class="eyebrow">Review Lab</span></div>
+          <h2>Honest reviews, from skin like yours</h2>
+          <p>Every review says who wrote it: skin type, tone and how long they wore it. No sponsored reviews. Wear-tested reviews carry a badge.</p>
+        </div>
+      </div>
+      <div class="rev-tools">
+        <label class="switch"><input type="checkbox" id="likeMe"> Only show people like me</label>
+        <button class="btn sm" id="writeReview">Write a review</button>
+      </div>
+      <div class="grid g3" id="reviewList"></div>
+    </section>
+
+    <!-- 5: Lounge -->
+    <section class="floor" id="lounge" data-floor="5">
+      <div class="floor-head">
+        <div>
+          <div class="lvl"><i>5</i><span class="eyebrow">The Lounge</span></div>
+          <h2>Talk trends with people who get it</h2>
+          <p>Topic rooms for every kind of beauty lover. Each room has a host who keeps the conversation kind and on topic.</p>
+        </div>
+      </div>
+      <div class="lounge">
+        <div class="rooms" id="rooms" role="group" aria-label="Chat rooms">
+          <div class="rules" id="rulesBox"><b>Lounge house rules</b>Be kind about every face. Share what worked for you, not what others should change. No selling in the rooms.</div>
+        </div>
+        <div class="thread">
+          <div class="thread-head"><div><h3 id="roomTitle"></h3><span class="muted" style="font-size:13px" id="roomSub"></span></div><span class="tag gold" id="roomHost"></span></div>
+          <div class="msgs" id="msgs" aria-live="polite"></div>
+          <div class="typing" id="typing"></div>
+          <form class="composer" id="composer">
+            <label class="sr" for="msgIn">Message</label>
+            <input id="msgIn" type="text" placeholder="Say hi, ask anything, share a find…" maxlength="400" autocomplete="off">
+            <button class="btn" type="submit">Send</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6: Salon -->
+    <section class="floor" id="salon" data-floor="6">
+      <div class="floor-head">
+        <div>
+          <div class="lvl"><i>6</i><span class="eyebrow">Spa &amp; Salon</span></div>
+          <h2>Book a treatment near you</h2>
+          <p>Independent beauty businesses in your area, reviewed by the community. Pick a place, a treatment and a time.</p>
+        </div>
+      </div>
+      <div class="grid g2">
+        <div>
+          <span class="label">Near you</span>
+          <div class="salon-list" id="salons"></div>
+        </div>
+        <div class="panel" id="bookPanel"></div>
+      </div>
+    </section>
+
+    <!-- 7: Advice Bar -->
+    <section class="floor" id="advice" data-floor="7">
+      <div class="floor-head">
+        <div>
+          <div class="lvl"><i>7</i><span class="eyebrow">Advice Bar</span></div>
+          <h2>Tips, routines and straight answers</h2>
+          <p>Advice from licensed estheticians, dermatology nurses and makeup artists. Ask your own question and get a real answer.</p>
+        </div>
+      </div>
+      <div class="grid g2">
+        <div class="tip-day">
+          <span class="eyebrow">Tip of the day</span>
+          <blockquote>Apply sunscreen as the last step of skincare, then wait two minutes before foundation. Your base will slide less and last longer.</blockquote>
+          <div class="creator"><span class="av" style="background:#935A35">IB</span> Ines Barros, licensed esthetician</div>
+        </div>
+        <div class="panel routine">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px">
+            <div><span class="eyebrow">Routine builder</span><h3 style="font-size:18px;margin-top:4px" id="routineTitle"></h3></div>
+            <div class="seg" role="group" aria-label="Morning or evening"><button aria-pressed="true" data-time="am">Morning</button><button aria-pressed="false" data-time="pm">Evening</button></div>
+          </div>
+          <ol id="routine"></ol>
+        </div>
+      </div>
+      <span class="label" style="margin-top:26px">Myth or fact? Tap a card</span>
+      <div class="grid g3" id="myths"></div>
+      <div class="grid g2" style="margin-top:18px">
+        <div class="panel">
+          <span class="eyebrow">Scent finder</span>
+          <h3 style="font-size:18px;margin:4px 0 12px">How do you want to feel?</h3>
+          <div class="chips" id="moods" role="group" aria-label="Choose a mood"></div>
+          <div class="scent-out" id="scentOut"></div>
+        </div>
+        <div class="panel">
+          <span class="eyebrow">Ask an expert</span>
+          <form id="askForm" style="display:grid;gap:10px;margin:8px 0 16px">
+            <div class="field"><label for="askIn">Your question</label><textarea id="askIn" placeholder="e.g. Can I use retinol and vitamin C in the same routine?" maxlength="300"></textarea></div>
+            <button class="btn" type="submit" style="justify-self:start">Send to the experts</button>
+          </form>
+          <div class="qa" id="qa"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<footer class="wrap foot-note"><b>Glow House</b> · a Vibrez building · Prototype: names, products and businesses are examples.</footer>
+
+<div class="scrim" id="scrim" hidden></div>
+<aside class="drawer" id="drawer" hidden aria-label="Your bag">
+  <header><h3>Your bag</h3><button class="icon-btn" id="closeBag" aria-label="Close bag">✕</button></header>
+  <div class="items" id="bagItems"></div>
+  <footer><div class="tot"><span>Total</span><span id="bagTotal">€0</span></div><button class="btn" id="checkout" style="justify-content:center">Checkout</button></footer>
+</aside>
+
+<dialog id="dlg"></dialog>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(() => {
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const store = {
+    get(k, d) { try { const v = localStorage.getItem('glowhouse.' + k); return v ? JSON.parse(v) : d; } catch { return d; } },
+    set(k, v) { try { localStorage.setItem('glowhouse.' + k, JSON.stringify(v)); } catch {} }
+  };
+
+  /* ---------- Data ---------- */
+  const TONES = [
+    { n: 110, name: 'Porcelain', c: '#F5DCCB' }, { n: 140, name: 'Ivory', c: '#EDCDB3' },
+    { n: 200, name: 'Sand', c: '#E2B691' }, { n: 260, name: 'Beige', c: '#D5A27B' },
+    { n: 320, name: 'Honey', c: '#C58A5C' }, { n: 380, name: 'Caramel', c: '#AD7046' },
+    { n: 430, name: 'Amber', c: '#925935' }, { n: 490, name: 'Chestnut', c: '#764327' },
+    { n: 540, name: 'Espresso', c: '#59311C' }, { n: 590, name: 'Ebony', c: '#3E2213' }
+  ];
+  const UNDERTONES = ['Cool', 'Neutral', 'Warm', 'Olive'];
+  const TYPES = ['Dry', 'Normal', 'Combination', 'Oily', 'Sensitive'];
+  const CONCERNS = ['Breakouts', 'Dark spots', 'Fine lines', 'Redness', 'Dullness', 'Texture', 'Dark circles'];
+
+  const FLOORS = [
+    { id: 'advice', n: '7', name: 'Advice Bar', sub: 'Tips, routines, experts', win: [1, 1, 0] },
+    { id: 'salon', n: '6', name: 'Spa & Salon', sub: 'Book a treatment', win: [1, 0, 1] },
+    { id: 'lounge', n: '5', name: 'The Lounge', sub: 'Chat rooms', win: [1, 'live', 1] },
+    { id: 'reviews', n: '4', name: 'Review Lab', sub: 'Real-skin reviews', win: [0, 1, 1] },
+    { id: 'masterclass', n: '3', name: 'Masterclass Atelier', sub: 'Live with artists', win: ['live', 1, 0] },
+    { id: 'studio', n: '2', name: 'Tutorial Studio', sub: 'Step-by-step looks', win: [1, 1, 1] },
+    { id: 'boutique', n: '1', name: 'The Boutique', sub: 'Shop by your shade', win: [1, 0, 1] },
+    { id: 'lobby', n: 'G', name: 'Lobby', sub: 'Your beauty passport', win: [1, 1, 0] }
+  ];
+
+  const PRODUCTS = [
+    { id: 'p1', cat: 'Makeup', shape: 'bottle', shade: true, brand: 'Maison Lumen', name: 'Second Skin Serum Foundation', price: 38, shades: 52, fit: { Dry: 94, Normal: 91, Combination: 88, Oily: 79, Sensitive: 90 }, tags: ['52 shades'] },
+    { id: 'p2', cat: 'Makeup', shape: 'lip', c: '#9E1F3F', brand: 'Atelier Nuit', name: 'Velvet Rouge Lipstick, Cassis', price: 26, fit: { Dry: 81, Normal: 92, Combination: 90, Oily: 93, Sensitive: 88 }, tags: ['Community pick'], swatches: ['#9E1F3F', '#C2414F', '#7A2B2B', '#D97A6C'] },
+    { id: 'p3', cat: 'Skincare', shape: 'jar', c: '#E9D7E6', brand: 'Dermalune', name: 'Barrier Repair Cream', price: 32, fit: { Dry: 97, Normal: 90, Combination: 84, Oily: 71, Sensitive: 96 }, tags: ['Fragrance-free'] },
+    { id: 'p4', cat: 'Makeup', shape: 'stick', c: '#D9667A', brand: 'Petal & Co', name: 'Cloud Blush Stick', price: 24, fit: { Dry: 93, Normal: 92, Combination: 89, Oily: 82, Sensitive: 87 }, tags: [], swatches: ['#F2A5A0', '#D9667A', '#B5483F', '#8E3346'] },
+    { id: 'p5', cat: 'Fragrance', shape: 'perfume', c: '#C9A37A', brand: 'Atelier Nuit', name: 'Santal Dusk Eau de Parfum, 50 ml', price: 89, fit: null, notes: 'Pink pepper · Iris · Sandalwood', tags: ['New'] },
+    { id: 'p6', cat: 'Skincare', shape: 'bottle', c: '#EFC9B6', brand: 'Dermalune', name: 'Glass Skin Rice Toner', price: 21, fit: { Dry: 89, Normal: 93, Combination: 92, Oily: 88, Sensitive: 81 }, tags: [] },
+    { id: 'p7', cat: 'Skincare', shape: 'tube', c: '#F2E6C9', brand: 'Soleil Bare', name: 'Invisible Fluid SPF 50', price: 29, fit: { Dry: 88, Normal: 94, Combination: 95, Oily: 96, Sensitive: 90 }, tags: ['No white cast'] },
+    { id: 'p8', cat: 'Fragrance', shape: 'perfume', c: '#9FC5B8', brand: 'Petal & Co', name: 'Fig Leaf Morning Eau de Toilette, 30 ml', price: 54, fit: null, notes: 'Bergamot · Fig leaf · Cedar', tags: [] }
+  ];
+
+  const TUTORIALS = [
+    { id: 't1', title: 'Soft glam in 12 minutes', mins: 12, level: 'Beginner', by: 'Maya Chen', tone: 2, color: '#C2414F', tags: ['Everyday'], steps: ['Prep with a light moisturiser and SPF', 'Spot-conceal instead of full coverage', 'Cream blush high on the cheeks, blend toward temples', 'Brown shadow in the crease with a fluffy brush', 'Tightline the upper lash line', 'Two coats of mascara, wiggle at the root', 'Tinted balm, blot, reapply'] },
+    { id: 't2', title: 'Smoky eye for monolids', mins: 18, level: 'Intermediate', by: 'Jun Park', tone: 1, color: '#4A3A55', tags: ['Monolids'], steps: ['Prime the whole lid up to the brow bone', 'Pack dark shade at the lash line, eyes open to check', 'Blend upward in small circles', 'Smudge pencil along the lower lash line', 'Add shimmer to the centre of the lid', 'Curl lashes and apply mascara'] },
+    { id: 't3', title: 'Bold red lip on deep skin', mins: 9, level: 'Beginner', by: 'Nia Adebayo', tone: 8, color: '#9E1F3F', tags: ['Lips'], steps: ['Exfoliate lips with a damp cloth', 'Line just outside the natural line with a berry liner', 'Fill with lipstick from the centre out', 'Blot and apply a second layer', 'Clean the edge with concealer on a flat brush'] },
+    { id: 't4', title: 'Glow for mature skin', mins: 15, level: 'Beginner', by: 'Claire Dubois', tone: 0, color: '#D9A07A', tags: ['Every age'], steps: ['Hydrating serum, then a rich cream', 'Foundation in thin layers with fingers', 'Cream highlighter on the top of cheekbones only', 'Lift brows with a tinted gel', 'Skip powder under the eyes'] },
+    { id: 't5', title: 'Graphic liner for hooded eyes', mins: 20, level: 'Advanced', by: 'Sofia Reyes', tone: 4, color: '#2B1029', tags: ['Hooded eyes'], steps: ['Map the wing with eyes open, looking straight ahead', 'Draw the flick toward the end of your brow', 'Connect to the lash line with a thin line', 'Fill the gap in the hood fold, eyes open', 'Sharpen with micellar water on a cotton bud'] },
+    { id: 't6', title: 'Skin and brows, for everyone', mins: 7, level: 'Beginner', by: 'Theo Martins', tone: 6, color: '#7A8C6A', tags: ['Gender-free'], steps: ['Gentle cleanse and moisturise', 'Tinted SPF for an even look', 'Colour-correct redness with a green-tinted balm', 'Brush brows up and set with clear gel', 'Lip balm to finish'] }
+  ];
+
+  const CLASSES = [
+    { id: 'c1', artist: 'Léa Moreau', ini: 'LM', role: 'Paris backstage artist', title: 'The French lip, blurred and undone', when: 'Thursday · 19:00', seats: 120, taken: 97 },
+    { id: 'c2', artist: 'Kenji Watanabe', ini: 'KW', role: 'Film and editorial', title: 'Precision liner for every eye shape', when: 'Saturday · 15:00', seats: 150, taken: 64 },
+    { id: 'c3', artist: 'Sofia Reyes', ini: 'SR', role: 'Bridal specialist', title: 'Bridal makeup that lasts 14 hours', when: 'Next Tuesday · 18:30', seats: 100, taken: 88 },
+    { id: 'c4', artist: 'Dr. Priya Nair', ini: 'PN', role: 'Dermatologist', title: 'Acids, retinoids and what actually works', when: 'Next Friday · 20:00', seats: 300, taken: 141 }
+  ];
+
+  const REVIEWS = [
+    { who: 'Nadia', tone: 6, type: 'Oily', age: '30s', product: 'Second Skin Serum Foundation, 430W', stars: 5, m: [5, 4, 4], hours: 10, text: 'First foundation that matches my neck without going grey by lunch. Still there after a ten hour shift with one blot.', helpful: 128, verified: true },
+    { who: 'Emma', tone: 1, type: 'Dry', age: '50s', product: 'Barrier Repair Cream', stars: 5, m: [5, 5, 4], hours: 24, text: 'My cheeks used to flake under makeup. After two weeks they are calm and my base sits smoothly.', helpful: 96, verified: true },
+    { who: 'Kwame', tone: 8, type: 'Combination', age: '20s', product: 'Invisible Fluid SPF 50', stars: 5, m: [4, 5, 5], hours: 8, text: 'Actually invisible on my skin. No purple cast in photos, which is a first for any SPF 50 I tried.', helpful: 211, verified: true },
+    { who: 'Lucía', tone: 4, type: 'Combination', age: '30s', product: 'Cloud Blush Stick, Rosewood', stars: 4, m: [3, 5, 5], hours: 6, text: 'Gorgeous flush and easy to blend with fingers. Fades on my T-zone by the afternoon, so I set it with a little powder.', helpful: 54, verified: false },
+    { who: 'Aiko', tone: 2, type: 'Sensitive', age: '40s', product: 'Glass Skin Rice Toner', stars: 3, m: [3, 4, 4], hours: 0, text: 'Lovely texture but it stung a little around my nose on day three. Fine on the rest of my face. Patch test first.', helpful: 77, verified: true },
+    { who: 'Sam', tone: 3, type: 'Normal', age: '20s', product: 'Velvet Rouge Lipstick, Cassis', stars: 5, m: [5, 5, 4], hours: 7, text: 'Survived coffee and lunch. Comfortable for a matte and the colour looks the same in daylight as in the shop.', helpful: 63, verified: true },
+    { who: 'Imani', tone: 9, type: 'Dry', age: '30s', product: 'Second Skin Serum Foundation, 590N', stars: 4, m: [4, 5, 3], hours: 9, text: 'They actually made the deepest shades with the right red undertone. Wish the bottle were bigger for the price.', helpful: 142, verified: true }
+  ];
+
+  const ROOMS = {
+    trends: { title: 'Trend Watch', sub: 'What everyone is trying this week', host: 'Host: Maya', seed: [
+      { who: 'Zoe', tone: 2, text: 'Is anyone else doing the cherry-cola lip? Brown liner, red gloss in the centre.', r: { '💄': 12, '🔥': 5 } },
+      { who: 'Rashid', tone: 7, text: 'Yes! I use a berry liner instead of brown. Reads more red on my skin.', r: { '💡': 9 } },
+      { who: 'Maya', tone: 3, host: true, text: 'Love seeing both versions. Post your photos in the Studio and we will feature a few on Friday.', r: { '💖': 21 } }
+    ], replies: ['Saving this combo for the weekend.', 'Tried it today, the gloss in the centre makes such a difference!', 'Does it work with a matte lipstick too?', 'Adding a bit of shimmer on top is so pretty.'] },
+    skin: { title: 'Skincare Science', sub: 'Ingredients, routines, real results', host: 'Host: Dr. Priya', seed: [
+      { who: 'Hana', tone: 1, text: 'Can I use niacinamide and vitamin C together? Every video says something different.', r: { '🤔': 7 } },
+      { who: 'Dr. Priya', tone: 5, host: true, text: 'Yes, modern formulas are fine together. If your skin feels warm or tingly, use vitamin C in the morning and niacinamide at night.', r: { '💖': 34, '💡': 18 } }
+    ], replies: ['That is so reassuring, thank you!', 'I alternate them and my skin is much calmer.', 'Which vitamin C works for sensitive skin?', 'Good to hear from an actual expert.'] },
+    scent: { title: 'Fragrance Corner', sub: 'Notes, layering, signature scents', host: 'Host: Omar', seed: [
+      { who: 'Omar', tone: 6, host: true, text: 'Theme of the week: scents that remind you of a place. Go!', r: { '🌿': 15 } },
+      { who: 'Claire', tone: 0, text: 'Fig leaf, always. It smells like my grandmother\'s garden in Provence.', r: { '💖': 22 } }
+    ], replies: ['Neroli takes me straight to a summer in Sicily.', 'Anything with vetiver smells like rain to me.', 'Layering vanilla over sandalwood is my cosy combo.', 'I need to smell that fig scent now.'] },
+    first: { title: 'First Steps', sub: 'New to makeup? No question is too small', host: 'Host: Theo', seed: [
+      { who: 'Ali', tone: 5, text: 'I have never worn makeup. What is the one thing to start with?', r: { '🤗': 11 } },
+      { who: 'Theo', tone: 6, host: true, text: 'Welcome! A tinted moisturiser or tinted SPF. It evens your skin and you cannot really get it wrong.', r: { '💖': 19 } }
+    ], replies: ['Welcome! Everyone started somewhere.', 'Brow gel was my first, it is so easy.', 'The 12-minute soft glam tutorial in the Studio helped me a lot.', 'Ask anything here, everyone is lovely.'] }
+  };
+
+  const SALONS = [
+    { id: 's1', ini: 'B', name: 'Studio Bloom', area: 'Le Marais · 0.8 km', rating: 4.9, n: 412, services: [['Signature hydrating facial', '60 min', 85], ['Brow lamination and tint', '45 min', 55], ['Lash lift', '50 min', 60]] },
+    { id: 's2', ini: 'E', name: 'Ébène Beauty Lab', area: 'Château Rouge · 2.1 km', rating: 4.8, n: 287, services: [['Bridal trial makeup', '90 min', 120], ['Event makeup', '60 min', 75], ['Hyperpigmentation peel', '45 min', 95]] },
+    { id: 's3', ini: 'K', name: 'Kōji Skin Atelier', area: 'Saint-Germain · 3.4 km', rating: 4.9, n: 198, services: [['Japanese head spa', '75 min', 90], ['Glass-skin facial', '60 min', 110], ['Express glow', '30 min', 45]] }
+  ];
+
+  const ROUTINES = {
+    Dry: { am: [['Cream cleanser or water rinse', 'Keep natural oils in place'], ['Hyaluronic serum on damp skin', 'Pulls water into the skin'], ['Rich moisturiser', 'Look for ceramides'], ['SPF 50', 'Every day, even when cloudy']], pm: [['Cleansing balm', 'Melts makeup and SPF'], ['Gentle retinoid, 2 nights a week', 'Build up slowly'], ['Barrier cream', 'Seal it all in'], ['Face oil on dry patches', 'Optional']] },
+    Normal: { am: [['Gentle gel cleanser', ''], ['Vitamin C serum', 'Brightens and protects'], ['Light moisturiser', ''], ['SPF 50', 'Two finger lengths for face and neck']], pm: [['Double cleanse', 'Oil first, then gel'], ['Retinoid or exfoliating acid, alternate nights', ''], ['Moisturiser', '']] },
+    Combination: { am: [['Gel cleanser', ''], ['Niacinamide serum', 'Balances oil and shine'], ['Light gel moisturiser', 'Richer cream only on dry areas'], ['Matte-finish SPF 50', '']], pm: [['Double cleanse', ''], ['BHA on the T-zone, 3 nights a week', 'Clears pores'], ['Moisturiser', ''], ['Spot treatment if needed', '']] },
+    Oily: { am: [['Foaming cleanser', ''], ['Niacinamide serum', ''], ['Oil-free gel moisturiser', 'Yes, oily skin needs it too'], ['Fluid SPF 50', 'Lightweight, no shine']], pm: [['Double cleanse', ''], ['BHA or retinoid, alternate nights', ''], ['Light gel moisturiser', '']] },
+    Sensitive: { am: [['Rinse with lukewarm water', 'Skip cleanser if skin feels tight'], ['Centella or panthenol serum', 'Calms redness'], ['Fragrance-free moisturiser', ''], ['Mineral SPF 50', 'Zinc oxide is gentle']], pm: [['Milky cleanser', ''], ['Azelaic acid, 3 nights a week', 'Helps redness and marks'], ['Barrier cream', 'Patch test new products for 3 days']] }
+  };
+
+  const MYTHS = [
+    { q: 'Oily skin does not need moisturiser.', a: 'Myth. Skipping it can make skin produce more oil. Use a light gel moisturiser instead.' },
+    { q: 'Darker skin tones still need sunscreen.', a: 'Fact. Melanin gives some protection, but not enough to prevent sun damage or dark spots.' },
+    { q: 'Expensive products always work better.', a: 'Myth. Results come from the formula and how you use it. Many great products cost under €20.' },
+    { q: 'You should change mascara every three months.', a: 'Fact. Bacteria builds up in the tube. Replace it sooner if it smells odd or clumps.' },
+    { q: 'Makeup is only for women.', a: 'Myth. Makeup is for anyone who enjoys it. The Lounge has a room for everyone.' },
+    { q: 'Fragrance lasts longer on moisturised skin.', a: 'Fact. Scent molecules cling to hydrated skin. Try an unscented balm before spraying.' }
+  ];
+
+  const MOODS = {
+    Cozy: { family: 'Gourmand & woody', top: 'Cardamom, pear', heart: 'Tonka bean, iris', base: 'Vanilla, sandalwood', pick: 'p5' },
+    Fresh: { family: 'Green & citrus', top: 'Bergamot, grapefruit', heart: 'Fig leaf, neroli', base: 'Cedar, white musk', pick: 'p8' },
+    Bold: { family: 'Amber & spice', top: 'Pink pepper, saffron', heart: 'Rose, oud', base: 'Amber, patchouli', pick: 'p5' },
+    Romantic: { family: 'Soft floral', top: 'Lychee, mandarin', heart: 'Peony, jasmine', base: 'Musk, cashmere wood', pick: 'p8' }
+  };
+
+  const QA = [
+    { q: 'How do I stop foundation from separating on my nose?', a: 'Use a mattifying primer only on the nose, apply foundation in thin layers and press, do not rub. Set lightly with powder.', by: 'Sofia Reyes, makeup artist' },
+    { q: 'Is it safe to use retinol while pregnant?', a: 'Most doctors advise avoiding retinoids during pregnancy. Azelaic acid and vitamin C are generally considered safe. Check with your doctor.', by: 'Dr. Priya Nair, dermatologist' }
+  ];
+
+  /* ---------- State ---------- */
+  const state = {
+    passport: store.get('passport', { tone: 4, undertone: 'Warm', type: 'Combination', concerns: ['Dullness'] }),
+    bag: store.get('bag', []),
+    shopCat: 'All', tutFilter: 'All', likeMe: false,
+    room: 'trends', roomMsgs: {}, reserved: new Set(store.get('reserved', [])),
+    helpful: new Set(),
+    salon: 's1', svc: null, day: null, slot: null, booked: null,
+    time: 'am', mood: null, qa: QA.slice(), reviews: REVIEWS.slice()
+  };
+  Object.keys(ROOMS).forEach(k => state.roomMsgs[k] = ROOMS[k].seed.map(m => ({ ...m, r: { ...m.r }, mine: false })));
+  const tone = () => TONES[state.passport.tone];
+  const myShade = () => tone().n + state.passport.undertone[0];
+  const savePassport = () => store.set('passport', state.passport);
+
+  /* ---------- Helpers ---------- */
+  let toastT;
+  function toast(msg) { const t = $('#toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('show'), 2600); }
+  function avatar(name, t) { const c = TONES[t] ? TONES[t].c : '#9C7845'; return `<span class="av" style="background:${c};color:${t < 4 ? '#3E2213' : '#fff'}">${esc(name.replace('Dr. ', '').slice(0, 2).toUpperCase())}</span>`; }
+  const stars = n => '★★★★★'.slice(0, n) + '☆☆☆☆☆'.slice(0, 5 - n);
+  const euro = n => '€' + n.toLocaleString('en', { minimumFractionDigits: 0 });
+
+  /* ---------- Facade + elevator ---------- */
+  function renderFacade() {
+    $('#facadeFloors').innerHTML = FLOORS.map(f => `
+      <button class="floorbtn" data-go="${f.id}"><span class="num">${f.n}</span><span class="nm">${esc(f.name)}<small>${esc(f.sub)}</small></span>
+      <span class="windows" aria-hidden="true">${f.win.map(w => `<i class="${w === 'live' ? 'live' : w ? 'on' : ''}"></i>`).join('')}</span></button>`).join('');
+    $('#elevNav').innerHTML = FLOORS.slice().reverse().map(f => `<a href="#${f.id}" data-id="${f.id}"><i>${f.n}</i><span>${esc(f.name)}</span></a>`).join('');
+  }
+  function go(id) { const el = document.getElementById(id); if (el) el.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }); }
+
+  function watchFloors() {
+    const setActive = id => {
+      const f = FLOORS.find(x => x.id === id); if (!f) return;
+      $('#elevNum').textContent = f.n; $('#elevName').textContent = f.name;
+      $$('#elevNav a').forEach(a => { const on = a.dataset.id === id; a.classList.toggle('active', on); if (on) a.setAttribute('aria-current', 'location'); else a.removeAttribute('aria-current'); });
+      const act = $('#elevNav a.active'); const nav = $('#elevNav');
+      if (act && nav.scrollWidth > nav.clientWidth) nav.scrollTo({ left: act.offsetLeft - 16, behavior: 'smooth' });
+    };
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); });
+    }, { rootMargin: '-35% 0px -60% 0px' });
+    $$('.floor').forEach(s => io.observe(s));
+    setActive('lobby');
+  }
+
+  /* ---------- Lobby ---------- */
+  function renderPassport() {
+    const p = state.passport;
+    $('#tones').innerHTML = TONES.map((t, i) => `<button class="tone" style="background:${t.c}" aria-pressed="${i === p.tone}" aria-label="${t.name}, shade ${t.n}" data-tone="${i}"></button>`).join('');
+    $('#toneName').textContent = `${tone().n} · ${tone().name}`;
+    $('#undertones').innerHTML = UNDERTONES.map(u => `<button class="chip" aria-pressed="${u === p.undertone}" data-ut="${u}">${u}</button>`).join('');
+    $('#skinTypes').innerHTML = TYPES.map(u => `<button class="chip" aria-pressed="${u === p.type}" data-st="${u}">${u}</button>`).join('');
+    $('#concerns').innerHTML = CONCERNS.map(u => `<button class="chip" aria-pressed="${p.concerns.includes(u)}" data-cc="${u}">${u}</button>`).join('');
+    $('#matchSw').style.background = tone().c;
+    $('#matchShade').textContent = myShade();
+    $('#matchNote').textContent = `in Second Skin Serum Foundation · ${p.undertone.toLowerCase()} undertone`;
+    $('#meTone').style.background = tone().c;
+  }
+  function onPassportChange() { savePassport(); renderPassport(); renderProducts(); renderReviews(); renderRoutine(); }
+
+  function renderHappening() {
+    const items = [
+      { t: 'Live', s: 'now', h: 'Skin first, with Amara Okafor', p: 'Masterclass Atelier · 1,284 watching', go: 'masterclass' },
+      { t: '18:00', s: 'today', h: 'Trend Watch: cherry-cola lips', p: 'The Lounge · hosted chat', go: 'lounge' },
+      { t: '−20%', s: 'today', h: 'Atelier Nuit fragrance week', p: 'The Boutique · ends Sunday', go: 'boutique' },
+      { t: '3', s: 'slots', h: 'Studio Bloom has openings tomorrow', p: 'Spa & Salon · 0.8 km away', go: 'salon' }
+    ];
+    $('#happening').innerHTML = items.map(i => `<button class="happen" data-go="${i.go}"><span class="t">${i.t}<small>${i.s}</small></span><span><h4>${esc(i.h)}</h4><p>${esc(i.p)}</p></span><span aria-hidden="true">→</span></button>`).join('');
+  }
+
+  /* ---------- Boutique ---------- */
+  function renderShopFilters() {
+    $('#shopFilters').innerHTML = ['All', 'Makeup', 'Skincare', 'Fragrance'].map(c => `<button class="chip" aria-pressed="${c === state.shopCat}" data-cat="${c}">${c}</button>`).join('');
+  }
+  function renderProducts() {
+    const list = PRODUCTS.filter(p => state.shopCat === 'All' || p.cat === state.shopCat);
+    const type = state.passport.type;
+    $('#products').innerHTML = list.map(p => {
+      const c = p.shade ? tone().c : p.c;
+      const fit = p.fit ? `<span class="fit">${p.fit[type]}% of ${type.toLowerCase()} skin rate it 4★+</span>` : `<span class="muted" style="font-size:12.5px">${esc(p.notes)}</span>`;
+      const sw = p.shade ? `<span class="swatches"><i style="background:${tone().c}"></i><small>Your shade ${myShade()} · ${p.shades} shades</small></span>`
+        : p.swatches ? `<span class="swatches">${p.swatches.map(s => `<i style="background:${s}"></i>`).join('')}<small>${p.swatches.length} shades</small></span>` : '';
+      const inBag = state.bag.some(b => b.id === p.id);
+      return `<article class="card">
+        <div class="art" style="background:linear-gradient(160deg, var(--surface-2), color-mix(in srgb, ${c} 28%, var(--surface-2)))">
+          <div class="tagl">${p.tags.map(t => `<span class="tag ${t === 'New' ? 'rouge' : 'gold'}">${esc(t)}</span>`).join('')}</div>
+          <div class="shape ${p.shape}" style="--c:${c}"></div>
+        </div>
+        <div class="body"><span class="brandname">${esc(p.brand)}</span><h3>${esc(p.name)}</h3>${sw}${fit}
+          <div class="price-row"><span class="price">${euro(p.price)}</span><button class="btn sm ${inBag ? 'ghost' : ''}" data-add="${p.id}">${inBag ? 'In your bag' : 'Add to bag'}</button></div>
+        </div></article>`;
+    }).join('');
+  }
+  function renderBag() {
+    const n = state.bag.length; const b = $('#bagCount'); b.hidden = !n; b.textContent = n;
+    $('#bagItems').innerHTML = n ? state.bag.map(it => {
+      const p = PRODUCTS.find(x => x.id === it.id);
+      return `<div class="bag-item"><span class="sw" style="background:${it.c}"></span><span><b>${esc(p.name)}</b><small>${esc(p.brand)}${it.shade ? ' · shade ' + it.shade : ''}</small></span><span style="text-align:right"><b>${euro(p.price)}</b><br><button class="helpful" data-remove="${p.id}">Remove</button></span></div>`;
+    }).join('') : '<div class="empty">Your bag is empty. The Boutique is on floor 1.</div>';
+    $('#bagTotal').textContent = euro(state.bag.reduce((s, it) => s + PRODUCTS.find(x => x.id === it.id).price, 0));
+    $('#checkout').disabled = !n;
+    store.set('bag', state.bag);
+  }
+  function openBag(open) { $('#drawer').hidden = !open; $('#scrim').hidden = !open; if (open) $('#closeBag').focus(); }
+
+  /* ---------- Studio ---------- */
+  function renderTutFilters() {
+    $('#tutFilters').innerHTML = ['All', 'Under 10 min', 'Beginner', 'Advanced'].map(c => `<button class="chip" aria-pressed="${c === state.tutFilter}" data-tut="${c}">${c}</button>`).join('');
+  }
+  function renderTutorials() {
+    const f = state.tutFilter;
+    const list = TUTORIALS.filter(t => f === 'All' || (f === 'Under 10 min' && t.mins < 10) || t.level === f);
+    $('#tutorials').innerHTML = list.map(t => {
+      const done = store.get('tut.' + t.id, []).length;
+      return `<article class="card tut">
+        <div class="thumb" style="background:linear-gradient(135deg, ${TONES[t.tone].c}, ${t.color})">
+          <div class="meta"><span class="tag" style="background:rgba(255,255,255,.9);color:#2B1029">${t.level}</span>${t.tags.map(x => `<span class="tag" style="background:rgba(255,255,255,.9);color:#2B1029">${esc(x)}</span>`).join('')}</div>
+          <div style="display:flex;justify-content:space-between;align-items:end"><span class="dur">${t.mins} min</span><button class="play" data-tutopen="${t.id}" aria-label="Start ${esc(t.title)}"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4v16l13-8z"/></svg></button></div>
+        </div>
+        <div class="body"><h3>${esc(t.title)}</h3><div class="creator">${avatar(t.by, t.tone)} ${esc(t.by)} · ${t.steps.length} steps</div>
+          ${done ? `<div class="progress" style="margin-top:6px"><i style="width:${Math.round(done / t.steps.length * 100)}%"></i></div><small class="muted">${done} of ${t.steps.length} steps done</small>` : ''}
+          <div class="price-row"><button class="btn sm ghost" data-tutopen="${t.id}">${done ? 'Continue' : 'Follow along'}</button></div>
+        </div></article>`;
+    }).join('') || '<div class="empty">No tutorials match this filter yet.</div>';
+  }
+  function openTutorial(id) {
+    const t = TUTORIALS.find(x => x.id === id); const done = new Set(store.get('tut.' + id, []));
+    const dlg = $('#dlg');
+    const draw = () => {
+      const pct = Math.round(done.size / t.steps.length * 100);
+      dlg.innerHTML = `<div class="dlg-head"><div><span class="eyebrow">Follow-along · ${t.mins} min · ${t.level}</span><h3>${esc(t.title)}</h3><div class="creator" style="margin-top:6px">${avatar(t.by, t.tone)} with ${esc(t.by)}</div></div><button class="icon-btn" data-close aria-label="Close">✕</button></div>
+        <div class="dlg-body"><div class="progress"><i style="width:${pct}%"></i></div><small class="muted">${pct === 100 ? 'Look complete. Share it in the Lounge!' : `${done.size} of ${t.steps.length} steps`}</small>
+        <div class="steps">${t.steps.map((s, i) => `<label class="step"><input type="checkbox" data-step="${i}" ${done.has(i) ? 'checked' : ''}><span>${esc(s)}<small>Step ${i + 1}</small></span></label>`).join('')}</div></div>`;
+    };
+    draw();
+    dlg.onchange = e => { const i = +e.target.dataset.step; if (Number.isNaN(i)) return; e.target.checked ? done.add(i) : done.delete(i); store.set('tut.' + id, [...done]); draw(); renderTutorials(); if (done.size === t.steps.length) toast('Look complete, beautifully done ✦'); };
+    dlg.showModal();
+  }
+
+  /* ---------- Masterclass ---------- */
+  function renderClasses() {
+    $('#classes').innerHTML = CLASSES.map(c => {
+      const res = state.reserved.has(c.id); const taken = c.taken + (res ? 1 : 0); const left = c.seats - taken;
+      return `<article class="card mc"><div class="portrait"><b>${c.ini}</b><small>${esc(c.role.split(' ')[0])}</small></div>
+        <div class="body"><span class="eyebrow">${esc(c.artist)} · ${esc(c.role)}</span><h3 style="margin-top:4px">${esc(c.title)}</h3><span class="when">${esc(c.when)} · live, with replay</span>
+        <div class="seats" aria-hidden="true"><span style="width:${taken / c.seats * 100}%"></span></div><small class="muted">${left} of ${c.seats} live seats left</small>
+        <div style="margin-top:12px"><button class="btn sm ${res ? 'ghost' : ''}" data-reserve="${c.id}" aria-pressed="${res}">${res ? '✓ Seat reserved' : 'Reserve a seat'}</button></div></div></article>`;
+    }).join('');
+  }
+  const LIVE_QS = [['Kwame', 'What do you use on oily skin so it doesn\'t slide?'], ['Emma', 'Does this work on mature skin with fine lines?'], ['Aiko', 'Which primer is safe for sensitive skin?'], ['Nadia', 'How do you pick concealer for dark circles on deep skin?'], ['Sam', 'Sponge or brush for this base?']];
+  let lqi = 0;
+  function liveTick() {
+    const st = $('#stage'); const [who, q] = LIVE_QS[lqi++ % LIVE_QS.length];
+    const div = document.createElement('div'); div.className = 'q'; div.innerHTML = `<b>${esc(who)}</b> ${esc(q)}`;
+    st.appendChild(div); while (st.querySelectorAll('.q').length > 3) st.querySelector('.q').remove();
+    const v = $('#viewers'); v.textContent = (parseInt(v.textContent.replace(/,/g, ''), 10) + Math.floor(Math.random() * 9) - 2).toLocaleString('en');
+  }
+
+  /* ---------- Reviews ---------- */
+  function renderReviews() {
+    const p = state.passport;
+    const list = state.reviews.filter(r => !state.likeMe || (r.type === p.type || Math.abs(r.tone - p.tone) <= 1));
+    $('#reviewList').innerHTML = list.map((r, i) => {
+      const idx = state.reviews.indexOf(r); const h = state.helpful.has(idx);
+      return `<article class="card review"><div class="who"><span class="sw" style="background:${TONES[r.tone].c}"></span><div><b>${esc(r.who)}</b><small>${r.type} skin · ${TONES[r.tone].name} · ${r.age}</small></div><span class="stars" style="margin-left:auto" aria-label="${r.stars} out of 5">${stars(r.stars)}</span></div>
+        <p class="prod">${esc(r.product)}</p><p class="txt">${esc(r.text)}</p>
+        <div class="meters">${['Longevity', 'Finish', 'Value'].map((m, j) => `<div class="meter"><small>${m}</small><span><i style="width:${r.m[j] * 20}%"></i></span></div>`).join('')}</div>
+        <div class="foot">${r.verified ? `<span class="tag gold">✓ Wear-tested${r.hours ? ' · ' + r.hours + 'h' : ''}</span>` : '<span class="tag">First impression</span>'}<button class="helpful" data-helpful="${idx}" aria-pressed="${h}">Helpful · ${r.helpful + (h ? 1 : 0)}</button></div></article>`;
+    }).join('') || '<div class="empty">No reviews from people with your skin yet. Be the first to write one.</div>';
+  }
+  function openReviewForm() {
+    const dlg = $('#dlg');
+    dlg.innerHTML = `<form method="dialog" id="revForm"><div class="dlg-head"><div><span class="eyebrow">Review Lab</span><h3>Share your honest review</h3><p class="muted" style="font-size:13px;margin-top:4px">Posted with your passport: ${esc(state.passport.type.toLowerCase())} skin, ${tone().name} tone.</p></div><button type="button" class="icon-btn" data-close aria-label="Close">✕</button></div>
+      <div class="dlg-body" style="display:grid;gap:14px">
+        <div class="field"><label for="rvProd">Product</label><select id="rvProd">${PRODUCTS.map(p => `<option>${esc(p.name)}</option>`).join('')}</select></div>
+        <div class="field"><label>Your ratings</label>${['Overall', 'Longevity', 'Finish', 'Value'].map(m => `<div class="range-row"><span>${m}</span><input type="range" min="1" max="5" value="4" id="rv${m}" aria-label="${m}, 1 to 5"><output for="rv${m}">4</output></div>`).join('')}</div>
+        <div class="field"><label for="rvHours">Hours you wore it</label><input type="text" id="rvHours" inputmode="numeric" placeholder="e.g. 8"></div>
+        <div class="field"><label for="rvText">What should people with skin like yours know?</label><textarea id="rvText" required minlength="10" placeholder="How did it look, feel and last?"></textarea></div>
+        <button class="btn" type="submit" style="justify-self:start">Post review</button>
+      </div></form>`;
+    dlg.oninput = e => { if (e.target.type === 'range') e.target.nextElementSibling.textContent = e.target.value; };
+    dlg.onchange = null;
+    $('#revForm').addEventListener('submit', e => {
+      e.preventDefault();
+      const text = $('#rvText').value.trim(); if (text.length < 10) { $('#rvText').focus(); toast('Add a few more words so others can learn from it'); return; }
+      const hours = parseInt($('#rvHours').value, 10) || 0;
+      state.reviews.unshift({ who: 'You', tone: state.passport.tone, type: state.passport.type, age: 'Glow House member', product: $('#rvProd').value, stars: +$('#rvOverall').value, m: [+$('#rvLongevity').value, +$('#rvFinish').value, +$('#rvValue').value], hours, text, helpful: 0, verified: hours >= 4 });
+      dlg.close(); renderReviews(); toast('Review posted. Thank you for keeping it real ✦');
+    });
+    dlg.showModal();
+  }
+
+  /* ---------- Lounge ---------- */
+  function renderRooms() {
+    const box = $('#rulesBox');
+    $$('.room', $('#rooms')).forEach(r => r.remove());
+    Object.entries(ROOMS).forEach(([k, r]) => {
+      const b = document.createElement('button'); b.className = 'room'; b.dataset.room = k; b.setAttribute('aria-pressed', k === state.room);
+      b.innerHTML = `<b># ${esc(r.title)}</b><small>${esc(r.sub)}</small>`; $('#rooms').insertBefore(b, box);
+    });
+  }
+  function renderThread() {
+    const r = ROOMS[state.room];
+    $('#roomTitle').textContent = r.title; $('#roomSub').textContent = r.sub; $('#roomHost').textContent = r.host;
+    $('#msgs').innerHTML = state.roomMsgs[state.room].map((m, i) => `<div class="msg ${m.mine ? 'mine' : ''}">${avatar(m.who, m.tone)}<div class="content"><div class="meta"><b>${esc(m.who)}</b>${m.host ? '<span class="tag gold">Host</span>' : ''}</div><div class="bubble">${esc(m.text)}</div>
+      <div class="reacts">${Object.entries(m.r).map(([e, n]) => `<button class="react" data-react="${i}" data-emoji="${e}" aria-pressed="${!!(m.my && m.my[e])}">${e} ${n}</button>`).join('')}${m.mine ? '' : `<button class="react" data-react="${i}" data-emoji="💖" aria-label="React with a heart">+</button>`}</div></div></div>`).join('');
+    const box = $('#msgs'); box.scrollTop = box.scrollHeight;
+  }
+  let replyT;
+  function sendMsg(text) {
+    const room = state.room;
+    state.roomMsgs[room].push({ who: 'You', tone: state.passport.tone, text, r: {}, mine: true });
+    renderThread();
+    const pool = ROOMS[room].replies; const seedWho = ROOMS[room].seed.filter(m => !m.host);
+    const who = seedWho[Math.floor(Math.random() * seedWho.length)] || ROOMS[room].seed[0];
+    clearTimeout(replyT);
+    $('#typing').textContent = `${who.who} is typing…`;
+    replyT = setTimeout(() => {
+      state.roomMsgs[room].push({ who: who.who, tone: who.tone, text: pool[Math.floor(Math.random() * pool.length)], r: { '💖': 1 } });
+      $('#typing').textContent = '';
+      if (state.room === room) renderThread();
+    }, 1600);
+  }
+
+  /* ---------- Salon ---------- */
+  function renderSalons() {
+    $('#salons').innerHTML = SALONS.map(s => `<button class="salon-opt" data-salon="${s.id}" aria-pressed="${s.id === state.salon}"><span class="mono">${s.ini}</span><span><h4>${esc(s.name)}</h4><p>${esc(s.area)} · ${s.services.map(x => x[0]).slice(0, 2).join(', ')}</p></span><span class="rt">★ ${s.rating}<small>${s.n} reviews</small></span></button>`).join('');
+  }
+  function nextDays() {
+    const out = []; const d = new Date(); d.setHours(0, 0, 0, 0);
+    for (let i = 1; i <= 7; i++) { const x = new Date(d); x.setDate(d.getDate() + i); out.push(x); }
+    return out;
+  }
+  const SLOTS = ['09:30', '10:30', '11:30', '13:00', '14:30', '15:30', '17:00', '18:30'];
+  function renderBooking() {
+    const s = SALONS.find(x => x.id === state.salon); const panel = $('#bookPanel');
+    if (state.booked) {
+      const b = state.booked;
+      panel.innerHTML = `<div class="confirm"><span class="eyebrow">Booking request sent</span><b>${esc(b.svc)}</b><span>${esc(b.salon)} · ${esc(b.date)} at ${b.slot}</span><span style="opacity:.75;font-size:13px">In the full app, ${esc(b.salon)} confirms here and sends you a reminder the day before. Free cancellation up to 24 hours before.</span></div><button class="btn ghost sm" id="newBooking" style="margin-top:14px">Book something else</button>`;
+      return;
+    }
+    const days = nextDays();
+    const seed = (s.id.charCodeAt(1) + (state.day ?? 0)) % 5;
+    panel.innerHTML = `<span class="eyebrow">${esc(s.name)}</span><h3 style="font-size:20px;margin:4px 0 14px;font-family:var(--f-display);font-weight:500">Choose a treatment</h3>
+      <div style="display:grid;gap:8px">${s.services.map((v, i) => `<button class="svc" data-svc="${i}" aria-pressed="${state.svc === i}"><span><b style="font-size:14px">${esc(v[0])}</b><small>${v[1]}</small></span><span class="p">${euro(v[2])}</span></button>`).join('')}</div>
+      <span class="label" style="margin-top:18px">Day</span>
+      <div class="days">${days.map((d, i) => `<button class="day" data-day="${i}" aria-pressed="${state.day === i}">${d.toLocaleDateString('en', { weekday: 'short' })}<b>${d.getDate()}</b></button>`).join('')}</div>
+      <span class="label" style="margin-top:18px">Time</span>
+      <div class="slots">${SLOTS.map((t, i) => { const full = state.day === null || (i + seed) % 4 === 0; return `<button class="slot" data-slot="${t}" aria-pressed="${state.slot === t}" ${full ? 'disabled' : ''}>${t}</button>`; }).join('')}</div>
+      ${state.day === null ? '<small class="muted">Pick a day to see open times.</small>' : ''}
+      <div class="booking-summary"><span>${state.svc !== null ? `<b>${esc(s.services[state.svc][0])}</b> · ${euro(s.services[state.svc][2])}` : 'Pick a treatment, day and time'}</span><button class="btn" id="bookBtn" ${state.svc !== null && state.day !== null && state.slot ? '' : 'disabled'}>Request booking</button></div>`;
+  }
+
+  /* ---------- Advice ---------- */
+  function renderRoutine() {
+    const r = ROUTINES[state.passport.type][state.time];
+    $('#routineTitle').textContent = `For ${state.passport.type.toLowerCase()} skin, ${state.time === 'am' ? 'morning' : 'evening'}`;
+    $('#routine').innerHTML = r.map(([a, b]) => `<li><span>${esc(a)}${b ? `<small>${esc(b)}</small>` : ''}</span></li>`).join('');
+    $$('.seg button').forEach(b => b.setAttribute('aria-pressed', b.dataset.time === state.time));
+  }
+  function renderMyths() {
+    $('#myths').innerHTML = MYTHS.map((m, i) => `<button class="myth" data-myth="${i}" aria-label="${esc(m.q)} Tap to reveal the answer"><div class="in"><div class="face"><span class="eyebrow">Myth or fact?</span><p>${esc(m.q)}</p><span class="hint">Tap to reveal</span></div><div class="face back" aria-hidden="true"><span class="eyebrow">${m.a.split('.')[0]}</span><p>${esc(m.a.split('. ').slice(1).join('. '))}</p><span class="hint">Tap to flip back</span></div></div></button>`).join('');
+  }
+  function renderMoods() {
+    $('#moods').innerHTML = Object.keys(MOODS).map(m => `<button class="chip" data-mood="${m}" aria-pressed="${state.mood === m}">${m}</button>`).join('');
+    const m = MOODS[state.mood];
+    if (!m) { $('#scentOut').innerHTML = '<small class="muted">Pick a mood and we will suggest a scent family and notes to look for.</small>'; return; }
+    const p = PRODUCTS.find(x => x.id === m.pick);
+    $('#scentOut').innerHTML = `<b style="font-family:var(--f-display);font-size:20px;font-weight:500">${m.family}</b>
+      <div class="pyramid"><div><small>Top</small><span>${m.top}</span></div><div><small>Heart</small><span>${m.heart}</span></div><div><small>Base</small><span>${m.base}</span></div></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;padding-top:10px;border-top:1px solid var(--line)"><span style="font-size:13.5px">Try <b>${esc(p.name)}</b></span><button class="btn sm" data-add="${p.id}">Add to bag · ${euro(p.price)}</button></div>`;
+  }
+  function renderQA() {
+    $('#qa').innerHTML = state.qa.map(x => `<div class="qa-item"><div class="q">${esc(x.q)}</div><div class="a">${x.a ? `${esc(x.a)}<br><b>${esc(x.by)}</b>` : '<span class="tag rouge">Waiting for an expert · usually within 24 hours</span>'}</div></div>`).join('');
+  }
+
+  /* ---------- Search ---------- */
+  const INDEX = [
+    ...PRODUCTS.map(p => ({ t: p.name, k: `${p.brand} ${p.cat}`, f: 'boutique', fl: '1 · Boutique' })),
+    ...TUTORIALS.map(p => ({ t: p.title, k: `${p.by} ${p.tags.join(' ')} ${p.level} tutorial`, f: 'studio', fl: '2 · Studio' })),
+    ...CLASSES.map(p => ({ t: p.title, k: `${p.artist} ${p.role} masterclass`, f: 'masterclass', fl: '3 · Atelier' })),
+    ...Object.values(ROOMS).map(r => ({ t: '# ' + r.title, k: r.sub + ' chat', f: 'lounge', fl: '5 · Lounge' })),
+    ...SALONS.map(s => ({ t: s.name, k: s.services.map(x => x[0]).join(' ') + ' book treatment', f: 'salon', fl: '6 · Salon' })),
+    ...MYTHS.map(m => ({ t: m.q, k: 'myth fact tip', f: 'advice', fl: '7 · Advice' })),
+    { t: 'Routine builder', k: 'skincare routine morning evening', f: 'advice', fl: '7 · Advice' },
+    { t: 'Scent finder', k: 'fragrance perfume notes', f: 'advice', fl: '7 · Advice' },
+    { t: 'Ask an expert', k: 'question dermatologist esthetician advice', f: 'advice', fl: '7 · Advice' },
+    { t: 'Find my foundation shade', k: 'passport skin tone undertone match', f: 'lobby', fl: 'G · Lobby' }
+  ];
+  function doSearch(q) {
+    const box = $('#results'); q = q.trim().toLowerCase();
+    if (!q) { box.hidden = true; return; }
+    const hits = INDEX.filter(x => (x.t + ' ' + x.k).toLowerCase().includes(q)).slice(0, 8);
+    box.innerHTML = hits.length ? hits.map(h => `<button data-go="${h.f}"><span>${esc(h.t)}</span><small>${h.fl}</small></button>`).join('') : `<div style="padding:10px" class="muted">Nothing for “${esc(q)}” yet. Try “lip”, “SPF” or “brows”.</div>`;
+    box.hidden = false;
+  }
+
+  /* ---------- Events ---------- */
+  document.addEventListener('click', e => {
+    const t = e.target.closest('button, a'); if (!t) { if (!e.target.closest('.search')) $('#results').hidden = true; return; }
+    const d = t.dataset;
+    if (d.go) { go(d.go); $('#results').hidden = true; $('#q').value = ''; return; }
+    if (d.tone !== undefined) { state.passport.tone = +d.tone; onPassportChange(); return; }
+    if (d.ut) { state.passport.undertone = d.ut; onPassportChange(); return; }
+    if (d.st) { state.passport.type = d.st; onPassportChange(); return; }
+    if (d.cc) { const c = state.passport.concerns; const i = c.indexOf(d.cc); i >= 0 ? c.splice(i, 1) : c.push(d.cc); onPassportChange(); return; }
+    if (d.cat) { state.shopCat = d.cat; renderShopFilters(); renderProducts(); return; }
+    if (d.add) {
+      const p = PRODUCTS.find(x => x.id === d.add);
+      if (state.bag.some(b => b.id === p.id)) { openBag(true); return; }
+      state.bag.push({ id: p.id, c: p.shade ? tone().c : p.c, shade: p.shade ? myShade() : null });
+      renderBag(); renderProducts(); toast(`Added ${p.name}${p.shade ? ' in ' + myShade() : ''}`); return;
+    }
+    if (d.remove) { state.bag = state.bag.filter(b => b.id !== d.remove); renderBag(); renderProducts(); return; }
+    if (d.tut) { state.tutFilter = d.tut; renderTutFilters(); renderTutorials(); return; }
+    if (d.tutopen) { openTutorial(d.tutopen); return; }
+    if (d.close !== undefined) { $('#dlg').close(); return; }
+    if (d.reserve) { const r = state.reserved; r.has(d.reserve) ? r.delete(d.reserve) : r.add(d.reserve); store.set('reserved', [...r]); renderClasses(); toast(r.has(d.reserve) ? 'Seat reserved. We will remind you 15 minutes before.' : 'Reservation cancelled'); return; }
+    if (d.helpful !== undefined) { const i = +d.helpful; state.helpful.has(i) ? state.helpful.delete(i) : state.helpful.add(i); renderReviews(); return; }
+    if (d.room) { state.room = d.room; $('#typing').textContent = ''; renderRooms(); renderThread(); return; }
+    if (d.react !== undefined) {
+      const m = state.roomMsgs[state.room][+d.react]; m.my = m.my || {};
+      if (m.my[d.emoji]) { m.my[d.emoji] = false; m.r[d.emoji]--; if (!m.r[d.emoji]) delete m.r[d.emoji]; }
+      else { m.my[d.emoji] = true; m.r[d.emoji] = (m.r[d.emoji] || 0) + 1; }
+      renderThread(); return;
+    }
+    if (d.salon) { state.salon = d.salon; state.svc = null; state.slot = null; state.booked = null; renderSalons(); renderBooking(); return; }
+    if (d.svc !== undefined) { state.svc = +d.svc; renderBooking(); return; }
+    if (d.day !== undefined) { state.day = +d.day; state.slot = null; renderBooking(); return; }
+    if (d.slot) { state.slot = d.slot; renderBooking(); return; }
+    if (t.id === 'bookBtn') {
+      const s = SALONS.find(x => x.id === state.salon); const day = nextDays()[state.day];
+      state.booked = { salon: s.name, svc: s.services[state.svc][0], date: day.toLocaleDateString('en', { weekday: 'long', day: 'numeric', month: 'long' }), slot: state.slot };
+      renderBooking(); toast('Booking request sent to ' + s.name); return;
+    }
+    if (t.id === 'newBooking') { state.booked = null; state.svc = null; state.day = null; state.slot = null; renderBooking(); return; }
+    if (d.time) { state.time = d.time; renderRoutine(); return; }
+    if (d.myth !== undefined) { t.classList.toggle('flipped'); const f = t.classList.contains('flipped'); t.querySelector('.face').setAttribute('aria-hidden', f); t.querySelector('.face.back').setAttribute('aria-hidden', !f); return; }
+    if (d.mood) { state.mood = d.mood; renderMoods(); return; }
+    if (t.id === 'bagBtn') { openBag(true); return; }
+    if (t.id === 'closeBag') { openBag(false); return; }
+    if (t.id === 'checkout') { toast('Checkout opens in the full Vibrez app'); return; }
+    if (t.id === 'writeReview') { openReviewForm(); return; }
+    if (t.id === 'joinLive') { toast('Joining the live class… (video plays in the full app)'); return; }
+    if (t.id === 'remindLive') { t.textContent = '✓ Replay saved'; t.disabled = true; return; }
+  });
+  $('#scrim').addEventListener('click', () => openBag(false));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') { openBag(false); $('#results').hidden = true; } });
+  $('#q').addEventListener('input', e => doSearch(e.target.value));
+  $('#q').addEventListener('keydown', e => { if (e.key === 'Enter') { const f = $('#results button'); if (f) f.click(); } });
+  $('#likeMe').addEventListener('change', e => { state.likeMe = e.target.checked; renderReviews(); });
+  $('#composer').addEventListener('submit', e => { e.preventDefault(); const v = $('#msgIn').value.trim(); if (!v) return; $('#msgIn').value = ''; sendMsg(v); });
+  $('#askForm').addEventListener('submit', e => { e.preventDefault(); const v = $('#askIn').value.trim(); if (v.length < 8) { toast('Write your question in a few more words'); return; } state.qa.unshift({ q: v }); $('#askIn').value = ''; renderQA(); toast('Question sent. An expert will answer here.'); });
+  $('#dlg').addEventListener('click', e => { if (e.target === $('#dlg')) $('#dlg').close(); });
+
+  /* ---------- Boot ---------- */
+  renderFacade(); renderPassport(); renderHappening();
+  renderShopFilters(); renderProducts(); renderBag();
+  renderTutFilters(); renderTutorials(); renderClasses();
+  renderReviews(); renderRooms(); renderThread();
+  renderSalons(); renderBooking(); renderRoutine(); renderMyths(); renderMoods(); renderQA();
+  watchFloors();
+  liveTick(); liveTick(); liveTick();
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) setInterval(liveTick, 4500);
+})();
+</script>
+</body>
+</html>
