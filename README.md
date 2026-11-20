@@ -16,7 +16,7 @@ Open `prototype/index.html` in a browser to walk through the clickable prototype
 
 ## Rebuilding with VIBI
 
-`VIBI_PROMPT.md` is a complete build brief for VIBI, the internal Vibrez building agent: concept, design tokens, assets, routing, every floor's exact copy and interactions, the 3D presentation, an acceptance checklist and all data verbatim. Paste it into VIBI to rebuild Glow House exactly; it also points VIBI to this repository as the reference implementation.
+`VIBI_PROMPT.md` is a complete build brief for VIBI, the internal Vibrez building agent. It keeps the content categorisation (the Lobby and eight floors, and what belongs on each) and tells VIBI to apply it to Vibi's own navigation instead of copying the prototype's header, elevator and scrolling page. It also includes the design tokens, assets, every category's exact copy and interactions, the 3D presentation, an acceptance checklist and all data verbatim, and points VIBI to this repository as the reference.
 
 ## Outside: the facade in the Vibrez universe
 

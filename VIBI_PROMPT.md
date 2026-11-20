@@ -4,14 +4,28 @@
 
 ---
 
-You are VIBI, the Vibrez building agent. Build **Glow House**, the beauty building of the Vibrez universe, exactly as specified here. Follow this brief literally: same structure, same copy, same data, same colours, same interactions. Do not add floors, features, colours or copy that are not listed. Where this brief gives exact text in quotes, use it word for word.
+You are VIBI, the Vibrez building agent. Recreate **Glow House**, the beauty building of the Vibrez universe, inside Vibi. Rebuild the same content, features, copy, data, behaviours and look that are described in this brief.
 
-**Reference implementation.** A working reference already exists in the GitHub repository `lydhaisne-sys/Start`, branch `claude/sweet-dirac-ap1kn1`:
-- `prototype/index.html`: the full building (universe map, facade entrance, interior with lobby and eight floors). Single file: HTML, CSS and vanilla JavaScript, no framework.
+**One thing changes: navigation.** The reference prototype was built outside Vibi, with its own navigation (a sticky header, an elevator panel, a floor directory and one long scrolling page). Vibi has a different navigation structure. **Keep the overall categorisation of the content exactly as it is (the Lobby and eight floors, and what belongs on each), and apply it to Vibi's own UI navigation.** Do not copy the prototype's navigation shell.
+
+## 0. Priorities (read this first)
+
+1. **Vibi's navigation and UI structure decide *how people move around*:** menus, tabs, back behaviour, whether a category is its own screen or a section, where search, cart and profile live, and the transition from the map into a building.
+2. **This brief decides *what exists and where it belongs*:** the nine content categories, their names and order, the features inside each category, the exact copy, the data, the interactions and the confirmation messages.
+3. **The Glow House visual identity** (daytime nude palette, typography, photography) applies inside the building wherever Vibi lets a building have its own look. If Vibi has its own component library, use Vibi's components, styled with the tokens in section 4.
+
+Rules:
+- Do not add, remove, merge, split or rename categories.
+- Do not move a feature from one category to another.
+- Do not add features, colours or copy that are not in this brief.
+- Where this brief gives exact text in quotes, use it word for word.
+
+**Reference implementation.** A working prototype exists in the GitHub repository `lydhaisne-sys/Start`, branch `claude/sweet-dirac-ap1kn1`:
+- `prototype/index.html`: the universe map, the facade entrance, and the interior with the Lobby and eight floors (HTML, CSS and vanilla JavaScript in one file).
 - `prototype/presentation.html`: the interactive 3D presentation (Three.js r128).
 - `prototype/assets/`: the facade image and all photos (`assets/photos/CREDITS.md` lists their sources).
 
-If you can read that repository, treat those files as the source of truth and reproduce them; this brief describes the same thing in words. If anything here conflicts with the reference files, the reference files win.
+If you can read it, use it as the reference for content, data, behaviours and visual details. **Ignore its navigation shell.** The sticky header layout, the left elevator panel, the floor directory in the hero, the hash routes and scrolling between floors were stand-ins for Vibi's navigation.
 
 ---
 
@@ -21,17 +35,50 @@ If you can read that repository, treat those files as the source of truth and re
 - **Glow House** is the beauty building: makeup, skincare and fragrance. It gathers e-commerce, tutorials, masterclasses from makeup artists, product reviews, chat rooms, salon booking, advice and a give-back floor.
 - Goal: a beauty experience people cannot get on Instagram, TikTok or YouTube. Very interactive.
 - Core values, visible everywhere: **inclusive, positive, relatable, genuine, welcoming**. Every skin tone, age and gender is represented; no filters; no skin or body shaming; no sponsored reviews.
-- Design: **luxury without being pretentious**, easy to navigate, information easy to find, intuitive and lively. **Daytime look in nude colours.** No dark mode: the building always looks like daytime, even when the device is in dark mode.
+- Design: **luxury without being pretentious**, easy to navigate, information easy to find, intuitive and lively. **Daytime look in nude colours.** No dark mode inside Glow House: it always looks like daytime.
 
 ## 2. What to deliver
 
-1. **Universe view** (the outside): a daytime street on the Vibrez universe map with the Glow House facade in the centre. Tapping the building enters it.
-2. **Glow House interior**: a lobby (G) and eight floors (1 to 8), connected by an elevator panel.
-3. **3D presentation** (separate page): a 16-slide interactive tour around a 3D model of the building.
+1. **Glow House on the Vibrez universe map**, shown and entered the way Vibi shows and enters buildings (section 6).
+2. **The Glow House interior**: nine content categories (the Lobby and floors 1 to 8), organised with Vibi's navigation (sections 3, 7 and 8).
+3. **The 3D presentation**: a separate, shareable 16-slide tour around a 3D model of the building (section 9). It is independent of Vibi's navigation.
 
-All three must work on desktop and on phones (down to 390 px wide) with no horizontal page scroll.
+Everything must work on desktop and on phones (down to 390 px wide).
 
-## 3. Design system
+## 3. Content categories: the structure to keep
+
+Glow House has **nine categories**. In the prototype they are the "floors" of the building. Keep them, in this order:
+
+| Order | Floor | Category | Subtitle | What belongs here (details in section 8) |
+|---|---|---|---|---|
+| 1 | G | **Lobby** | Your beauty passport | Welcome, beauty passport (skin tone, undertone, skin type, concerns → foundation shade match), "Happening in the building today", the Glow House promise |
+| 2 | 1 | **The Boutique** | Shop by your shade | Shop: product catalogue with shade matching and community fit, filters, bag/checkout |
+| 3 | 2 | **Tutorial Studio** | Step-by-step looks | Tutorials with follow-along steps and saved progress, filters |
+| 4 | 3 | **Masterclass Atelier** | Live with artists | Live masterclass with live questions, upcoming classes with seat reservation |
+| 5 | 4 | **Review Lab** | Real-skin reviews | Reviews tagged by skin, "people like me" filter, write a review |
+| 6 | 5 | **The Lounge** | Chat rooms | Hosted topic chat rooms, house rules, reactions |
+| 7 | 6 | **Spa & Salon** | Book a treatment | Local salons, treatments, day and time booking |
+| 8 | 7 | **Advice Bar** | Tips, routines, experts | Tip of the day, routine builder, myth-or-fact cards, scent finder, ask an expert |
+| 9 | 8 | **Glow Forward** | Give back, get seen | Next Beauty Sensation competition, weekly challenge, giveaway, scholarships, creator path, mentorship, Confidence Days |
+
+### How to apply this to Vibi's navigation
+
+- **One category = one top-level destination** in Vibi's building navigation, in whatever form Vibi uses (tabs, side menu, bottom bar, rooms, floors, sections). Use the category names above. If Vibi shows floor numbers, use them as a prefix or badge ("1 · The Boutique"); otherwise use the name alone.
+- **Keep the order.** Use G, 1, 2 … 8. If Vibi lists destinations top-down like an elevator, 8 … G is also fine. Keep the order consistent wherever categories are listed.
+- **The Lobby is the building's home.** It is where a member lands when entering Glow House.
+- **If Vibi has fewer top-level slots than nine**, keep the Lobby as home and put the remaining categories in Vibi's standard overflow pattern ("More", a menu, a list), still in order. Never regroup content to save space.
+- **The features inside a category** become sections, sub-tabs or cards inside that destination, in the order given in section 8. Use whatever Vibi uses for sub-navigation.
+- **Global actions use Vibi's global equivalents:**
+  - Search → Vibi's search, scoped to Glow House, with each result labelled by its category.
+  - Bag → Vibi's cart and checkout. Use the prototype's bag drawer only if Vibi has no cart.
+  - Beauty passport → part of the member's profile inside Glow House. It is also editable in the Lobby.
+  - Back to the map → Vibi's standard back or exit to the universe.
+- **Cross-links** must navigate to the target category through Vibi's navigation and land on the right feature. These are: the "Happening today" rows, the Lobby buttons, the scent finder's "Add to bag", "Find a partner salon" (to Spa & Salon), the Glow Forward links, and search results.
+- **Live status.** Wherever Vibi can show status on a navigation item (a dot, a badge, a counter), show it for live categories: Masterclass Atelier (class live), The Lounge (hosted chat), Glow Forward (voting open). This mirrors the pink windows and live badges in the prototype.
+- **Deep links.** Every category, and the key features inside it, should be linkable in Vibi's usual way.
+- **Not required:** the prototype's sticky header layout, left elevator panel and hero floor directory. Use Vibi's equivalents. If Vibi's building home has no list of categories, add a simple directory of the nine categories to the Lobby.
+
+## 4. Design system
 
 ### Colour tokens (use exactly these, light only; set `color-scheme: light`)
 
@@ -48,7 +95,7 @@ All three must work on desktop and on phones (down to 390 px wide) with no horiz
 | `--on-rouge` | `#FFFFFF` | text on accent |
 | `--gold` | `#946F42` | eyebrows, numerals, gold buttons (white text on gold) |
 | `--gold-soft` | `#F2E6D5` | gold tint panels |
-| `--night` | `#EBDACB` | "feature" panels (sand-blush): elevator display, live masterclass, promise box, Next Beauty Sensation |
+| `--night` | `#EBDACB` | "feature" panels (sand-blush): live masterclass, promise box, Next Beauty Sensation, current-category indicator |
 | `--night-2` | `#E2CCBA` | deeper feature panel |
 | `--on-night` | `#33241E` | text on feature panels |
 | `--ok` | `#4F7A5A` | positive "fit" text |
@@ -91,15 +138,16 @@ Skin-tone swatches (10, fair to deep, used everywhere a tone is shown):
 - **Dialog**: native `<dialog>`, radius 14, header + scrolling body; closes on ✕, Esc or backdrop click.
 - Respect `prefers-reduced-motion` (no animations, instant camera moves). Visible focus ring (2 px rouge).
 
-### Responsive breakpoints
+### Layout inside a category
 
+Follow Vibi's responsive rules. For reference, the prototype's content grids behave like this (navigation aside):
 - ≤ 1080 px: 4- and 3-column grids become 2 columns.
-- ≤ 900 px: hero stacks; the elevator becomes a sticky horizontal row of floor chips under the header; lobby, 2-column grids and the masterclass feature stack; the Lounge room list becomes a horizontal row above the thread.
+- ≤ 900 px: the Lobby welcome, 2-column grids and the masterclass feature stack; the Lounge room list becomes a horizontal row above the thread.
 - ≤ 620 px: 4- and 3-column grids become 1 column; skin tones show 5 per row; time slots 3 per row.
 
-## 4. Assets
+## 5. Assets
 
-All images live next to the page in `assets/`.
+All images are in `prototype/assets/` in the reference repository. Import them into Vibi's asset storage.
 
 - `assets/glow-house-facade.jpg` (1100×1100): the **daytime facade photo**. A cream-stone Edwardian department store inspired by the grand London stores, with a slate mansard roof and dome, dormers and chimneys, a curved corner entrance with a canopy reading "THE GLOW HOUSE", bronze double doors, columns, topiary in stone urns, black Victorian lanterns, large shop windows and a sunny cobbled street. The poster in the right shop window reads "VIBREZ UNIVERSE". (If you must regenerate it, keep these details and check the spelling on the poster and canopy.)
 - `assets/glow-house-facade-night.jpg`: the same building at dusk, kept for a future evening mode. Not used now.
@@ -129,66 +177,52 @@ All images live next to the page in `assets/`.
 | `zoe.jpg`, `rashid.jpg`, `hana.jpg`, `omar.jpg`, `ali.jpg` | Lounge members |
 | `ines.jpg` | Ines Barros, licensed esthetician (tip of the day) |
 
-Names, products, artists and businesses are fictional examples. The people pictured are models. The footer must say: "Glow House · a Vibrez building · Prototype: names, products and businesses are examples. Product and people photos from Unsplash (Unsplash License), shown for illustration; the people pictured are models, not the named members."
+Names, products, artists and businesses are fictional examples. The people pictured are models. Show this note in Glow House wherever Vibi places credits or legal text (the prototype puts it in the footer): "Glow House · a Vibrez building · Prototype: names, products and businesses are examples. Product and people photos from Unsplash (Unsplash License), shown for illustration; the people pictured are models, not the named members."
 
-## 5. Navigation and routing
+## 6. Glow House on the universe map
 
-- Hash routes. No hash or `#universe` → universe view. `#glow-house` → interior, scrolled to top. A floor id (`#lobby`, `#boutique`, `#studio`, `#masterclass`, `#reviews`, `#lounge`, `#salon`, `#advice`, `#glow-forward`) → interior, scrolled to that floor.
-- In the universe view, hide the interior header, hero, building and footer. In the interior, hide the universe.
-- The interior header has a "‹ Universe" link back to `#universe`.
+Show Glow House on the map and enter it **the way Vibi shows and enters buildings**. Keep the Glow House elements below wherever Vibi's map allows a building to have them. Elements that duplicate something Vibi's map already does (its own top bar, intro text, neighbouring buildings, legend, entry transition) follow Vibi instead.
 
-## 6. Universe view (outside)
-
-Top bar: "Vibrez" (Bodoni Moda italic, 25 px) + "UNIVERSE" (11 px gold caps) on the left; on the right a live dot and "18,402 people exploring" (hide "people exploring" on phones).
+Reference: in the prototype the map screen has a top bar with "Vibrez" (Bodoni Moda italic, 25 px) + "UNIVERSE" (11 px gold caps) on the left; on the right a live dot and "18,402 people exploring" (hide "people exploring" on phones).
 
 Centred intro:
 - Eyebrow: "Share your passion"
 - H1 (Bodoni Moda 500, `clamp(34px,5vw,58px)`): "Every building is a passion"
 - Paragraph: "Walk the Vibrez universe and step inside the communities you love. Glow House, the home of beauty, is open. Tap it to go in."
 
-**Street**: a horizontal row of buildings standing on a 66 px ground band, bottom-aligned, horizontally scrollable on small screens (scrollbar hidden) and centred on Glow House on load.
+**Street** (prototype; use only if Vibi's map has no street of its own): a horizontal row of buildings standing on a 66 px ground band, bottom-aligned, horizontally scrollable on small screens (scrollbar hidden) and centred on Glow House on load.
 - Centre: **Glow House**, a button (`aria-label="Enter Glow House, the beauty building"`) containing:
   - A **pin card** above the building (ivory, radius 14, small pointer underneath, gently bobbing): "Glow House" (Bodoni italic 20 px) / "Makeup · skincare · fragrance" / live dot + "2,431 inside · class live" (rouge, bold) / a rouge pill "Enter →".
   - The **facade photo**, square, width `clamp(320px, 46vw, 600px)`, with a radial mask so its edges fade softly into the sky: `radial-gradient(ellipse 51% 53% at 50% 47%, #000 70%, transparent 100%)`.
   - Two badges floating on the photo (ivory pill, rouge border, live dot): "Masterclass live" at left 6%, top 36%; "Lounge chat" at right 5%, top 47%.
   - Label under it on the ground: "Glow House" (Bodoni italic 18 px, `#7A5634`) / "Beauty · open now".
   - Hover/focus: lift 4 px, scale 1.015, soft warm drop shadow.
-- **Neighbours**: three unnamed buildings on each side (no names, no labels, not clickable, `aria-hidden`), drawn as simple SVG silhouettes so the street looks uniform: sandstone gradient body, rows of sky-reflecting windows (12×20 px, pitch 24×38 px, about one in five lighter), faint floor lines, a thin white edge highlight, and one roof each. Left to right: gable (150×250), mansard with dormers and chimneys (190×330), flat with chimney stacks (170×290), Glow House, dome (180×310), mansard (200×350), chimney stacks (150×260). On phones scale them to 55%. Their base sits on the facade photo's street level: bottom margin = 16% of the facade width.
+- **Neighbours** (only if Vibi's map doesn't already draw neighbouring buildings): three unnamed buildings on each side (no names, no labels, not clickable, `aria-hidden`), drawn as simple SVG silhouettes so the street looks uniform: sandstone gradient body, rows of sky-reflecting windows (12×20 px, pitch 24×38 px, about one in five lighter), faint floor lines, a thin white edge highlight, and one roof each. Left to right: gable (150×250), mansard with dormers and chimneys (190×330), flat with chimney stacks (170×290), Glow House, dome (180×310), mansard (200×350), chimney stacks (150×260). On phones scale them to 55%. Their base sits on the facade photo's street level: bottom margin = 16% of the facade width.
 - **Legend** band under the street: "Glow House: open now" (rouge swatch) · "White badge: live right now" · "Neighbouring buildings: more passions to come".
-- **Enter animation**: on tap, the facade scales to 3× from its door (`transform-origin: 49% 76%`), brightens slightly, the pin and badges fade, an ivory full-screen fade covers the screen (0.55 s), then route to `#glow-house` and fade back out. With reduced motion, go straight in.
+- **Enter transition**: use Vibi's standard building-entry transition. If Vibi allows a custom one, use the prototype's: on tap, the facade scales to 3× from its door (`transform-origin: 49% 76%`), brightens slightly, the pin and badges fade, an ivory full-screen fade covers the screen (0.55 s), then open the Lobby and fade back out. With reduced motion, go straight in.
 
-## 7. Interior shell
+## 7. Building-wide elements
 
-**Sticky header** (64 px, ivory with blur, bottom border): "‹ Universe" link · brand "Vibrez" + "GLOW HOUSE" · search field (placeholder "Search products, looks, classes, tips…") · bag button with count badge · "My passport" pill showing the member's tone swatch.
+These exist across the whole building. Place them with Vibi's navigation patterns.
 
-**Search**: live results dropdown (max 8) across products, tutorials, masterclasses, Lounge rooms, salons, myths, and fixed entries (routine builder, scent finder, ask an expert, find my foundation shade, Next Beauty Sensation, weekly challenge, giveaway, scholarships, creator path, mentorship). Each result shows its floor (e.g. "1 · Boutique") and jumps there. Empty state: "Nothing for "…" yet. Try "lip", "SPF" or "brows"." Enter opens the first result.
+**Header or top bar** (Vibi's): building name "Vibrez · GLOW HOUSE", search, bag with item count, the member's passport (shown as their tone swatch), and Vibi's back-to-map control.
 
-**Hero** (gradient of sand with soft rouge/gold glows; text `--ink`):
+**Search** (in Vibi's search, scoped to Glow House): live results (max 8) across products, tutorials, masterclasses, Lounge rooms, salons, myths, and fixed entries (routine builder, scent finder, ask an expert, find my foundation shade, Next Beauty Sensation, weekly challenge, giveaway, scholarships, creator path, mentorship). Each result shows its category (e.g. "1 · Boutique") and opens that category at the matching item. Empty state: "Nothing for "…" yet. Try "lip", "SPF" or "brows"." Enter opens the first result.
+
+**Welcome block** at the top of the Lobby (gradient of sand with soft rouge/gold glows; text `--ink`):
 - Eyebrow "Vibrez · Share your passion"
 - H1: "Welcome to *Glow House*, the home of beauty lovers." ("Glow House" italic gold)
 - Lede: "Eight floors for makeup, skincare and fragrance, including one that gives back. Shop shades matched to your skin, learn from artists live, read reviews from people who look like you, and book your next treatment nearby. Every face is welcome here."
-- Buttons: gold "Create my beauty passport" (→ `#lobby`), ghost with live dot "Masterclass live now" (→ `#masterclass`).
+- Buttons: gold "Create my beauty passport" (→ the beauty passport in the Lobby), ghost with live dot "Masterclass live now" (→ Masterclass Atelier).
 - Faces strip: 9 overlapping round photos (imani, hana, arjun, claire-sq, kwame, maya-sq, nadia, zoe, omar) + "**2,431 people** are inside right now, every skin tone, age and style."
 - Values row (✦ in gold before each): "All skin tones", "All ages", "All genders", "Real, unfiltered skin".
-- Right side: a **building directory** shaped like a facade: arched top sign "Glow House" / "EST. ON VIBREZ", then one button per floor from 8 down to G (number in Bodoni gold, name, subtitle, three small window lights; pink = live), then a door arch. Each button jumps to its floor.
+- Optional, only if Vibi's building home has no list of categories: a **building directory** shaped like a facade, with an arched sign "Glow House" / "EST. ON VIBREZ", one button per category from 8 down to G (number in Bodoni gold, name, subtitle, three small window lights where pink = live), and a door arch. Each button opens its category.
 
-**Elevator panel** (desktop: sticky left column, 200 px; shows "Now on / [number] / [name]" in a feature box and links G to 8; the current floor highlights in rouge as you scroll). Floors and subtitles:
+**Category opening.** When a category opens, show a small round badge (floor number), the eyebrow (category name), the title and the intro paragraph. The exact copy is in section 8.
 
-| # | id | Name | Subtitle |
-|---|---|---|---|
-| 8 | `glow-forward` | Glow Forward | Give back, get seen |
-| 7 | `advice` | Advice Bar | Tips, routines, experts |
-| 6 | `salon` | Spa & Salon | Book a treatment |
-| 5 | `lounge` | The Lounge | Chat rooms |
-| 4 | `reviews` | Review Lab | Real-skin reviews |
-| 3 | `masterclass` | Masterclass Atelier | Live with artists |
-| 2 | `studio` | Tutorial Studio | Step-by-step looks |
-| 1 | `boutique` | The Boutique | Shop by your shade |
-| G | `lobby` | Lobby | Your beauty passport |
+## 8. Content of each category
 
-Each floor section starts with a small round badge (floor number), the eyebrow (floor name), the title and an intro paragraph (exact copy in section 8). Floors appear top to bottom in order G, 1, 2 … 8.
-
-## 8. Floors
+One subsection per category. Inside each category, keep the features in the order listed.
 
 ### G · Lobby: "Your beauty passport"
 Intro: "Tell us about your skin once. Every floor adapts: shade matches in the Boutique, reviews from people like you, and a routine built for your skin type."
@@ -200,7 +234,7 @@ Intro: "Tell us about your skin once. Every floor adapts: shade matches in the B
   - Match card (gold-soft): swatch + "YOUR FOUNDATION MATCH" + shade code + "in Second Skin Serum Foundation · [undertone] undertone".
   - **Shade code** = tone number + first letter of undertone, e.g. 320 + Warm → **320W**.
   - Default passport: tone index 4 (Honey), Warm, Combination, concerns ["Dullness"]. Save to localStorage key `glowhouse.passport` (wrap storage in try/catch).
-  - Any change re-renders the Boutique, Review Lab and routine builder.
+  - Any change updates the Boutique, Review Lab and routine builder immediately, wherever they are in Vibi's navigation.
 - **"Happening in the building today"**: five tappable rows (big value + small label, title, subtitle, →), exact data in Appendix A.
 - **Promise box** (feature panel): "The Glow House promise" (Bodoni italic, gold) + "No filters on tutorials or reviews. No body or skin shaming. Every product is shown on at least five skin tones before it reaches the Boutique."
 
@@ -211,7 +245,7 @@ Intro: "Makeup, skincare and fragrance chosen by the community. Each product sho
   - Foundation: swatch = member's tone, text "Your shade [code] · 52 shades".
   - Products with swatches: dots + "[n] shades".
   - Fit line (green): "[fit%] of [skin type] skin rate it 4★+" using the member's skin type. Fragrances show their notes instead.
-- **Bag drawer** (right, 400 px): photo, name, brand, shade, price, "Remove"; total; "Checkout" shows the toast "Checkout opens in the full Vibrez app". Persist to `glowhouse.bag`. Adding a product toasts "Added [name] in [shade]".
+- **Bag**: use Vibi's cart if it has one. Otherwise a drawer (right, 400 px). Either way it shows: photo, name, brand, shade, price, "Remove"; total; "Checkout" shows the toast "Checkout opens in the full Vibrez app". Persist to `glowhouse.bag`. Adding a product toasts "Added [name] in [shade]".
 - Product data: Appendix B (`PRODUCTS`).
 
 ### 2 · Tutorial Studio: "Learn a look, step by step"
@@ -288,12 +322,12 @@ Intro: "Competitions, fair giveaways and scholarships. This is where members sta
   - "Apply for a scholarship".
 - **Creator path**: "How to stand out on Vibrez", with "You: Member · 120 of 500 glow points" and a progress bar at 24%. 4 steps (current step outlined in rouge), data in Appendix B (`LADDER`).
 - **Mentorship circles**: "Eight weeks with a professional". "Six members, one artist or esthetician, a weekly live session and portfolio feedback." Faces amara, lea, arjun, ines. "Request a mentor" → "✓ Request sent".
-- **Confidence Days**: "Free makeovers before a job interview". "Partner salons donate an hour of hair and makeup for members heading to an interview. Bring your nerves, leave ready." "Find a partner salon" → `#salon`.
+- **Confidence Days**: "Free makeovers before a job interview". "Partner salons donate an hour of hair and makeup for members heading to an interview. Bring your nerves, leave ready." "Find a partner salon" → opens Spa & Salon.
 - **Forms** (dialog):
   - Submit look: name of look (required), photo or video file, products used, and the note "No filters or face-editing apps. Entries are checked before voting opens." Toast: "Look submitted. It joins the gallery once it is checked."
   - Scholarship: course select (Makeup artistry (12 weeks) / Esthetician diploma (9 months) / Bridal and editorial makeup (6 weeks)), story (required), checkbox "I can't afford the course fees myself", and the note "Applications are reviewed by the Glow Forward panel. Shortlisted applicants are invited to a short video call." Toast: "Application sent. We reply within two weeks."
 
-## 9. 3D presentation (separate page, `presentation.html`)
+## 9. 3D presentation (separate shareable page, `presentation.html`)
 
 - Title "Glow House 3D Tour". Full-screen **Three.js r128** canvas (`https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js`). If WebGL fails, show the facade photo as the background instead.
 - Background: the same daytime sky gradient. Top bar: brand + "GLOW HOUSE · 3D TOUR"; hint pill "Drag to turn the building · Click a floor to visit it · ← → to move" (hidden on phones).
@@ -332,14 +366,16 @@ Intro: "Competitions, fair giveaways and scholarships. This is where members sta
 
 ## 10. Acceptance checklist
 
-- [ ] Opens on the universe street in daylight; Glow House is centred, the facade fades into the sky, the neighbours are unnamed silhouettes.
-- [ ] Tapping the building plays the zoom-into-the-door transition and lands on the interior; "‹ Universe" returns.
-- [ ] Daytime nude palette everywhere; no dark mode; gold buttons have white text; no underlined buttons.
+- [ ] Glow House appears on the Vibrez universe map with the daytime facade photo and is entered with Vibi's building-entry pattern. Vibi's back control returns to the map.
+- [ ] Vibi's navigation shows exactly nine categories, with the names and order from section 3. The Lobby is the home. Nothing is merged, split, renamed or moved between categories.
+- [ ] Every feature sits in its own category, in the order from section 8.
+- [ ] Search, bag/cart, passport and back-to-map use Vibi's global patterns. Search results name their category.
+- [ ] Cross-links (Happening today, Lobby buttons, scent finder, Confidence Days, search) open the right category and feature through Vibi's navigation.
+- [ ] Live categories (Masterclass Atelier, The Lounge, Glow Forward) show a live indicator where Vibi supports one.
+- [ ] Daytime nude palette and Glow House typography inside the building; gold buttons have white text; no dark mode inside Glow House.
 - [ ] Changing the passport updates the shade code, the Boutique fit lines, "people like me" and the routine builder.
-- [ ] Every interaction in section 8 works, with the exact toasts.
-- [ ] The search finds items on every floor, including Glow Forward.
-- [ ] No horizontal scroll at 390 px; the flip cards don't widen the page; all images load.
-- [ ] Every product photo is free of third-party brand names; faces cover every skin tone, men and women, and older members.
+- [ ] Every interaction in section 8 works, with the exact copy and confirmation messages.
+- [ ] Works on phones (390 px wide); all images load; no product photo shows a third-party brand name; faces cover every skin tone, men and women, and older members.
 - [ ] The 3D presentation has 16 slides; dragging, clicking floors, the keyboard and `#slide-N` links all work on desktop and phone.
 
 ---
