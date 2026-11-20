@@ -70,7 +70,7 @@ button { cursor: pointer; }
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
 /* Buttons and chips */
-.btn { display: inline-flex; align-items: center; gap: 8px; border: 1px solid transparent; border-radius: 999px; padding: 9px 18px; font-weight: 600; font-size: 14px; background: var(--rouge); color: var(--on-rouge); transition: transform .15s, filter .15s; }
+.btn { text-decoration: none; display: inline-flex; align-items: center; gap: 8px; border: 1px solid transparent; border-radius: 999px; padding: 9px 18px; font-weight: 600; font-size: 14px; background: var(--rouge); color: var(--on-rouge); transition: transform .15s, filter .15s; }
 .btn:hover { filter: brightness(1.06); }
 .btn:active { transform: scale(.97); }
 .btn.ghost { background: transparent; color: var(--ink); border-color: var(--line); }
@@ -105,7 +105,7 @@ button { cursor: pointer; }
 .icon-btn { position: relative; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line); background: var(--surface); flex: none; }
 .icon-btn:hover { border-color: var(--rouge); color: var(--rouge); }
 .badge { position: absolute; top: -4px; right: -4px; min-width: 18px; height: 18px; padding: 0 5px; border-radius: 9px; background: var(--rouge); color: var(--on-rouge); font-size: 11px; font-weight: 700; display: grid; place-items: center; }
-.me { display: flex; align-items: center; gap: 8px; border: 1px solid var(--line); border-radius: 999px; padding: 4px 12px 4px 4px; background: var(--surface); font-size: 13px; font-weight: 600; flex: none; }
+.me { text-decoration: none; color: inherit; display: flex; align-items: center; gap: 8px; border: 1px solid var(--line); border-radius: 999px; padding: 4px 12px 4px 4px; background: var(--surface); font-size: 13px; font-weight: 600; flex: none; }
 .me i { width: 30px; height: 30px; border-radius: 50%; display: block; border: 2px solid var(--surface); box-shadow: 0 0 0 1px var(--line); }
 
 /* Hero: the facade */
@@ -462,6 +462,32 @@ body.in-universe::before { background: #120817; }
 .back:hover { color: var(--rouge); background: var(--surface-2); }
 @media (max-width: 620px) { .back span { display: none; } .u-online span.full { display: none; } }
 
+
+/* Keep 3D flip-card faces from widening the page */
+.building main { overflow-x: clip; }
+
+/* Real photos */
+.art.photo { background: var(--surface-2); }
+.art.photo img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s ease; }
+.card:hover .art.photo img { transform: scale(1.04); }
+.art .tagl { z-index: 1; }
+img.av { object-fit: cover; padding: 0; background: var(--surface-2); }
+.review .who img.sw { object-fit: cover; width: 42px; height: 42px; }
+.tone-dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 5px; vertical-align: -1px; box-shadow: 0 0 0 1px var(--line); }
+.bag-item img.sw { object-fit: cover; }
+.mc .portrait { overflow: hidden; }
+.mc .portrait img { width: 100%; height: 100%; object-fit: cover; display: block; min-height: 180px; }
+.mc-feature { grid-template-columns: minmax(0, .7fr) minmax(0, 1.3fr) minmax(0, 1fr); }
+.mc-host { position: relative; border-radius: var(--r-sm); overflow: hidden; min-height: 220px; }
+.mc-host img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.mc-host .tag { position: absolute; left: 10px; top: 10px; background: rgba(43,16,41,.85); color: #FBEFF4; }
+.tut .thumb::after { background: linear-gradient(to top, rgba(20,6,16,.75), rgba(20,6,16,.05) 55%, rgba(20,6,16,.25)); }
+.faces { display: flex; align-items: center; gap: 14px; margin-top: 28px; flex-wrap: wrap; font-size: 14px; color: color-mix(in srgb, var(--on-night) 80%, transparent); }
+.faces b { color: var(--on-night); }
+.faces .stack { display: flex; }
+.faces .stack img { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; border: 2px solid var(--night); margin-left: -10px; }
+.faces .stack img:first-child { margin-left: 0; }
+@media (max-width: 900px) { .mc-feature { grid-template-columns: 1fr; } .mc-host { min-height: 260px; } }
 /* Responsive */
 @media (max-width: 1080px) {
   .g4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -561,6 +587,10 @@ body.in-universe::before { background: #120817; }
         <a class="btn gold" href="#lobby">Create my beauty passport</a>
         <a class="btn ghost" href="#masterclass"><span class="live-dot"></span> Masterclass live now</a>
       </div>
+      <div class="faces" aria-label="Some of the people inside Glow House right now">
+        <div class="stack"><img src="assets/photos/imani.jpg" alt=""><img src="assets/photos/hana.jpg" alt=""><img src="assets/photos/arjun.jpg" alt=""><img src="assets/photos/claire-sq.jpg" alt=""><img src="assets/photos/kwame.jpg" alt=""><img src="assets/photos/maya-sq.jpg" alt=""><img src="assets/photos/nadia.jpg" alt=""><img src="assets/photos/zoe.jpg" alt=""><img src="assets/photos/omar.jpg" alt=""></div>
+        <span><b>2,431 people</b> are inside right now, every skin tone, age and style.</span>
+      </div>
       <div class="values"><span>All skin tones</span><span>All ages</span><span>All genders</span><span>Real, unfiltered skin</span></div>
     </div>
     <div class="facade" aria-label="Building directory">
@@ -656,6 +686,7 @@ body.in-universe::before { background: #120817; }
         </div>
       </div>
       <div class="mc-feature">
+        <div class="mc-host"><img src="assets/photos/amara.jpg" alt="Amara Okafor, makeup artist"><span class="tag rouge"><span class="live-dot"></span> On air</span></div>
         <div>
           <span class="tag rouge"><span class="live-dot"></span> Live now · <span id="viewers">1,284</span> watching</span>
           <h3>Skin first: the editorial base that looks like nothing at all</h3>
@@ -742,7 +773,7 @@ body.in-universe::before { background: #120817; }
         <div class="tip-day">
           <span class="eyebrow">Tip of the day</span>
           <blockquote>Apply sunscreen as the last step of skincare, then wait two minutes before foundation. Your base will slide less and last longer.</blockquote>
-          <div class="creator"><span class="av" style="background:#935A35">IB</span> Ines Barros, licensed esthetician</div>
+          <div class="creator"><img class="av" src="assets/photos/ines.jpg" alt=""> Ines Barros, licensed esthetician</div>
         </div>
         <div class="panel routine">
           <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px">
@@ -774,7 +805,7 @@ body.in-universe::before { background: #120817; }
   </main>
 </div>
 
-<footer class="wrap foot-note"><b>Glow House</b> · a Vibrez building · Prototype: names, products and businesses are examples.</footer>
+<footer class="wrap foot-note"><b>Glow House</b> · a Vibrez building · Prototype: names, products and businesses are examples. Product and people photos from Unsplash (Unsplash License), shown for illustration; the people pictured are models, not the named members.</footer>
 
 <div class="scrim" id="scrim" hidden></div>
 <aside class="drawer" id="drawer" hidden aria-label="Your bag">
@@ -821,27 +852,27 @@ body.in-universe::before { background: #120817; }
 
   const PRODUCTS = [
     { id: 'p1', cat: 'Makeup', shape: 'bottle', shade: true, brand: 'Maison Lumen', name: 'Second Skin Serum Foundation', price: 38, shades: 52, fit: { Dry: 94, Normal: 91, Combination: 88, Oily: 79, Sensitive: 90 }, tags: ['52 shades'] },
-    { id: 'p2', cat: 'Makeup', shape: 'lip', c: '#9E1F3F', brand: 'Atelier Nuit', name: 'Velvet Rouge Lipstick, Cassis', price: 26, fit: { Dry: 81, Normal: 92, Combination: 90, Oily: 93, Sensitive: 88 }, tags: ['Community pick'], swatches: ['#9E1F3F', '#C2414F', '#7A2B2B', '#D97A6C'] },
+    { id: 'p2', cat: 'Makeup', shape: 'lip', c: '#C98A86', brand: 'Atelier Nuit', name: 'Velvet Lipstick, Rose Nude', price: 26, fit: { Dry: 81, Normal: 92, Combination: 90, Oily: 93, Sensitive: 88 }, tags: ['Community pick'], swatches: ['#C98A86', '#B5605F', '#8E3B46', '#5E2430'] },
     { id: 'p3', cat: 'Skincare', shape: 'jar', c: '#E9D7E6', brand: 'Dermalune', name: 'Barrier Repair Cream', price: 32, fit: { Dry: 97, Normal: 90, Combination: 84, Oily: 71, Sensitive: 96 }, tags: ['Fragrance-free'] },
-    { id: 'p4', cat: 'Makeup', shape: 'stick', c: '#D9667A', brand: 'Petal & Co', name: 'Cloud Blush Stick', price: 24, fit: { Dry: 93, Normal: 92, Combination: 89, Oily: 82, Sensitive: 87 }, tags: [], swatches: ['#F2A5A0', '#D9667A', '#B5483F', '#8E3346'] },
+    { id: 'p4', cat: 'Makeup', shape: 'stick', c: '#D9667A', brand: 'Petal & Co', name: 'Cloud Blush Powder', price: 24, fit: { Dry: 93, Normal: 92, Combination: 89, Oily: 82, Sensitive: 87 }, tags: [], swatches: ['#F2A5A0', '#D9667A', '#B5483F', '#8E3346'] },
     { id: 'p5', cat: 'Fragrance', shape: 'perfume', c: '#C9A37A', brand: 'Atelier Nuit', name: 'Santal Dusk Eau de Parfum, 50 ml', price: 89, fit: null, notes: 'Pink pepper · Iris · Sandalwood', tags: ['New'] },
     { id: 'p6', cat: 'Skincare', shape: 'bottle', c: '#EFC9B6', brand: 'Dermalune', name: 'Glass Skin Rice Toner', price: 21, fit: { Dry: 89, Normal: 93, Combination: 92, Oily: 88, Sensitive: 81 }, tags: [] },
-    { id: 'p7', cat: 'Skincare', shape: 'tube', c: '#F2E6C9', brand: 'Soleil Bare', name: 'Invisible Fluid SPF 50', price: 29, fit: { Dry: 88, Normal: 94, Combination: 95, Oily: 96, Sensitive: 90 }, tags: ['No white cast'] },
-    { id: 'p8', cat: 'Fragrance', shape: 'perfume', c: '#9FC5B8', brand: 'Petal & Co', name: 'Fig Leaf Morning Eau de Toilette, 30 ml', price: 54, fit: null, notes: 'Bergamot · Fig leaf · Cedar', tags: [] }
+    { id: 'p7', cat: 'Makeup', shape: 'tube', c: '#2B1029', brand: 'Maison Lumen', name: 'Lash Lift Mascara', price: 22, fit: { Dry: 90, Normal: 93, Combination: 91, Oily: 86, Sensitive: 89 }, tags: ['Smudge-proof'] },
+    { id: 'p8', cat: 'Makeup', shape: 'tube', c: '#2B1029', brand: 'Atelier Nuit', name: 'Precision Liquid Liner', price: 19, fit: { Dry: 88, Normal: 92, Combination: 90, Oily: 84, Sensitive: 91 }, tags: ['New'] },
   ];
 
   const TUTORIALS = [
-    { id: 't1', title: 'Soft glam in 12 minutes', mins: 12, level: 'Beginner', by: 'Maya Chen', tone: 2, color: '#C2414F', tags: ['Everyday'], steps: ['Prep with a light moisturiser and SPF', 'Spot-conceal instead of full coverage', 'Cream blush high on the cheeks, blend toward temples', 'Brown shadow in the crease with a fluffy brush', 'Tightline the upper lash line', 'Two coats of mascara, wiggle at the root', 'Tinted balm, blot, reapply'] },
-    { id: 't2', title: 'Smoky eye for monolids', mins: 18, level: 'Intermediate', by: 'Jun Park', tone: 1, color: '#4A3A55', tags: ['Monolids'], steps: ['Prime the whole lid up to the brow bone', 'Pack dark shade at the lash line, eyes open to check', 'Blend upward in small circles', 'Smudge pencil along the lower lash line', 'Add shimmer to the centre of the lid', 'Curl lashes and apply mascara'] },
-    { id: 't3', title: 'Bold red lip on deep skin', mins: 9, level: 'Beginner', by: 'Nia Adebayo', tone: 8, color: '#9E1F3F', tags: ['Lips'], steps: ['Exfoliate lips with a damp cloth', 'Line just outside the natural line with a berry liner', 'Fill with lipstick from the centre out', 'Blot and apply a second layer', 'Clean the edge with concealer on a flat brush'] },
-    { id: 't4', title: 'Glow for mature skin', mins: 15, level: 'Beginner', by: 'Claire Dubois', tone: 0, color: '#D9A07A', tags: ['Every age'], steps: ['Hydrating serum, then a rich cream', 'Foundation in thin layers with fingers', 'Cream highlighter on the top of cheekbones only', 'Lift brows with a tinted gel', 'Skip powder under the eyes'] },
-    { id: 't5', title: 'Graphic liner for hooded eyes', mins: 20, level: 'Advanced', by: 'Sofia Reyes', tone: 4, color: '#2B1029', tags: ['Hooded eyes'], steps: ['Map the wing with eyes open, looking straight ahead', 'Draw the flick toward the end of your brow', 'Connect to the lash line with a thin line', 'Fill the gap in the hood fold, eyes open', 'Sharpen with micellar water on a cotton bud'] },
-    { id: 't6', title: 'Skin and brows, for everyone', mins: 7, level: 'Beginner', by: 'Theo Martins', tone: 6, color: '#7A8C6A', tags: ['Gender-free'], steps: ['Gentle cleanse and moisturise', 'Tinted SPF for an even look', 'Colour-correct redness with a green-tinted balm', 'Brush brows up and set with clear gel', 'Lip balm to finish'] }
+    { id: 't1', img: 'maya', title: 'Soft glam in 12 minutes', mins: 12, level: 'Beginner', by: 'Maya Chen', tone: 2, color: '#C2414F', tags: ['Everyday'], steps: ['Prep with a light moisturiser and SPF', 'Spot-conceal instead of full coverage', 'Cream blush high on the cheeks, blend toward temples', 'Brown shadow in the crease with a fluffy brush', 'Tightline the upper lash line', 'Two coats of mascara, wiggle at the root', 'Tinted balm, blot, reapply'] },
+    { id: 't2', img: 'jun', title: 'Smoky eye for monolids', mins: 18, level: 'Intermediate', by: 'Jun Park', tone: 1, color: '#4A3A55', tags: ['Monolids'], steps: ['Prime the whole lid up to the brow bone', 'Pack dark shade at the lash line, eyes open to check', 'Blend upward in small circles', 'Smudge pencil along the lower lash line', 'Add shimmer to the centre of the lid', 'Curl lashes and apply mascara'] },
+    { id: 't3', img: 'nia', title: 'Bold red lip on deep skin', mins: 9, level: 'Beginner', by: 'Nia Adebayo', tone: 8, color: '#9E1F3F', tags: ['Lips'], steps: ['Exfoliate lips with a damp cloth', 'Line just outside the natural line with a berry liner', 'Fill with lipstick from the centre out', 'Blot and apply a second layer', 'Clean the edge with concealer on a flat brush'] },
+    { id: 't4', img: 'claire', title: 'Glow for mature skin', mins: 15, level: 'Beginner', by: 'Claire Dubois', tone: 0, color: '#D9A07A', tags: ['Every age'], steps: ['Hydrating serum, then a rich cream', 'Foundation in thin layers with fingers', 'Cream highlighter on the top of cheekbones only', 'Lift brows with a tinted gel', 'Skip powder under the eyes'] },
+    { id: 't5', img: 'sofia', title: 'Graphic liner for hooded eyes', mins: 20, level: 'Advanced', by: 'Sofia Reyes', tone: 4, color: '#2B1029', tags: ['Hooded eyes'], steps: ['Map the wing with eyes open, looking straight ahead', 'Draw the flick toward the end of your brow', 'Connect to the lash line with a thin line', 'Fill the gap in the hood fold, eyes open', 'Sharpen with micellar water on a cotton bud'] },
+    { id: 't6', img: 'theo', title: 'Skin and brows, for everyone', mins: 7, level: 'Beginner', by: 'Theo Martins', tone: 6, color: '#7A8C6A', tags: ['Gender-free'], steps: ['Gentle cleanse and moisturise', 'Tinted SPF for an even look', 'Colour-correct redness with a green-tinted balm', 'Brush brows up and set with clear gel', 'Lip balm to finish'] }
   ];
 
   const CLASSES = [
     { id: 'c1', artist: 'Léa Moreau', ini: 'LM', role: 'Paris backstage artist', title: 'The French lip, blurred and undone', when: 'Thursday · 19:00', seats: 120, taken: 97 },
-    { id: 'c2', artist: 'Kenji Watanabe', ini: 'KW', role: 'Film and editorial', title: 'Precision liner for every eye shape', when: 'Saturday · 15:00', seats: 150, taken: 64 },
+    { id: 'c2', artist: 'Arjun Mehta', ini: 'AM', role: 'Film and editorial', title: 'Precision liner for every eye shape', when: 'Saturday · 15:00', seats: 150, taken: 64 },
     { id: 'c3', artist: 'Sofia Reyes', ini: 'SR', role: 'Bridal specialist', title: 'Bridal makeup that lasts 14 hours', when: 'Next Tuesday · 18:30', seats: 100, taken: 88 },
     { id: 'c4', artist: 'Dr. Priya Nair', ini: 'PN', role: 'Dermatologist', title: 'Acids, retinoids and what actually works', when: 'Next Friday · 20:00', seats: 300, taken: 141 }
   ];
@@ -850,9 +881,9 @@ body.in-universe::before { background: #120817; }
     { who: 'Nadia', tone: 6, type: 'Oily', age: '30s', product: 'Second Skin Serum Foundation, 430W', stars: 5, m: [5, 4, 4], hours: 10, text: 'First foundation that matches my neck without going grey by lunch. Still there after a ten hour shift with one blot.', helpful: 128, verified: true },
     { who: 'Emma', tone: 1, type: 'Dry', age: '50s', product: 'Barrier Repair Cream', stars: 5, m: [5, 5, 4], hours: 24, text: 'My cheeks used to flake under makeup. After two weeks they are calm and my base sits smoothly.', helpful: 96, verified: true },
     { who: 'Kwame', tone: 8, type: 'Combination', age: '20s', product: 'Invisible Fluid SPF 50', stars: 5, m: [4, 5, 5], hours: 8, text: 'Actually invisible on my skin. No purple cast in photos, which is a first for any SPF 50 I tried.', helpful: 211, verified: true },
-    { who: 'Lucía', tone: 4, type: 'Combination', age: '30s', product: 'Cloud Blush Stick, Rosewood', stars: 4, m: [3, 5, 5], hours: 6, text: 'Gorgeous flush and easy to blend with fingers. Fades on my T-zone by the afternoon, so I set it with a little powder.', helpful: 54, verified: false },
+    { who: 'Lucía', tone: 4, type: 'Combination', age: '30s', product: 'Cloud Blush Powder, Rosewood', stars: 4, m: [3, 5, 5], hours: 6, text: 'Gorgeous flush and easy to buff in. Fades on my T-zone by the afternoon, so I set it with a little powder.', helpful: 54, verified: false },
     { who: 'Aiko', tone: 2, type: 'Sensitive', age: '40s', product: 'Glass Skin Rice Toner', stars: 3, m: [3, 4, 4], hours: 0, text: 'Lovely texture but it stung a little around my nose on day three. Fine on the rest of my face. Patch test first.', helpful: 77, verified: true },
-    { who: 'Sam', tone: 3, type: 'Normal', age: '20s', product: 'Velvet Rouge Lipstick, Cassis', stars: 5, m: [5, 5, 4], hours: 7, text: 'Survived coffee and lunch. Comfortable for a matte and the colour looks the same in daylight as in the shop.', helpful: 63, verified: true },
+    { who: 'Sam', tone: 3, type: 'Normal', age: '20s', product: 'Velvet Lipstick, Rose Nude', stars: 5, m: [5, 5, 4], hours: 7, text: 'Survived coffee and lunch. Comfortable for a matte and the nude looks the same in daylight as in the shop.', helpful: 63, verified: true },
     { who: 'Imani', tone: 9, type: 'Dry', age: '30s', product: 'Second Skin Serum Foundation, 590N', stars: 4, m: [4, 5, 3], hours: 9, text: 'They actually made the deepest shades with the right red undertone. Wish the bottle were bigger for the price.', helpful: 142, verified: true }
   ];
 
@@ -901,9 +932,9 @@ body.in-universe::before { background: #120817; }
 
   const MOODS = {
     Cozy: { family: 'Gourmand & woody', top: 'Cardamom, pear', heart: 'Tonka bean, iris', base: 'Vanilla, sandalwood', pick: 'p5' },
-    Fresh: { family: 'Green & citrus', top: 'Bergamot, grapefruit', heart: 'Fig leaf, neroli', base: 'Cedar, white musk', pick: 'p8' },
+    Fresh: { family: 'Green & citrus', top: 'Bergamot, grapefruit', heart: 'Fig leaf, neroli', base: 'Cedar, white musk', pick: 'p5' },
     Bold: { family: 'Amber & spice', top: 'Pink pepper, saffron', heart: 'Rose, oud', base: 'Amber, patchouli', pick: 'p5' },
-    Romantic: { family: 'Soft floral', top: 'Lychee, mandarin', heart: 'Peony, jasmine', base: 'Musk, cashmere wood', pick: 'p8' }
+    Romantic: { family: 'Soft floral', top: 'Lychee, mandarin', heart: 'Peony, jasmine', base: 'Musk, cashmere wood', pick: 'p5' }
   };
 
   const QA = [
@@ -929,7 +960,12 @@ body.in-universe::before { background: #120817; }
   /* ---------- Helpers ---------- */
   let toastT;
   function toast(msg) { const t = $('#toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('show'), 2600); }
-  function avatar(name, t) { const c = TONES[t] ? TONES[t].c : '#9C7845'; return `<span class="av" style="background:${c};color:${t < 4 ? '#3E2213' : '#fff'}">${esc(name.replace('Dr. ', '').slice(0, 2).toUpperCase())}</span>`; }
+  const FACES = { 'Maya Chen': 'maya-sq', 'Jun Park': 'jun-sq', 'Nia Adebayo': 'nia-sq', 'Claire Dubois': 'claire-sq', 'Sofia Reyes': 'sofia-sq', 'Theo Martins': 'theo-sq',
+    'Amara Okafor': 'amara', 'Léa Moreau': 'lea', 'Arjun Mehta': 'arjun', 'Dr. Priya Nair': 'priya', 'Dr. Priya': 'priya', 'Nadia': 'nadia', 'Emma': 'emma', 'Kwame': 'kwame',
+    'Lucía': 'lucia', 'Aiko': 'aiko', 'Sam': 'sam', 'Imani': 'imani', 'Zoe': 'zoe', 'Rashid': 'rashid', 'Maya': 'maya-sq', 'Hana': 'hana', 'Omar': 'omar', 'Claire': 'claire-sq',
+    'Ali': 'ali', 'Theo': 'theo-sq', 'Ines Barros': 'ines' };
+  const face = n => FACES[n] ? `assets/photos/${FACES[n]}.jpg` : null;
+  function avatar(name, t) { if (face(name)) return `<img class="av" src="${face(name)}" alt="">`; const c = TONES[t] ? TONES[t].c : '#9C7845'; return `<span class="av" style="background:${c};color:${t < 4 ? '#3E2213' : '#fff'}">${esc(name.replace('Dr. ', '').slice(0, 2).toUpperCase())}</span>`; }
   const stars = n => '★★★★★'.slice(0, n) + '☆☆☆☆☆'.slice(0, 5 - n);
   const euro = n => '€' + n.toLocaleString('en', { minimumFractionDigits: 0 });
 
@@ -996,9 +1032,8 @@ body.in-universe::before { background: #120817; }
         : p.swatches ? `<span class="swatches">${p.swatches.map(s => `<i style="background:${s}"></i>`).join('')}<small>${p.swatches.length} shades</small></span>` : '';
       const inBag = state.bag.some(b => b.id === p.id);
       return `<article class="card">
-        <div class="art" style="background:linear-gradient(160deg, var(--surface-2), color-mix(in srgb, ${c} 28%, var(--surface-2)))">
+        <div class="art photo"><img src="assets/photos/${p.id}.jpg" alt="${esc(p.name)}" width="640" height="544">
           <div class="tagl">${p.tags.map(t => `<span class="tag ${t === 'New' ? 'rouge' : 'gold'}">${esc(t)}</span>`).join('')}</div>
-          <div class="shape ${p.shape}" style="--c:${c}"></div>
         </div>
         <div class="body"><span class="brandname">${esc(p.brand)}</span><h3>${esc(p.name)}</h3>${sw}${fit}
           <div class="price-row"><span class="price">${euro(p.price)}</span><button class="btn sm ${inBag ? 'ghost' : ''}" data-add="${p.id}">${inBag ? 'In your bag' : 'Add to bag'}</button></div>
@@ -1009,7 +1044,7 @@ body.in-universe::before { background: #120817; }
     const n = state.bag.length; const b = $('#bagCount'); b.hidden = !n; b.textContent = n;
     $('#bagItems').innerHTML = n ? state.bag.map(it => {
       const p = PRODUCTS.find(x => x.id === it.id);
-      return `<div class="bag-item"><span class="sw" style="background:${it.c}"></span><span><b>${esc(p.name)}</b><small>${esc(p.brand)}${it.shade ? ' · shade ' + it.shade : ''}</small></span><span style="text-align:right"><b>${euro(p.price)}</b><br><button class="helpful" data-remove="${p.id}">Remove</button></span></div>`;
+      return `<div class="bag-item"><img class="sw" src="assets/photos/${p.id}.jpg" alt=""><span><b>${esc(p.name)}</b><small>${esc(p.brand)}${it.shade ? ' · shade ' + it.shade : ''}</small></span><span style="text-align:right"><b>${euro(p.price)}</b><br><button class="helpful" data-remove="${p.id}">Remove</button></span></div>`;
     }).join('') : '<div class="empty">Your bag is empty. The Boutique is on floor 1.</div>';
     $('#bagTotal').textContent = euro(state.bag.reduce((s, it) => s + PRODUCTS.find(x => x.id === it.id).price, 0));
     $('#checkout').disabled = !n;
@@ -1027,7 +1062,7 @@ body.in-universe::before { background: #120817; }
     $('#tutorials').innerHTML = list.map(t => {
       const done = store.get('tut.' + t.id, []).length;
       return `<article class="card tut">
-        <div class="thumb" style="background:linear-gradient(135deg, ${TONES[t.tone].c}, ${t.color})">
+        <div class="thumb" style="background:${t.color} url('assets/photos/${t.img}.jpg') center/cover">
           <div class="meta"><span class="tag" style="background:rgba(255,255,255,.9);color:#2B1029">${t.level}</span>${t.tags.map(x => `<span class="tag" style="background:rgba(255,255,255,.9);color:#2B1029">${esc(x)}</span>`).join('')}</div>
           <div style="display:flex;justify-content:space-between;align-items:end"><span class="dur">${t.mins} min</span><button class="play" data-tutopen="${t.id}" aria-label="Start ${esc(t.title)}"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4v16l13-8z"/></svg></button></div>
         </div>
@@ -1055,7 +1090,7 @@ body.in-universe::before { background: #120817; }
   function renderClasses() {
     $('#classes').innerHTML = CLASSES.map(c => {
       const res = state.reserved.has(c.id); const taken = c.taken + (res ? 1 : 0); const left = c.seats - taken;
-      return `<article class="card mc"><div class="portrait"><b>${c.ini}</b><small>${esc(c.role.split(' ')[0])}</small></div>
+      return `<article class="card mc"><div class="portrait"><img src="${face(c.artist)}" alt="${esc(c.artist)}"></div>
         <div class="body"><span class="eyebrow">${esc(c.artist)} · ${esc(c.role)}</span><h3 style="margin-top:4px">${esc(c.title)}</h3><span class="when">${esc(c.when)} · live, with replay</span>
         <div class="seats" aria-hidden="true"><span style="width:${taken / c.seats * 100}%"></span></div><small class="muted">${left} of ${c.seats} live seats left</small>
         <div style="margin-top:12px"><button class="btn sm ${res ? 'ghost' : ''}" data-reserve="${c.id}" aria-pressed="${res}">${res ? '✓ Seat reserved' : 'Reserve a seat'}</button></div></div></article>`;
@@ -1076,7 +1111,7 @@ body.in-universe::before { background: #120817; }
     const list = state.reviews.filter(r => !state.likeMe || (r.type === p.type || Math.abs(r.tone - p.tone) <= 1));
     $('#reviewList').innerHTML = list.map((r, i) => {
       const idx = state.reviews.indexOf(r); const h = state.helpful.has(idx);
-      return `<article class="card review"><div class="who"><span class="sw" style="background:${TONES[r.tone].c}"></span><div><b>${esc(r.who)}</b><small>${r.type} skin · ${TONES[r.tone].name} · ${r.age}</small></div><span class="stars" style="margin-left:auto" aria-label="${r.stars} out of 5">${stars(r.stars)}</span></div>
+      return `<article class="card review"><div class="who">${face(r.who) ? `<img class="sw" src="${face(r.who)}" alt="">` : `<span class="sw" style="background:${TONES[r.tone].c}"></span>`}<div><b>${esc(r.who)}</b><small><i class="tone-dot" style="background:${TONES[r.tone].c}"></i>${r.type} skin · ${TONES[r.tone].name} · ${r.age}</small></div><span class="stars" style="margin-left:auto" aria-label="${r.stars} out of 5">${stars(r.stars)}</span></div>
         <p class="prod">${esc(r.product)}</p><p class="txt">${esc(r.text)}</p>
         <div class="meters">${['Longevity', 'Finish', 'Value'].map((m, j) => `<div class="meter"><small>${m}</small><span><i style="width:${r.m[j] * 20}%"></i></span></div>`).join('')}</div>
         <div class="foot">${r.verified ? `<span class="tag gold">✓ Wear-tested${r.hours ? ' · ' + r.hours + 'h' : ''}</span>` : '<span class="tag">First impression</span>'}<button class="helpful" data-helpful="${idx}" aria-pressed="${h}">Helpful · ${r.helpful + (h ? 1 : 0)}</button></div></article>`;

@@ -39,6 +39,10 @@ The prototype now opens on the **Vibrez universe map**: a night street where eac
 
 Navigation is an **elevator**: the building facade in the hero, a sticky floor panel on desktop (a swipeable floor bar on phones), and a search bar that finds anything in any floor.
 
+## Real photos inside
+
+The Boutique shows real, unbranded product photos, and real faces across every skin tone in the passport appear on tutorials, masterclass artists, reviews, the Lounge and the lobby ("2,431 people are inside right now"). Photos are from Unsplash (see `prototype/assets/photos/CREDITS.md`); the people pictured are models, and the names next to them are fictional.
+
 ## Core values in the product
 
 - **Inclusive:** every product is shown on at least five skin tones; shade ranges, tutorials and creators cover all tones, ages, genders and eye shapes. A "First Steps" room for beginners.
