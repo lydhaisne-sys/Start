@@ -1,0 +1,93 @@
+<svg viewBox="0 0 420 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="ghT"><title id="ghT">Glow House, the Vibrez beauty building</title>
+<defs>
+<linearGradient id="ghBody" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4A2146"/><stop offset="1" stop-color="#2B1029"/></linearGradient>
+<linearGradient id="ghGold" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#A9844F"/><stop offset=".5" stop-color="#F1DCAA"/><stop offset="1" stop-color="#A9844F"/></linearGradient>
+<linearGradient id="ghLit" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE9B8"/><stop offset="1" stop-color="#E5B062"/></linearGradient>
+<linearGradient id="ghLive" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFB3CA"/><stop offset="1" stop-color="#E25A88"/></linearGradient>
+<linearGradient id="ghVit" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFF1DA"/><stop offset="1" stop-color="#F3C99A"/></linearGradient>
+<radialGradient id="ghGlow" cx=".5" cy=".55" r=".5"><stop offset="0" stop-color="#EC6C96" stop-opacity=".35"/><stop offset="1" stop-color="#EC6C96" stop-opacity="0"/></radialGradient>
+</defs>
+<ellipse cx="210" cy="330" rx="210" ry="280" fill="url(#ghGlow)"/>
+<ellipse cx="210" cy="592" rx="185" ry="8" fill="#000" opacity=".3"/>
+<path d="M210 4 L222 22 L210 40 L198 22 Z" fill="url(#ghGold)"/><path d="M210 4 L210 40" stroke="#A9844F" stroke-width="1"/><rect x="204" y="38" width="12" height="14" fill="url(#ghGold)"/>
+<path class="spark" d="M246 8 l3 7 7 3 -7 3 -3 7 -3 -7 -7 -3 7 -3z" fill="#F1DCAA"/><path class="spark s2" d="M170 26 l2 4.5 4.5 2 -4.5 2 -2 4.5 -2 -4.5 -4.5 -2 4.5 -2z" fill="#F1DCAA"/>
+<path d="M70 162 V150 A140 100 0 0 1 350 150 V162 Z" fill="url(#ghBody)" stroke="url(#ghGold)" stroke-width="3"/>
+<path d="M210 158 L334 127 M210 158 L321 105 M210 158 L301 86 M210 158 L274 72 M210 158 L243 63 M210 158 L210 60 M210 158 L177 63 M210 158 L146 72 M210 158 L119 86 M210 158 L99 105 M210 158 L86 127" stroke="#E9C98F" stroke-opacity=".3" stroke-width="1.5"/>
+<rect x="150" y="82" width="120" height="16" rx="8" fill="#2B1029"/><text x="210" y="93.5" text-anchor="middle" font-family="Manrope, Helvetica, Arial, sans-serif" font-weight="700" font-size="7.5" letter-spacing="3" fill="#F1DCAA">VIBREZ · BEAUTY</text>
+<rect x="114" y="104" width="192" height="44" rx="22" fill="#2B1029" stroke="url(#ghGold)" stroke-width="2"/><text x="210" y="134" text-anchor="middle" font-family="Bodoni Moda, Didot, Bodoni 72, Georgia, serif" font-style="italic" font-size="26" fill="#F1DCAA">Glow House</text>
+<rect x="70" y="170" width="280" height="420" fill="url(#ghBody)"/>
+<rect x="60" y="160" width="300" height="10" rx="2" fill="url(#ghGold)"/>
+<rect x="70" y="170" width="8" height="420" fill="url(#ghGold)" opacity=".55"/><rect x="342" y="170" width="8" height="420" fill="url(#ghGold)" opacity=".55"/>
+<path d="M78 214H342 M78 256H342 M78 298H342 M78 340H342 M78 382H342 M78 424H342" stroke="#E9C98F" stroke-opacity=".22"/>
+<g data-floor="7">
+<path class="tw" d="M99 208 V193 A15 15 0 0 1 129 193 V208 Z" fill="url(#ghLit)"/><path d="M114 182V208" stroke="#B9874A" stroke-opacity=".45"/>
+<path d="M147 208 V193 A15 15 0 0 1 177 193 V208 Z" fill="#1E0C1B" stroke="#E9C98F" stroke-opacity=".25"/>
+<path class="tw" d="M195 208 V193 A15 15 0 0 1 225 193 V208 Z" fill="url(#ghLit)"/><path d="M210 182V208" stroke="#B9874A" stroke-opacity=".45"/>
+<path class="tw" d="M243 208 V193 A15 15 0 0 1 273 193 V208 Z" fill="url(#ghLit)"/><path d="M258 182V208" stroke="#B9874A" stroke-opacity=".45"/>
+<path d="M291 208 V193 A15 15 0 0 1 321 193 V208 Z" fill="#1E0C1B" stroke="#E9C98F" stroke-opacity=".25"/>
+<text x="89" y="199" text-anchor="middle" font-family="Bodoni Moda, Georgia, serif" font-size="10" fill="#F1DCAA" fill-opacity=".7">7</text>
+</g>
+<g data-floor="6">
+<path class="tw" d="M99 250 V235 A15 15 0 0 1 129 235 V250 Z" fill="url(#ghLit)"/><path d="M114 224V250" stroke="#B9874A" stroke-opacity=".45"/>
+<path class="tw" d="M147 250 V235 A15 15 0 0 1 177 235 V250 Z" fill="url(#ghLit)"/><path d="M162 224V250" stroke="#B9874A" stroke-opacity=".45"/>
+<path d="M195 250 V235 A15 15 0 0 1 225 235 V250 Z" fill="#1E0C1B" stroke="#E9C98F" stroke-opacity=".25"/>
+<path class="tw" d="M243 250 V235 A15 15 0 0 1 273 235 V250 Z" fill="url(#ghLit)"/><path d="M258 224V250" stroke="#B9874A" stroke-opacity=".45"/>
+<path class="tw" d="M291 250 V235 A15 15 0 0 1 321 235 V250 Z" fill="url(#ghLit)"/><path d="M306 224V250" stroke="#B9874A" stroke-opacity=".45"/>
+<text x="89" y="241" text-anchor="middle" font-family="Bodoni Moda, Georgia, serif" font-size="10" fill="#F1DCAA" fill-opacity=".7">6</text>
+<rect x="183" y="250" width="54" height="3" fill="url(#ghGold)"/><path d="M186 250v-6 M195 250v-6 M204 250v-6 M216 250v-6 M225 250v-6 M234 250v-6 M184 244H236" stroke="#E9C98F" stroke-width="1"/>
+</g>
+<g data-floor="5">
+<path class="tw" d="M99 292 V277 A15 15 0 0 1 129 277 V292 Z" fill="url(#ghLit)"/><path d="M114 266V292" stroke="#B9874A" stroke-opacity=".45"/>
+<path class="lv" d="M147 292 V277 A15 15 0 0 1 177 277 V292 Z" fill="url(#ghLive)"/><path d="M162 266V292" stroke="#A3365C" stroke-opacity=".45"/>
+<path class="tw" d="M195 292 V277 A15 15 0 0 1 225 277 V292 Z" fill="url(#ghLit)"/><path d="M210 266V292" stroke="#B9874A" stroke-opacity=".45"/>
+<path class="lv" d="M243 292 V277 A15 15 0 0 1 273 277 V292 Z" fill="url(#ghLive)"/><path d="M258 266V292" stroke="#A3365C" stroke-opacity=".45"/>
+<path class="tw" d="M291 292 V277 A15 15 0 0 1 321 277 V292 Z" fill="url(#ghLit)"/><path d="M306 266V292" stroke="#B9874A" stroke-opacity=".45"/>
+<text x="89" y="283" text-anchor="middle" font-family="Bodoni Moda, Georgia, serif" font-size="10" fill="#F1DCAA" fill-opacity=".7">5</text>
+</g>
+<g data-floor="4">
+<path d="M99 334 V319 A15 15 0 0 1 129 319 V334 Z" fill="#1E0C1B" stroke="#E9C98F" stroke-opacity=".25"/>
+<path class="tw" d="M147 334 V319 A15 15 0 0 1 177 319 V334 Z" fill="url(#ghLit)"/><path d="M162 308V334" stroke="#B9874A" stroke-opacity=".45"/>
+<path class="tw" d="M195 334 V319 A15 15 0 0 1 225 319 V334 Z" fill="url(#ghLit)"/><path d="M210 308V334" stroke="#B9874A" stroke-opacity=".45"/>
+<path d="M243 334 V319 A15 15 0 0 1 273 319 V334 Z" fill="#1E0C1B" stroke="#E9C98F" stroke-opacity=".25"/>
+<path class="tw" d="M291 334 V319 A15 15 0 0 1 321 319 V334 Z" fill="url(#ghLit)"/><path d="M306 308V334" stroke="#B9874A" stroke-opacity=".45"/>
+<text x="89" y="325" text-anchor="middle" font-family="Bodoni Moda, Georgia, serif" font-size="10" fill="#F1DCAA" fill-opacity=".7">4</text>
+</g>
+<g data-floor="3">
+<path class="lv" d="M99 376 V361 A15 15 0 0 1 129 361 V376 Z" fill="url(#ghLive)"/><path d="M114 350V376" stroke="#A3365C" stroke-opacity=".45"/>
+<path class="lv" d="M147 376 V361 A15 15 0 0 1 177 361 V376 Z" fill="url(#ghLive)"/><path d="M162 350V376" stroke="#A3365C" stroke-opacity=".45"/>
+<path class="tw" d="M195 376 V361 A15 15 0 0 1 225 361 V376 Z" fill="url(#ghLit)"/><path d="M210 350V376" stroke="#B9874A" stroke-opacity=".45"/>
+<path class="lv" d="M243 376 V361 A15 15 0 0 1 273 361 V376 Z" fill="url(#ghLive)"/><path d="M258 350V376" stroke="#A3365C" stroke-opacity=".45"/>
+<path class="lv" d="M291 376 V361 A15 15 0 0 1 321 361 V376 Z" fill="url(#ghLive)"/><path d="M306 350V376" stroke="#A3365C" stroke-opacity=".45"/>
+<text x="89" y="367" text-anchor="middle" font-family="Bodoni Moda, Georgia, serif" font-size="10" fill="#F1DCAA" fill-opacity=".7">3</text>
+<rect x="183" y="376" width="54" height="3" fill="url(#ghGold)"/><path d="M186 376v-6 M195 376v-6 M204 376v-6 M216 376v-6 M225 376v-6 M234 376v-6 M184 370H236" stroke="#E9C98F" stroke-width="1"/>
+</g>
+<g data-floor="2">
+<path class="tw" d="M99 418 V403 A15 15 0 0 1 129 403 V418 Z" fill="url(#ghLit)"/><path d="M114 392V418" stroke="#B9874A" stroke-opacity=".45"/>
+<path class="tw" d="M147 418 V403 A15 15 0 0 1 177 403 V418 Z" fill="url(#ghLit)"/><path d="M162 392V418" stroke="#B9874A" stroke-opacity=".45"/>
+<path class="tw" d="M195 418 V403 A15 15 0 0 1 225 403 V418 Z" fill="url(#ghLit)"/><path d="M210 392V418" stroke="#B9874A" stroke-opacity=".45"/>
+<path d="M243 418 V403 A15 15 0 0 1 273 403 V418 Z" fill="#1E0C1B" stroke="#E9C98F" stroke-opacity=".25"/>
+<path class="tw" d="M291 418 V403 A15 15 0 0 1 321 403 V418 Z" fill="url(#ghLit)"/><path d="M306 392V418" stroke="#B9874A" stroke-opacity=".45"/>
+<text x="89" y="409" text-anchor="middle" font-family="Bodoni Moda, Georgia, serif" font-size="10" fill="#F1DCAA" fill-opacity=".7">2</text>
+</g>
+<g data-floor="1">
+<path class="tw" d="M99 460 V445 A15 15 0 0 1 129 445 V460 Z" fill="url(#ghLit)"/><path d="M114 434V460" stroke="#B9874A" stroke-opacity=".45"/>
+<path d="M147 460 V445 A15 15 0 0 1 177 445 V460 Z" fill="#1E0C1B" stroke="#E9C98F" stroke-opacity=".25"/>
+<path class="tw" d="M195 460 V445 A15 15 0 0 1 225 445 V460 Z" fill="url(#ghLit)"/><path d="M210 434V460" stroke="#B9874A" stroke-opacity=".45"/>
+<path class="tw" d="M243 460 V445 A15 15 0 0 1 273 445 V460 Z" fill="url(#ghLit)"/><path d="M258 434V460" stroke="#B9874A" stroke-opacity=".45"/>
+<path class="tw" d="M291 460 V445 A15 15 0 0 1 321 445 V460 Z" fill="url(#ghLit)"/><path d="M306 434V460" stroke="#B9874A" stroke-opacity=".45"/>
+<text x="89" y="451" text-anchor="middle" font-family="Bodoni Moda, Georgia, serif" font-size="10" fill="#F1DCAA" fill-opacity=".7">1</text>
+</g>
+<rect x="62" y="466" width="296" height="8" rx="2" fill="url(#ghGold)"/>
+<text x="210" y="484" text-anchor="middle" font-family="Manrope, Helvetica, Arial, sans-serif" font-weight="700" font-size="7" letter-spacing="3" fill="#F1DCAA" fill-opacity=".8">GROUND · LOBBY</text>
+<rect x="86" y="490" width="74" height="8" rx="2" fill="#C23A6A"/><rect x="90" y="500" width="66" height="68" rx="4" fill="url(#ghVit)" stroke="url(#ghGold)" stroke-width="2"/><path d="M94 566H152" stroke="#B9874A"/>
+<rect x="260" y="490" width="74" height="8" rx="2" fill="#C23A6A"/><rect x="264" y="500" width="66" height="68" rx="4" fill="url(#ghVit)" stroke="url(#ghGold)" stroke-width="2"/><path d="M268 566H326" stroke="#B9874A"/>
+<rect x="104" y="546" width="10" height="20" fill="url(#ghGold)"/><path d="M105 546V533L113 529V546Z" fill="#B02E5C"/><rect x="124" y="540" width="22" height="26" rx="5" fill="#F2A5BE"/><rect x="130" y="532" width="10" height="8" rx="1" fill="url(#ghGold)"/><rect x="128" y="548" width="14" height="5" rx="1" fill="#fff" opacity=".6"/>
+<rect x="276" y="551" width="26" height="15" rx="4" fill="#E9D7E6"/><rect x="274" y="545" width="30" height="7" rx="3" fill="url(#ghGold)"/><rect x="309" y="536" width="12" height="30" rx="6" fill="#fff" opacity=".85"/><rect x="309" y="536" width="12" height="9" rx="4" fill="#D9667A"/>
+<rect x="168" y="486" width="84" height="14" fill="#C23A6A"/>
+<g fill="#C23A6A"><circle cx="174" cy="500" r="6"/><circle cx="186" cy="500" r="6"/><circle cx="198" cy="500" r="6"/><circle cx="210" cy="500" r="6"/><circle cx="222" cy="500" r="6"/><circle cx="234" cy="500" r="6"/><circle cx="246" cy="500" r="6"/></g>
+<text x="210" y="496" text-anchor="middle" font-family="Manrope, Helvetica, Arial, sans-serif" font-weight="700" font-size="7" letter-spacing="2.5" fill="#FFF">WELCOME</text>
+<path class="door" d="M182 590 V538 A28 28 0 0 1 238 538 V590 Z" fill="url(#ghLit)" stroke="url(#ghGold)" stroke-width="3"/><path d="M210 512V590 M188 534H232" stroke="#B07A3E" stroke-opacity=".55"/><circle cx="204" cy="562" r="2" fill="#8A5A2A"/><circle cx="216" cy="562" r="2" fill="#8A5A2A"/>
+<rect x="161" y="574" width="14" height="16" rx="2" fill="url(#ghGold)"/><circle cx="168" cy="567" r="10" fill="#3F6B52"/><circle cx="163" cy="562" r="5" fill="#4F8565"/>
+<rect x="245" y="574" width="14" height="16" rx="2" fill="url(#ghGold)"/><circle cx="252" cy="567" r="10" fill="#3F6B52"/><circle cx="257" cy="562" r="5" fill="#4F8565"/>
+<rect x="174" y="588" width="72" height="4" rx="1" fill="#F1DCAA" opacity=".5"/>
+</svg>

@@ -14,6 +14,15 @@ Open `prototype/index.html` in a browser to walk through the clickable prototype
 | Comment sections | Hosted topic rooms with house rules, kept kind and on topic |
 | One-way content | Live masterclasses where you ask questions, and experts who answer *your* question |
 
+## Outside: the facade in the Vibrez universe
+
+The prototype now opens on the **Vibrez universe map**: a night street where each building is a passion. Glow House stands in the middle with its own facade, and placeholder neighbours (Book Nook, Music Hall, Chef's Table, Game Arcade) show where other passions could go, marked "opening soon".
+
+- **The facade** has an art-deco arched crown with a perfume-stopper spire, a "Glow House" sign, seven floors of arched windows and a lobby with an awning, shop windows showing products, and a golden door.
+- **Lit windows** mean people are inside, **pink windows** mean something is live (the Lounge on floor 5, masterclasses on floor 3), and **dark windows** are quiet.
+- **Tap the building** (or its "Enter" pin) and the view zooms into the door, then opens the Glow House lobby. A "Universe" link in the header takes you back to the map.
+- The facade is also saved on its own as `prototype/glow-house-facade.svg`, so the map team can place it in the full Vibrez universe.
+
 ## The building, floor by floor
 
 | Floor | Name | What happens there |

@@ -406,6 +406,64 @@ dialog::backdrop { background: rgba(20, 6, 16, .55); }
 .foot-note { text-align: center; color: var(--muted); font-size: 13px; padding-block: 30px 50px; border-top: 1px solid var(--line); }
 .foot-note b { font-family: var(--f-display); font-style: italic; font-size: 18px; color: var(--ink); font-weight: 500; }
 
+/* Vibrez universe: the outside map. A deliberate night scene in both themes. */
+body:not(.in-universe) .universe { display: none; }
+body.in-universe .top, body.in-universe .hero, body.in-universe .building, body.in-universe .foot-note { display: none; }
+body.in-universe::before { background: #120817; }
+.universe { position: relative; overflow: hidden; color: #FBEFF4; background: linear-gradient(180deg, #120817 0%, #24102B 45%, #4A1C3E 100%); }
+.u-stars { position: absolute; inset: 0 0 45% 0; pointer-events: none; opacity: .8;
+  background-image: radial-gradient(1.5px 1.5px at 8% 20%, #fff, transparent), radial-gradient(1px 1px at 18% 62%, #fff, transparent), radial-gradient(1.5px 1.5px at 27% 34%, #F1DCAA, transparent), radial-gradient(1px 1px at 39% 12%, #fff, transparent), radial-gradient(1px 1px at 52% 48%, #fff, transparent), radial-gradient(1.5px 1.5px at 63% 22%, #fff, transparent), radial-gradient(1px 1px at 74% 70%, #F1DCAA, transparent), radial-gradient(1.5px 1.5px at 83% 30%, #fff, transparent), radial-gradient(1px 1px at 93% 14%, #fff, transparent), radial-gradient(1px 1px at 46% 80%, #fff, transparent);
+  animation: twinkle 5s ease-in-out infinite; }
+@keyframes twinkle { 50% { opacity: .45; } }
+.u-bar-in { display: flex; justify-content: space-between; align-items: center; gap: 12px; height: 60px; position: relative; }
+.u-brand { display: flex; align-items: baseline; gap: 10px; }
+.u-brand b { font-family: var(--f-display); font-size: 25px; font-weight: 600; font-style: italic; color: #FBEFF4; }
+.u-brand span { font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: #F1DCAA; font-weight: 700; }
+.u-online { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: rgba(251, 239, 244, .78); }
+.universe .live-dot { background: #EC6C96; }
+.u-intro { position: relative; text-align: center; padding-block: 18px 8px; }
+.u-intro .eyebrow { color: #F1DCAA; }
+.u-intro h1 { font-family: var(--f-display); font-weight: 500; font-size: clamp(34px, 5vw, 58px); line-height: 1.04; letter-spacing: -.015em; margin-top: 8px; }
+.u-intro p { max-width: 52ch; margin: 12px auto 0; color: rgba(251, 239, 244, .78); }
+.street { position: relative; display: flex; align-items: flex-end; gap: clamp(14px, 3vw, 40px); overflow-x: auto; scrollbar-width: none; padding: 26px max(24px, env(safe-area-inset-right, 0px)) 0 max(24px, env(safe-area-inset-left, 0px)); background: linear-gradient(to bottom, transparent calc(100% - 66px), #2A1226 calc(100% - 66px), #1C0B19); }
+.street::-webkit-scrollbar { display: none; }
+.lot { flex: none; display: flex; flex-direction: column; align-items: center; }
+.lot:first-child { margin-left: auto; }
+.lot:last-child { margin-right: auto; }
+.lot-btn { background: none; border: 0; padding: 0; color: inherit; display: flex; flex-direction: column; align-items: center; }
+.lot svg { display: block; height: auto; max-width: none; }
+.lot.soon svg { opacity: .55; filter: saturate(.6); transition: opacity .3s; }
+.lot.soon .lot-btn:hover svg, .lot.soon .lot-btn:focus-visible svg { opacity: .8; }
+.lot-label { height: 66px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-size: 11.5px; color: rgba(251, 239, 244, .6); line-height: 1.35; }
+.lot-label b { font-size: 13.5px; color: #FBEFF4; }
+.lot.main .lot-label b { font-family: var(--f-display); font-style: italic; font-size: 18px; font-weight: 500; color: #F1DCAA; }
+.gh { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.gh svg { width: clamp(250px, 28vw, 330px); filter: drop-shadow(0 0 28px rgba(236, 108, 150, .3)); transition: transform .35s ease, filter .35s ease; transform-origin: 50% 94%; }
+.gh:hover svg, .gh:focus-visible svg { transform: translateY(-6px) scale(1.02); filter: drop-shadow(0 0 48px rgba(236, 108, 150, .6)); }
+.gh:focus-visible { outline: none; }
+.gh:focus-visible .pin { outline: 2px solid #F1DCAA; outline-offset: 3px; }
+.gh .tw:nth-of-type(4n) { animation: flicker 6s infinite; }
+.gh .lv { animation: livewin 1.8s ease-in-out infinite; }
+@keyframes livewin { 50% { opacity: .65; } }
+.gh .spark { animation: twinkle 2.4s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+.gh .spark.s2 { animation-delay: 1.1s; }
+.pin { position: relative; display: grid; gap: 2px; justify-items: center; background: #FBEFF4; color: #2B1029; border-radius: 14px; padding: 10px 16px 12px; font-size: 12px; box-shadow: 0 10px 30px rgba(0, 0, 0, .35); animation: bob 3.2s ease-in-out infinite; }
+.pin::after { content: ""; position: absolute; bottom: -7px; left: 50%; width: 14px; height: 14px; background: #FBEFF4; transform: translateX(-50%) rotate(45deg); border-radius: 2px; }
+.pin b { font-family: var(--f-display); font-style: italic; font-size: 20px; font-weight: 500; line-height: 1.1; }
+.pin .pin-stats { display: inline-flex; align-items: center; gap: 6px; color: #B02E5C; font-weight: 700; }
+.pin .pin-cta { margin-top: 6px; background: #B02E5C; color: #fff; border-radius: 999px; padding: 5px 14px; font-weight: 700; font-size: 12.5px; position: relative; z-index: 1; }
+@keyframes bob { 50% { transform: translateY(-5px); } }
+.u-legend { position: relative; display: flex; justify-content: center; flex-wrap: wrap; gap: 8px 22px; padding-block: 16px 30px; font-size: 12.5px; color: rgba(251, 239, 244, .7); background: #1C0B19; }
+.u-legend span { display: inline-flex; align-items: center; gap: 7px; }
+.u-legend i { width: 10px; height: 13px; border-radius: 5px 5px 1px 1px; display: inline-block; }
+.universe.entering .gh svg { transform: scale(2.4); transition: transform .7s ease-in; filter: drop-shadow(0 0 60px rgba(236, 108, 150, .7)); }
+.universe.entering .pin, .universe.entering .lot.soon { opacity: 0; transition: opacity .3s; }
+.u-fade { position: fixed; inset: 0; background: #2B1029; opacity: 0; pointer-events: none; transition: opacity .55s ease; z-index: 200; }
+.u-fade.on { opacity: 1; }
+.back { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: var(--muted); text-decoration: none; white-space: nowrap; padding: 6px 10px 6px 6px; border-radius: 999px; }
+.back:hover { color: var(--rouge); background: var(--surface-2); }
+@media (max-width: 620px) { .back span { display: none; } .u-online span.full { display: none; } }
+
 /* Responsive */
 @media (max-width: 1080px) {
   .g4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -447,10 +505,127 @@ dialog::backdrop { background: rgba(20, 6, 16, .55); }
 }
 </style>
 </head>
-<body>
+<body class="in-universe">
+<section class="universe" id="universe" aria-labelledby="uniTitle">
+  <div class="u-stars" aria-hidden="true"></div>
+  <div class="wrap u-bar-in">
+    <span class="u-brand"><b>Vibrez</b><span>Universe</span></span>
+    <span class="u-online"><span class="live-dot"></span> 18,402 <span class="full">people exploring</span></span>
+  </div>
+  <div class="wrap u-intro">
+    <span class="eyebrow">Share your passion</span>
+    <h1 id="uniTitle">Every building is a passion</h1>
+    <p>Walk the Vibrez universe and step inside the communities you love. Glow House, the home of beauty, is open. Tap it to go in.</p>
+  </div>
+  <div class="street" id="street">
+    <div class="lot main" id="ghLot">
+      <button class="lot-btn gh" id="enterGH" aria-label="Enter Glow House, the beauty building">
+        <span class="pin"><b>Glow House</b><span>Makeup · skincare · fragrance</span><span class="pin-stats"><span class="live-dot"></span> 2,431 inside · class live</span><span class="pin-cta">Enter →</span></span>
+        <svg class="gh-facade" viewBox="0 0 420 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="ghT"><title id="ghT">Glow House, the Vibrez beauty building</title>
+<defs>
+<linearGradient id="ghBody" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4A2146"/><stop offset="1" stop-color="#2B1029"/></linearGradient>
+<linearGradient id="ghGold" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#A9844F"/><stop offset=".5" stop-color="#F1DCAA"/><stop offset="1" stop-color="#A9844F"/></linearGradient>
+<linearGradient id="ghLit" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE9B8"/><stop offset="1" stop-color="#E5B062"/></linearGradient>
+<linearGradient id="ghLive" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFB3CA"/><stop offset="1" stop-color="#E25A88"/></linearGradient>
+<linearGradient id="ghVit" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFF1DA"/><stop offset="1" stop-color="#F3C99A"/></linearGradient>
+<radialGradient id="ghGlow" cx=".5" cy=".55" r=".5"><stop offset="0" stop-color="#EC6C96" stop-opacity=".35"/><stop offset="1" stop-color="#EC6C96" stop-opacity="0"/></radialGradient>
+</defs>
+<ellipse cx="210" cy="330" rx="210" ry="280" fill="url(#ghGlow)"/>
+<ellipse cx="210" cy="592" rx="185" ry="8" fill="#000" opacity=".3"/>
+<path d="M210 4 L222 22 L210 40 L198 22 Z" fill="url(#ghGold)"/><path d="M210 4 L210 40" stroke="#A9844F" stroke-width="1"/><rect x="204" y="38" width="12" height="14" fill="url(#ghGold)"/>
+<path class="spark" d="M246 8 l3 7 7 3 -7 3 -3 7 -3 -7 -7 -3 7 -3z" fill="#F1DCAA"/><path class="spark s2" d="M170 26 l2 4.5 4.5 2 -4.5 2 -2 4.5 -2 -4.5 -4.5 -2 4.5 -2z" fill="#F1DCAA"/>
+<path d="M70 162 V150 A140 100 0 0 1 350 150 V162 Z" fill="url(#ghBody)" stroke="url(#ghGold)" stroke-width="3"/>
+<path d="M210 158 L334 127 M210 158 L321 105 M210 158 L301 86 M210 158 L274 72 M210 158 L243 63 M210 158 L210 60 M210 158 L177 63 M210 158 L146 72 M210 158 L119 86 M210 158 L99 105 M210 158 L86 127" stroke="#E9C98F" stroke-opacity=".3" stroke-width="1.5"/>
+<rect x="150" y="82" width="120" height="16" rx="8" fill="#2B1029"/><text x="210" y="93.5" text-anchor="middle" font-family="Manrope, Helvetica, Arial, sans-serif" font-weight="700" font-size="7.5" letter-spacing="3" fill="#F1DCAA">VIBREZ · BEAUTY</text>
+<rect x="114" y="104" width="192" height="44" rx="22" fill="#2B1029" stroke="url(#ghGold)" stroke-width="2"/><text x="210" y="134" text-anchor="middle" font-family="Bodoni Moda, Didot, Bodoni 72, Georgia, serif" font-style="italic" font-size="26" fill="#F1DCAA">Glow House</text>
+<rect x="70" y="170" width="280" height="420" fill="url(#ghBody)"/>
+<rect x="60" y="160" width="300" height="10" rx="2" fill="url(#ghGold)"/>
+<rect x="70" y="170" width="8" height="420" fill="url(#ghGold)" opacity=".55"/><rect x="342" y="170" width="8" height="420" fill="url(#ghGold)" opacity=".55"/>
+<path d="M78 214H342 M78 256H342 M78 298H342 M78 340H342 M78 382H342 M78 424H342" stroke="#E9C98F" stroke-opacity=".22"/>
+<g data-floor="7">
+<path class="tw" d="M99 208 V193 A15 15 0 0 1 129 193 V208 Z" fill="url(#ghLit)"/><path d="M114 182V208" stroke="#B9874A" stroke-opacity=".45"/>
+<path d="M147 208 V193 A15 15 0 0 1 177 193 V208 Z" fill="#1E0C1B" stroke="#E9C98F" stroke-opacity=".25"/>
+<path class="tw" d="M195 208 V193 A15 15 0 0 1 225 193 V208 Z" fill="url(#ghLit)"/><path d="M210 182V208" stroke="#B9874A" stroke-opacity=".45"/>
+<path class="tw" d="M243 208 V193 A15 15 0 0 1 273 193 V208 Z" fill="url(#ghLit)"/><path d="M258 182V208" stroke="#B9874A" stroke-opacity=".45"/>
+<path d="M291 208 V193 A15 15 0 0 1 321 193 V208 Z" fill="#1E0C1B" stroke="#E9C98F" stroke-opacity=".25"/>
+<text x="89" y="199" text-anchor="middle" font-family="Bodoni Moda, Georgia, serif" font-size="10" fill="#F1DCAA" fill-opacity=".7">7</text>
+</g>
+<g data-floor="6">
+<path class="tw" d="M99 250 V235 A15 15 0 0 1 129 235 V250 Z" fill="url(#ghLit)"/><path d="M114 224V250" stroke="#B9874A" stroke-opacity=".45"/>
+<path class="tw" d="M147 250 V235 A15 15 0 0 1 177 235 V250 Z" fill="url(#ghLit)"/><path d="M162 224V250" stroke="#B9874A" stroke-opacity=".45"/>
+<path d="M195 250 V235 A15 15 0 0 1 225 235 V250 Z" fill="#1E0C1B" stroke="#E9C98F" stroke-opacity=".25"/>
+<path class="tw" d="M243 250 V235 A15 15 0 0 1 273 235 V250 Z" fill="url(#ghLit)"/><path d="M258 224V250" stroke="#B9874A" stroke-opacity=".45"/>
+<path class="tw" d="M291 250 V235 A15 15 0 0 1 321 235 V250 Z" fill="url(#ghLit)"/><path d="M306 224V250" stroke="#B9874A" stroke-opacity=".45"/>
+<text x="89" y="241" text-anchor="middle" font-family="Bodoni Moda, Georgia, serif" font-size="10" fill="#F1DCAA" fill-opacity=".7">6</text>
+<rect x="183" y="250" width="54" height="3" fill="url(#ghGold)"/><path d="M186 250v-6 M195 250v-6 M204 250v-6 M216 250v-6 M225 250v-6 M234 250v-6 M184 244H236" stroke="#E9C98F" stroke-width="1"/>
+</g>
+<g data-floor="5">
+<path class="tw" d="M99 292 V277 A15 15 0 0 1 129 277 V292 Z" fill="url(#ghLit)"/><path d="M114 266V292" stroke="#B9874A" stroke-opacity=".45"/>
+<path class="lv" d="M147 292 V277 A15 15 0 0 1 177 277 V292 Z" fill="url(#ghLive)"/><path d="M162 266V292" stroke="#A3365C" stroke-opacity=".45"/>
+<path class="tw" d="M195 292 V277 A15 15 0 0 1 225 277 V292 Z" fill="url(#ghLit)"/><path d="M210 266V292" stroke="#B9874A" stroke-opacity=".45"/>
+<path class="lv" d="M243 292 V277 A15 15 0 0 1 273 277 V292 Z" fill="url(#ghLive)"/><path d="M258 266V292" stroke="#A3365C" stroke-opacity=".45"/>
+<path class="tw" d="M291 292 V277 A15 15 0 0 1 321 277 V292 Z" fill="url(#ghLit)"/><path d="M306 266V292" stroke="#B9874A" stroke-opacity=".45"/>
+<text x="89" y="283" text-anchor="middle" font-family="Bodoni Moda, Georgia, serif" font-size="10" fill="#F1DCAA" fill-opacity=".7">5</text>
+</g>
+<g data-floor="4">
+<path d="M99 334 V319 A15 15 0 0 1 129 319 V334 Z" fill="#1E0C1B" stroke="#E9C98F" stroke-opacity=".25"/>
+<path class="tw" d="M147 334 V319 A15 15 0 0 1 177 319 V334 Z" fill="url(#ghLit)"/><path d="M162 308V334" stroke="#B9874A" stroke-opacity=".45"/>
+<path class="tw" d="M195 334 V319 A15 15 0 0 1 225 319 V334 Z" fill="url(#ghLit)"/><path d="M210 308V334" stroke="#B9874A" stroke-opacity=".45"/>
+<path d="M243 334 V319 A15 15 0 0 1 273 319 V334 Z" fill="#1E0C1B" stroke="#E9C98F" stroke-opacity=".25"/>
+<path class="tw" d="M291 334 V319 A15 15 0 0 1 321 319 V334 Z" fill="url(#ghLit)"/><path d="M306 308V334" stroke="#B9874A" stroke-opacity=".45"/>
+<text x="89" y="325" text-anchor="middle" font-family="Bodoni Moda, Georgia, serif" font-size="10" fill="#F1DCAA" fill-opacity=".7">4</text>
+</g>
+<g data-floor="3">
+<path class="lv" d="M99 376 V361 A15 15 0 0 1 129 361 V376 Z" fill="url(#ghLive)"/><path d="M114 350V376" stroke="#A3365C" stroke-opacity=".45"/>
+<path class="lv" d="M147 376 V361 A15 15 0 0 1 177 361 V376 Z" fill="url(#ghLive)"/><path d="M162 350V376" stroke="#A3365C" stroke-opacity=".45"/>
+<path class="tw" d="M195 376 V361 A15 15 0 0 1 225 361 V376 Z" fill="url(#ghLit)"/><path d="M210 350V376" stroke="#B9874A" stroke-opacity=".45"/>
+<path class="lv" d="M243 376 V361 A15 15 0 0 1 273 361 V376 Z" fill="url(#ghLive)"/><path d="M258 350V376" stroke="#A3365C" stroke-opacity=".45"/>
+<path class="lv" d="M291 376 V361 A15 15 0 0 1 321 361 V376 Z" fill="url(#ghLive)"/><path d="M306 350V376" stroke="#A3365C" stroke-opacity=".45"/>
+<text x="89" y="367" text-anchor="middle" font-family="Bodoni Moda, Georgia, serif" font-size="10" fill="#F1DCAA" fill-opacity=".7">3</text>
+<rect x="183" y="376" width="54" height="3" fill="url(#ghGold)"/><path d="M186 376v-6 M195 376v-6 M204 376v-6 M216 376v-6 M225 376v-6 M234 376v-6 M184 370H236" stroke="#E9C98F" stroke-width="1"/>
+</g>
+<g data-floor="2">
+<path class="tw" d="M99 418 V403 A15 15 0 0 1 129 403 V418 Z" fill="url(#ghLit)"/><path d="M114 392V418" stroke="#B9874A" stroke-opacity=".45"/>
+<path class="tw" d="M147 418 V403 A15 15 0 0 1 177 403 V418 Z" fill="url(#ghLit)"/><path d="M162 392V418" stroke="#B9874A" stroke-opacity=".45"/>
+<path class="tw" d="M195 418 V403 A15 15 0 0 1 225 403 V418 Z" fill="url(#ghLit)"/><path d="M210 392V418" stroke="#B9874A" stroke-opacity=".45"/>
+<path d="M243 418 V403 A15 15 0 0 1 273 403 V418 Z" fill="#1E0C1B" stroke="#E9C98F" stroke-opacity=".25"/>
+<path class="tw" d="M291 418 V403 A15 15 0 0 1 321 403 V418 Z" fill="url(#ghLit)"/><path d="M306 392V418" stroke="#B9874A" stroke-opacity=".45"/>
+<text x="89" y="409" text-anchor="middle" font-family="Bodoni Moda, Georgia, serif" font-size="10" fill="#F1DCAA" fill-opacity=".7">2</text>
+</g>
+<g data-floor="1">
+<path class="tw" d="M99 460 V445 A15 15 0 0 1 129 445 V460 Z" fill="url(#ghLit)"/><path d="M114 434V460" stroke="#B9874A" stroke-opacity=".45"/>
+<path d="M147 460 V445 A15 15 0 0 1 177 445 V460 Z" fill="#1E0C1B" stroke="#E9C98F" stroke-opacity=".25"/>
+<path class="tw" d="M195 460 V445 A15 15 0 0 1 225 445 V460 Z" fill="url(#ghLit)"/><path d="M210 434V460" stroke="#B9874A" stroke-opacity=".45"/>
+<path class="tw" d="M243 460 V445 A15 15 0 0 1 273 445 V460 Z" fill="url(#ghLit)"/><path d="M258 434V460" stroke="#B9874A" stroke-opacity=".45"/>
+<path class="tw" d="M291 460 V445 A15 15 0 0 1 321 445 V460 Z" fill="url(#ghLit)"/><path d="M306 434V460" stroke="#B9874A" stroke-opacity=".45"/>
+<text x="89" y="451" text-anchor="middle" font-family="Bodoni Moda, Georgia, serif" font-size="10" fill="#F1DCAA" fill-opacity=".7">1</text>
+</g>
+<rect x="62" y="466" width="296" height="8" rx="2" fill="url(#ghGold)"/>
+<text x="210" y="484" text-anchor="middle" font-family="Manrope, Helvetica, Arial, sans-serif" font-weight="700" font-size="7" letter-spacing="3" fill="#F1DCAA" fill-opacity=".8">GROUND · LOBBY</text>
+<rect x="86" y="490" width="74" height="8" rx="2" fill="#C23A6A"/><rect x="90" y="500" width="66" height="68" rx="4" fill="url(#ghVit)" stroke="url(#ghGold)" stroke-width="2"/><path d="M94 566H152" stroke="#B9874A"/>
+<rect x="260" y="490" width="74" height="8" rx="2" fill="#C23A6A"/><rect x="264" y="500" width="66" height="68" rx="4" fill="url(#ghVit)" stroke="url(#ghGold)" stroke-width="2"/><path d="M268 566H326" stroke="#B9874A"/>
+<rect x="104" y="546" width="10" height="20" fill="url(#ghGold)"/><path d="M105 546V533L113 529V546Z" fill="#B02E5C"/><rect x="124" y="540" width="22" height="26" rx="5" fill="#F2A5BE"/><rect x="130" y="532" width="10" height="8" rx="1" fill="url(#ghGold)"/><rect x="128" y="548" width="14" height="5" rx="1" fill="#fff" opacity=".6"/>
+<rect x="276" y="551" width="26" height="15" rx="4" fill="#E9D7E6"/><rect x="274" y="545" width="30" height="7" rx="3" fill="url(#ghGold)"/><rect x="309" y="536" width="12" height="30" rx="6" fill="#fff" opacity=".85"/><rect x="309" y="536" width="12" height="9" rx="4" fill="#D9667A"/>
+<rect x="168" y="486" width="84" height="14" fill="#C23A6A"/>
+<g fill="#C23A6A"><circle cx="174" cy="500" r="6"/><circle cx="186" cy="500" r="6"/><circle cx="198" cy="500" r="6"/><circle cx="210" cy="500" r="6"/><circle cx="222" cy="500" r="6"/><circle cx="234" cy="500" r="6"/><circle cx="246" cy="500" r="6"/></g>
+<text x="210" y="496" text-anchor="middle" font-family="Manrope, Helvetica, Arial, sans-serif" font-weight="700" font-size="7" letter-spacing="2.5" fill="#FFF">WELCOME</text>
+<path class="door" d="M182 590 V538 A28 28 0 0 1 238 538 V590 Z" fill="url(#ghLit)" stroke="url(#ghGold)" stroke-width="3"/><path d="M210 512V590 M188 534H232" stroke="#B07A3E" stroke-opacity=".55"/><circle cx="204" cy="562" r="2" fill="#8A5A2A"/><circle cx="216" cy="562" r="2" fill="#8A5A2A"/>
+<rect x="161" y="574" width="14" height="16" rx="2" fill="url(#ghGold)"/><circle cx="168" cy="567" r="10" fill="#3F6B52"/><circle cx="163" cy="562" r="5" fill="#4F8565"/>
+<rect x="245" y="574" width="14" height="16" rx="2" fill="url(#ghGold)"/><circle cx="252" cy="567" r="10" fill="#3F6B52"/><circle cx="257" cy="562" r="5" fill="#4F8565"/>
+<rect x="174" y="588" width="72" height="4" rx="1" fill="#F1DCAA" opacity=".5"/>
+</svg>
+      </button>
+      <div class="lot-label"><b>Glow House</b><span>Beauty · open now</span></div>
+    </div>
+  </div>
+  <div class="u-legend"><span><i style="background:#F3C77E"></i> Lit window: people inside</span><span><i style="background:#EC6C96"></i> Pink window: live right now</span><span><i style="background:rgba(251,239,244,.3)"></i> Faded building: opening soon</span></div>
+</section>
+<div class="u-fade" id="uFade" aria-hidden="true"></div>
+
 
 <header class="top">
   <div class="wrap">
+    <a class="back" href="#universe" aria-label="Back to the Vibrez universe map"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg><span>Universe</span></a>
     <a class="brand" href="#lobby" aria-label="Vibrez Glow House, back to the lobby"><b>Vibrez</b><span>Glow House</span></a>
     <div class="search" role="search">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
@@ -1166,6 +1341,8 @@ dialog::backdrop { background: rgba(20, 6, 16, .55); }
     if (d.time) { state.time = d.time; renderRoutine(); return; }
     if (d.myth !== undefined) { t.classList.toggle('flipped'); const f = t.classList.contains('flipped'); t.querySelector('.face').setAttribute('aria-hidden', f); t.querySelector('.face.back').setAttribute('aria-hidden', !f); return; }
     if (d.mood) { state.mood = d.mood; renderMoods(); return; }
+    if (t.id === 'enterGH') { enterGlowHouse(); return; }
+    if (d.soon) { toast(d.soon + ' opens soon in the Vibrez universe'); return; }
     if (t.id === 'bagBtn') { openBag(true); return; }
     if (t.id === 'closeBag') { openBag(false); return; }
     if (t.id === 'checkout') { toast('Checkout opens in the full Vibrez app'); return; }
@@ -1182,6 +1359,56 @@ dialog::backdrop { background: rgba(20, 6, 16, .55); }
   $('#askForm').addEventListener('submit', e => { e.preventDefault(); const v = $('#askIn').value.trim(); if (v.length < 8) { toast('Write your question in a few more words'); return; } state.qa.unshift({ q: v }); $('#askIn').value = ''; renderQA(); toast('Question sent. An expert will answer here.'); });
   $('#dlg').addEventListener('click', e => { if (e.target === $('#dlg')) $('#dlg').close(); });
 
+  /* ---------- Vibrez universe (outside map) ---------- */
+  const NEIGHBOURS = [
+    { name: 'Book Nook', passion: 'Reading & writing', w: 130, h: 200, c: '#3B3550', roof: 'gable', seed: 1, side: 'L' },
+    { name: 'Music Hall', passion: 'Music & concerts', w: 170, h: 270, c: '#26344F', roof: 'dome', seed: 2, side: 'L' },
+    { name: "Chef's Table", passion: 'Cooking & food', w: 160, h: 230, c: '#4D2F2A', roof: 'saw', seed: 3, side: 'R' },
+    { name: 'Game Arcade', passion: 'Gaming', w: 140, h: 290, c: '#1F3B45', roof: 'flat', seed: 4, side: 'R' }
+  ];
+  function lotSVG(n) {
+    const { w, h, c, roof, seed } = n; const top = 40; const H = h + top;
+    let r = '';
+    if (roof === 'gable') r = `<polygon points="4,${top} ${w / 2},6 ${w - 4},${top}" fill="${c}"/>`;
+    if (roof === 'dome') r = `<path d="M10 ${top} A${(w - 20) / 2} 34 0 0 1 ${w - 10} ${top} Z" fill="${c}"/><rect x="${w / 2 - 2}" y="0" width="4" height="10" fill="${c}"/>`;
+    if (roof === 'saw') { let p = `6,${top}`; const s = (w - 12) / 4; for (let i = 0; i < 4; i++) p += ` ${6 + i * s},${top - 22} ${6 + (i + 1) * s},${top}`; r = `<polygon points="${p}" fill="${c}"/>`; }
+    if (roof === 'flat') r = `<rect x="4" y="${top - 10}" width="${w - 8}" height="10" fill="${c}"/><path d="M${w - 30} ${top - 10}V8" stroke="${c}" stroke-width="3"/><circle cx="${w - 30}" cy="8" r="4" fill="#EC6C96"/>`;
+    const cols = Math.floor((w - 30) / 22), rows = Math.floor((h - 50) / 26);
+    const ox = (w - (cols * 22 - 10)) / 2; let win = '';
+    for (let y = 0; y < rows; y++) for (let x = 0; x < cols; x++) {
+      const lit = (y * 7 + x * 3 + seed) % 5 < 2;
+      win += `<rect x="${ox + x * 22}" y="${top + 14 + y * 26}" width="12" height="15" rx="2" fill="${lit ? '#F3D59B' : 'rgba(255,255,255,.08)'}"/>`;
+    }
+    return `<svg viewBox="0 0 ${w} ${H}" width="${w}" height="${H}" aria-hidden="true">${r}<rect x="10" y="${top}" width="${w - 20}" height="${h}" fill="${c}"/>${win}<rect x="${w / 2 - 10}" y="${H - 26}" width="20" height="26" rx="3" fill="rgba(255,255,255,.12)"/></svg>`;
+  }
+  function renderUniverse() {
+    const street = $('#street'), main = $('#ghLot');
+    NEIGHBOURS.forEach(n => {
+      const lot = document.createElement('div'); lot.className = 'lot soon';
+      lot.innerHTML = `<button class="lot-btn" data-soon="${esc(n.name)}" aria-label="${esc(n.name)}, ${esc(n.passion)}, opening soon">${lotSVG(n)}</button><div class="lot-label"><b>${esc(n.name)}</b><span>${esc(n.passion)}<br>Opening soon</span></div>`;
+      n.side === 'L' ? street.insertBefore(lot, main) : street.appendChild(lot);
+    });
+  }
+  function centerStreet() {
+    const s = $('#street'), m = $('#ghLot');
+    if (s.scrollWidth > s.clientWidth) s.scrollLeft = m.offsetLeft - (s.clientWidth - m.offsetWidth) / 2;
+  }
+  function route() {
+    const h = location.hash.slice(1);
+    const outside = !h || h === 'universe';
+    document.body.classList.toggle('in-universe', outside);
+    $('#universe').classList.remove('entering');
+    if (outside) { window.scrollTo(0, 0); requestAnimationFrame(centerStreet); }
+    else if (h === 'glow-house') window.scrollTo(0, 0);
+    setTimeout(() => $('#uFade').classList.remove('on'), 60);
+  }
+  function enterGlowHouse() {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) { location.hash = 'glow-house'; return; }
+    $('#universe').classList.add('entering'); $('#uFade').classList.add('on');
+    setTimeout(() => { location.hash = 'glow-house'; }, 650);
+  }
+  window.addEventListener('hashchange', route);
+
   /* ---------- Boot ---------- */
   renderFacade(); renderPassport(); renderHappening();
   renderShopFilters(); renderProducts(); renderBag();
@@ -1189,6 +1416,7 @@ dialog::backdrop { background: rgba(20, 6, 16, .55); }
   renderReviews(); renderRooms(); renderThread();
   renderSalons(); renderBooking(); renderRoutine(); renderMyths(); renderMoods(); renderQA();
   watchFloors();
+  renderUniverse(); route();
   liveTick(); liveTick(); liveTick();
   if (!matchMedia('(prefers-reduced-motion: reduce)').matches) setInterval(liveTick, 4500);
 })();
