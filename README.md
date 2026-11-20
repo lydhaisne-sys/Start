@@ -14,6 +14,10 @@ Open `prototype/index.html` in a browser to walk through the clickable prototype
 | Comment sections | Hosted topic rooms with house rules, kept kind and on topic |
 | One-way content | Live masterclasses where you ask questions, and experts who answer *your* question |
 
+## Rebuilding with VIBI
+
+`VIBI_PROMPT.md` is a complete build brief for VIBI, the internal Vibrez building agent: concept, design tokens, assets, routing, every floor's exact copy and interactions, the 3D presentation, an acceptance checklist and all data verbatim. Paste it into VIBI to rebuild Glow House exactly; it also points VIBI to this repository as the reference implementation.
+
 ## Outside: the facade in the Vibrez universe
 
 The prototype now opens on the **Vibrez universe map**: a night street where each building is a passion. Glow House stands in the middle with its own facade, and the neighbouring lots are unnamed dusk silhouettes, so the street reads as one uniform skyline until other passion buildings are designed.
