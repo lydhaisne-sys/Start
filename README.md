@@ -2,7 +2,7 @@
 
 **Vibrez: share your passion.** Glow House is the beauty building on Vibrez: one place for makeup, skincare and fragrance lovers to shop, learn, review, chat and book treatments.
 
-Open `prototype/index.html` in a browser to walk through the clickable prototype. Names, products, artists and businesses in it are examples.
+Open `prototype/index.html` in a browser to walk through the clickable prototype, or `prototype/presentation.html` for the interactive 3D presentation (15 slides: drag to turn the building, click a floor, use ← → to move). Names, products, artists and businesses in it are examples.
 
 ## Why Glow House, and not Instagram, TikTok or YouTube
 
