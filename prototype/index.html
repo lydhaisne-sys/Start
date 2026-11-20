@@ -432,8 +432,9 @@ body.in-universe::before { background: #120817; }
 .lot:last-child { margin-right: auto; }
 .lot-btn { background: none; border: 0; padding: 0; color: inherit; display: flex; flex-direction: column; align-items: center; }
 .lot svg { display: block; height: auto; max-width: none; }
-.lot.soon svg { opacity: .55; filter: saturate(.6); transition: opacity .3s; }
-.lot.soon .lot-btn:hover svg, .lot.soon .lot-btn:focus-visible svg { opacity: .8; }
+.lot.soon { gap: 0; }
+.lot.soon svg { margin-bottom: calc(clamp(320px, 46vw, 600px) * .16); filter: blur(.4px); }
+.street { gap: clamp(4px, 1.2vw, 14px) !important; }
 .lot-label { height: 66px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-size: 11.5px; color: rgba(251, 239, 244, .6); line-height: 1.35; }
 .lot-label b { font-size: 13.5px; color: #FBEFF4; }
 .lot.main .lot-label b { font-family: var(--f-display); font-style: italic; font-size: 18px; font-weight: 500; color: #F1DCAA; }
@@ -527,7 +528,7 @@ body.in-universe::before { background: #120817; }
       <div class="lot-label"><b>Glow House</b><span>Beauty · open now</span></div>
     </div>
   </div>
-  <div class="u-legend"><span><i style="background:#F3C77E"></i> Glowing building: open now</span><span><i style="background:#EC6C96"></i> Pink badge: live right now</span><span><i style="background:rgba(251,239,244,.3)"></i> Faded building: opening soon</span></div>
+  <div class="u-legend"><span><i style="background:#F3C77E"></i> Glowing building: open now</span><span><i style="background:#EC6C96"></i> Pink badge: live right now</span><span><i style="background:#2A1530;outline:1px solid rgba(251,239,244,.3)"></i> Silhouettes: more buildings to come</span></div>
 </section>
 <div class="u-fade" id="uFade" aria-hidden="true"></div>
 
@@ -1269,32 +1270,53 @@ body.in-universe::before { background: #120817; }
   $('#dlg').addEventListener('click', e => { if (e.target === $('#dlg')) $('#dlg').close(); });
 
   /* ---------- Vibrez universe (outside map) ---------- */
+  // Neighbouring lots: unnamed silhouettes, so the street reads as one uniform skyline.
   const NEIGHBOURS = [
-    { name: 'Book Nook', passion: 'Reading & writing', w: 130, h: 200, c: '#3B3550', roof: 'gable', seed: 1, side: 'L' },
-    { name: 'Music Hall', passion: 'Music & concerts', w: 170, h: 270, c: '#26344F', roof: 'dome', seed: 2, side: 'L' },
-    { name: "Chef's Table", passion: 'Cooking & food', w: 160, h: 230, c: '#4D2F2A', roof: 'saw', seed: 3, side: 'R' },
-    { name: 'Game Arcade', passion: 'Gaming', w: 140, h: 290, c: '#1F3B45', roof: 'flat', seed: 4, side: 'R' }
+    { w: 150, h: 250, roof: 'gable', seed: 1, side: 'L' },
+    { w: 190, h: 330, roof: 'mansard', seed: 2, side: 'L' },
+    { w: 170, h: 290, roof: 'chimneys', seed: 3, side: 'L' },
+    { w: 180, h: 310, roof: 'dome', seed: 4, side: 'R' },
+    { w: 200, h: 350, roof: 'mansard', seed: 5, side: 'R' },
+    { w: 150, h: 260, roof: 'chimneys', seed: 6, side: 'R' }
   ];
   function lotSVG(n) {
-    const { w, h, c, roof, seed } = n; const top = 40; const H = h + top; const sc = matchMedia('(max-width: 620px)').matches ? .6 : 1;
+    const { w, h, roof, seed, side } = n; const top = 46; const H = h + top; const id = 'nb' + seed;
+    const sc = matchMedia('(max-width: 620px)').matches ? .55 : 1;
     let r = '';
-    if (roof === 'gable') r = `<polygon points="4,${top} ${w / 2},6 ${w - 4},${top}" fill="${c}"/>`;
-    if (roof === 'dome') r = `<path d="M10 ${top} A${(w - 20) / 2} 34 0 0 1 ${w - 10} ${top} Z" fill="${c}"/><rect x="${w / 2 - 2}" y="0" width="4" height="10" fill="${c}"/>`;
-    if (roof === 'saw') { let p = `6,${top}`; const s = (w - 12) / 4; for (let i = 0; i < 4; i++) p += ` ${6 + i * s},${top - 22} ${6 + (i + 1) * s},${top}`; r = `<polygon points="${p}" fill="${c}"/>`; }
-    if (roof === 'flat') r = `<rect x="4" y="${top - 10}" width="${w - 8}" height="10" fill="${c}"/><path d="M${w - 30} ${top - 10}V8" stroke="${c}" stroke-width="3"/><circle cx="${w - 30}" cy="8" r="4" fill="#EC6C96"/>`;
-    const cols = Math.floor((w - 30) / 22), rows = Math.floor((h - 50) / 26);
-    const ox = (w - (cols * 22 - 10)) / 2; let win = '';
-    for (let y = 0; y < rows; y++) for (let x = 0; x < cols; x++) {
-      const lit = (y * 7 + x * 3 + seed) % 5 < 2;
-      win += `<rect x="${ox + x * 22}" y="${top + 14 + y * 26}" width="12" height="15" rx="2" fill="${lit ? '#F3D59B' : 'rgba(255,255,255,.08)'}"/>`;
+    if (roof === 'gable') r = `<polygon points="6,${top} ${w / 2},${top - 40} ${w - 6},${top}" fill="url(#${id}g)"/><rect x="${w * .7}" y="${top - 34}" width="12" height="22" fill="#1A0B18"/>`;
+    if (roof === 'mansard') {
+      r = `<polygon points="4,${top} 22,${top - 34} ${w - 22},${top - 34} ${w - 4},${top}" fill="url(#${id}g)"/>`;
+      for (let x = 34; x < w - 40; x += 40) r += `<rect x="${x}" y="${top - 26}" width="14" height="18" fill="#140812"/><polygon points="${x - 3},${top - 26} ${x + 7},${top - 34} ${x + 17},${top - 26}" fill="#1A0B18"/>` + ((x + seed) % 3 === 0 ? `<rect x="${x + 3}" y="${top - 22}" width="8" height="12" fill="#E9A85A" opacity=".45"/>` : '');
+      r += `<rect x="${w * .2}" y="${top - 48}" width="14" height="16" fill="#1A0B18"/><rect x="${w * .72}" y="${top - 46}" width="18" height="14" fill="#1A0B18"/>`;
     }
-    return `<svg viewBox="0 0 ${w} ${H}" width="${Math.round(w * sc)}" height="${Math.round(H * sc)}" aria-hidden="true">${r}<rect x="10" y="${top}" width="${w - 20}" height="${h}" fill="${c}"/>${win}<rect x="${w / 2 - 10}" y="${H - 26}" width="20" height="26" rx="3" fill="rgba(255,255,255,.12)"/></svg>`;
+    if (roof === 'chimneys') r = `<rect x="4" y="${top - 8}" width="${w - 8}" height="8" fill="url(#${id}g)"/>` + [.15, .45, .8].map(f => `<rect x="${w * f}" y="${top - 30}" width="16" height="24" fill="#1A0B18"/><rect x="${w * f + 2}" y="${top - 34}" width="4" height="5" fill="#1A0B18"/><rect x="${w * f + 9}" y="${top - 34}" width="4" height="5" fill="#1A0B18"/>`).join('');
+    if (roof === 'dome') r = `<path d="M${w * .25} ${top} A${w * .25} ${w * .2} 0 0 1 ${w * .75} ${top} Z" fill="url(#${id}g)"/><rect x="${w / 2 - 2}" y="${top - w * .2 - 16}" width="4" height="18" fill="#1A0B18"/><rect x="6" y="${top - 6}" width="${w - 12}" height="6" fill="url(#${id}g)"/>`;
+    const cols = Math.max(2, Math.floor((w - 30) / 24)), rows = Math.floor((h - 70) / 38);
+    const ox = (w - (cols * 24 - 12)) / 2; let win = '', glow = '';
+    for (let y = 0; y < rows; y++) {
+      win += `<rect x="8" y="${top + 6 + y * 38}" width="${w - 16}" height="1.5" fill="#3A2035" opacity=".6"/>`;
+      for (let x = 0; x < cols; x++) {
+        const lit = (y * 5 + x * 3 + seed * 7) % 9 < 2;
+        const wx = ox + x * 24, wy = top + 14 + y * 38;
+        win += `<rect x="${wx}" y="${wy}" width="12" height="20" fill="${lit ? '#E9A85A' : '#0E050C'}" opacity="${lit ? .6 : .7}"/>`;
+        if (lit) glow += `<rect x="${wx - 2}" y="${wy - 2}" width="16" height="24" fill="#F7A86A"/>`;
+      }
+    }
+    const rimX = side === 'L' ? w - 3 : 3;
+    return `<svg viewBox="0 0 ${w} ${H}" width="${Math.round(w * sc)}" height="${Math.round(H * sc)}" aria-hidden="true" focusable="false">
+      <defs><linearGradient id="${id}g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2A1530"/><stop offset="1" stop-color="#140912"/></linearGradient>
+      <linearGradient id="${id}h" x1="0" y1="0" x2="0" y2="1"><stop offset=".55" stop-color="#4A1C3E" stop-opacity="0"/><stop offset="1" stop-color="#7A3550" stop-opacity=".35"/></linearGradient>
+      <filter id="${id}b"><feGaussianBlur stdDeviation="4"/></filter></defs>
+      ${r}<rect x="6" y="${top}" width="${w - 12}" height="${h}" fill="url(#${id}g)"/>
+      <g filter="url(#${id}b)" opacity=".35">${glow}</g>${win}
+      <rect x="${rimX - 1}" y="${top}" width="2" height="${h}" fill="#F7A86A" opacity=".18"/>
+      <rect x="6" y="${top}" width="${w - 12}" height="${h}" fill="url(#${id}h)"/></svg>`;
   }
   function renderUniverse() {
     const street = $('#street'), main = $('#ghLot');
     NEIGHBOURS.forEach(n => {
-      const lot = document.createElement('div'); lot.className = 'lot soon';
-      lot.innerHTML = `<button class="lot-btn" data-soon="${esc(n.name)}" aria-label="${esc(n.name)}, ${esc(n.passion)}, opening soon">${lotSVG(n)}</button><div class="lot-label"><b>${esc(n.name)}</b><span>${esc(n.passion)}<br>Opening soon</span></div>`;
+      const lot = document.createElement('div'); lot.className = 'lot soon'; lot.setAttribute('aria-hidden', 'true');
+      lot.innerHTML = lotSVG(n) + '<div class="lot-label"></div>';
       n.side === 'L' ? street.insertBefore(lot, main) : street.appendChild(lot);
     });
   }
