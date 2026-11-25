@@ -1,0 +1,5 @@
+# Netlify settings for the Taarougem shop.
+# In Netlify, set "Base directory" to: taarougem
+[build]
+  publish = "."
+  functions = "netlify/functions"

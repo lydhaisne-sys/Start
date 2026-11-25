@@ -198,7 +198,7 @@ footer .legal{border-top:1px solid var(--line);padding-top:22px;font-size:.78rem
 </head>
 <body>
 
-<div class="announce">Complimentary shipping on orders over €60</div>
+<div class="announce">Complimentary shipping on orders over <span id="freeFrom">€60</span></div>
 
 <header>
   <nav class="wrap nav">
@@ -297,21 +297,12 @@ footer .legal{border-top:1px solid var(--line);padding-top:22px;font-size:.78rem
 </aside>
 <div class="toast" id="toast"></div>
 
+<script src="products.js"></script>
 <script>
-/* =========================================================
-   PRODUCTS — edit names, prices, descriptions here.
-   Later, "img" can point to a real photo, e.g. "photos/sable.jpg"
-   ========================================================= */
-const PRODUCTS = [
-  {id:"sable",  name:"Sable",  type:"Beaded", price:28, tag:"Bestseller", bg:"#f2ece5", style:"beads", colors:["#d8b98f","#c49a6c","#efe0c8"], desc:"Soft sand-coloured beads with a single gold-tone accent. An everyday piece that goes with everything.", details:["Glass & wooden beads","Gold-tone accent bead","Elastic, easy to slip on"]},
-  {id:"corail", name:"Corail", type:"Beaded", price:32, tag:"New",        bg:"#f2ece5", style:"beads", colors:["#c8603f","#e08e6d","#f3c3a8"], desc:"Warm coral tones that catch the sun. Made to be stacked or worn alone.", details:["Coral-tone glass beads","Gold-tone spacers","Elastic, easy to slip on"]},
-  {id:"nuit",   name:"Nuit",   type:"Stone",  price:38, tag:"",           bg:"#f2ece5", style:"beads", colors:["#2d2a33","#4a4552","#7a7383"], desc:"Deep, night-sky stones with a gentle shine. Quietly elegant.", details:["Natural onyx-style stones","8 mm beads","Elastic, easy to slip on"]},
-  {id:"perle",  name:"Perle",  type:"Chain",  price:42, tag:"",           bg:"#f2ece5", style:"chain", colors:["#c9a86a","#f6efe6"], desc:"A fine gold-tone chain dotted with small freshwater-style pearls.", details:["Gold-tone chain","Pearl-style beads","Adjustable clasp"]},
-  {id:"olive",  name:"Olive",  type:"Woven",  price:24, tag:"",           bg:"#f2ece5", style:"woven", colors:["#7d8455","#a5a878","#c19a5b"], desc:"A hand-woven cord bracelet in olive and gold, with a sliding knot.", details:["Hand-woven waxed cord","Sliding knot, adjustable","Water-friendly"]},
-  {id:"ambre",  name:"Ambre",  type:"Stone",  price:36, tag:"Limited",    bg:"#f2ece5", style:"beads", colors:["#c07a2c","#e0a64f","#8e5420"], desc:"Honey and amber tones, glowing like late-afternoon light.", details:["Amber-tone stones","Gold-tone accent bead","Elastic, easy to slip on"]},
-];
-const SIZES = ["XS","S","M","L"];
-const FREE_SHIP = 60, SHIP = 4.9;
+/* Products, prices and shipping are set in products.js */
+/* PRODUCTS and SHOP come from products.js */
+const SIZES = SHOP.sizes;
+const FREE_SHIP = SHOP.freeShippingFrom, SHIP = SHOP.shippingPrice;
 const euro = n => "€" + n.toFixed(2).replace(".00","");
 
 /* ---------- placeholder bracelet drawings (until real photos) ---------- */
@@ -342,7 +333,8 @@ function bracelet(p, uid){
   }
   return s + `</svg>`;
 }
-let uidN = 0; const art = p => bracelet(p, "u"+(uidN++));
+let uidN = 0;
+const art = p => p.image ? `<img src="${p.image}" alt="${p.name} bracelet" loading="lazy" style="width:100%;height:100%;object-fit:cover">` : bracelet(p, "u"+(uidN++));
 
 /* ---------- shop grid ---------- */
 let filter = "All";
@@ -379,7 +371,7 @@ function drawModal(){
       <p>${p.desc}</p>
       <div class="label">Size</div>
       <div class="sizes">${SIZES.map(s=>`<button class="${s===size?"on":""}" onclick="size='${s}';drawModal()">${s}</button>`).join("")}</div>
-      <span class="size-guide" title="XS 14 cm · S 15.5 cm · M 17 cm · L 18.5 cm (wrist size)">Size guide: XS 14 · S 15.5 · M 17 · L 18.5 cm</span>
+      <span class="size-guide" title="Wrist size">Size guide: ${SHOP.sizeGuide}</span>
       <div class="buy-row">
         <div class="qty"><button onclick="qty=Math.max(1,qty-1);drawModal()">−</button><span>${qty}</span><button onclick="qty++;drawModal()">+</button></div>
         <button class="btn" onclick="addToCart('${p.id}',size,qty);closeAll()">Add to bag · ${euro(p.price*qty)}</button>
@@ -417,9 +409,22 @@ function renderCart(){
     <div class="row"><span>Subtotal</span><span>${euro(sub)}</span></div>
     <div class="row"><span>Shipping</span><span>${ship?euro(ship):"Free"}</span></div>
     <div class="row total"><span>Total</span><span>${euro(sub+ship)}</span></div>
-    <button class="btn" onclick="checkout()">Checkout</button>` : "";
+    <button class="btn" onclick="checkout(this)">Checkout</button>
+    <div style="text-align:center;font-size:.75rem;color:var(--ink-soft);margin-top:10px">Secure payment by Stripe · Card, Apple Pay, Google Pay</div>` : "";
 }
-function checkout(){ toast("Checkout isn't connected yet. Coming soon!"); }
+async function checkout(btn){
+  if(location.protocol==="file:"){ toast("Checkout works once the site is online"); return; }
+  btn.disabled=true; btn.textContent="Opening secure checkout…";
+  try{
+    const r = await fetch("/.netlify/functions/checkout",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({items:cart})});
+    const d = await r.json();
+    if(!r.ok||!d.url) throw new Error(d.error||"Checkout failed");
+    location.href = d.url;
+  }catch(e){
+    toast("Sorry, checkout is unavailable right now. Please try again.");
+    btn.disabled=false; btn.textContent="Checkout";
+  }
+}
 
 /* ---------- helpers ---------- */
 function show(id){ document.getElementById(id).classList.add("show"); document.getElementById("overlay").classList.add("show"); }
@@ -430,6 +435,7 @@ let tt; function toast(m){ const t=document.getElementById("toast"); t.textConte
 
 document.getElementById("heroArt").insertAdjacentHTML("afterbegin", art(PRODUCTS[1]));
 document.getElementById("storyArt").innerHTML = art(PRODUCTS[5]);
+document.getElementById("freeFrom").textContent = euro(FREE_SHIP);
 renderFilters(); renderGrid(); renderCart();
 </script>
 </body>
