@@ -13,15 +13,16 @@
    BRAND COLOURS — change these to match the moodboard
    ========================================================= */
 :root{
-  --bg:        #fbf8f4;   /* page background (ivory) */
-  --bg-soft:   #f2ece5;   /* alternate section background (stone) */
-  --ink:       #1c1a19;   /* main text (soft black) */
-  --ink-soft:  #77706a;   /* secondary text */
-  --accent:    #9c7b62;   /* highlights (muted mocha) */
-  --accent-dk: #7d604b;
-  --gold:      #b89b6e;   /* small details */
-  --line:      #e6ded5;
-  --white:     #ffffff;
+  --bg:        #1e1713;   /* page background (dark chocolate) */
+  --bg-soft:   #2a1f19;   /* alternate sections (burnt wood) */
+  --charcoal:  #141110;   /* footer, deepest tone */
+  --ink:       #efe5d8;   /* main text (cream) */
+  --ink-soft:  #b0a090;   /* secondary text */
+  --accent:    #c8a36a;   /* buttons, highlights (warm gold) */
+  --accent-dk: #e2c592;   /* hover */
+  --gold:      #c8a36a;
+  --line:      #3b2f27;
+  --white:     #1a1411;   /* text on light/gold buttons */
   --serif: "Cormorant Garamond", Georgia, serif;
   --sans:  "Jost", system-ui, sans-serif;
 }
@@ -34,14 +35,18 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
 h1,h2,h3{font-family:var(--serif);font-weight:300;line-height:1.1}
 .eyebrow{font-size:.75rem;letter-spacing:.25em;text-transform:uppercase;color:var(--accent)}
-.btn{display:inline-block;padding:15px 38px;background:var(--ink);color:var(--white);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;transition:background .25s}
+.btn{display:inline-block;padding:15px 38px;background:var(--accent);color:var(--white);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;transition:background .25s}
 .btn:hover{background:var(--accent-dk)}
+.btn.light{color:var(--ink);border-color:var(--ink)}
 .btn.light{background:transparent;color:var(--ink);border:1px solid var(--ink)}
 .btn.light:hover{background:var(--ink);color:var(--white)}
 
+/* ---------- wood texture ---------- */
+.wood{background-color:#3b2a20;background-image:radial-gradient(ellipse at 50% 45%,rgba(255,220,170,.10),transparent 65%),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600'%3E%3Cfilter id='w'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.006 0.11' numOctaves='4' seed='7'/%3E%3CfeColorMatrix values='0 0 0 0 0.09 0 0 0 0 0.05 0 0 0 0 0.03 0 0 0 1.1 -0.25'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23w)'/%3E%3C/svg%3E"),linear-gradient(180deg,#46322a,#2c1f18);background-size:cover,600px 600px,cover}
+
 /* ---------- announcement + header ---------- */
 .announce{background:var(--bg-soft);color:var(--ink-soft);text-align:center;font-size:.75rem;letter-spacing:.15em;padding:8px 16px;text-transform:uppercase}
-header{position:sticky;top:0;z-index:50;background:rgba(251,248,244,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+header{position:sticky;top:0;z-index:50;background:rgba(30,23,19,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 .nav{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:84px}
 .nav .cart-btn{justify-self:end}
 .logo{font-family:var(--serif);font-size:1.9rem;letter-spacing:.32em;font-weight:400;text-align:center}
@@ -53,12 +58,12 @@ header{position:sticky;top:0;z-index:50;background:rgba(251,248,244,.94);backdro
 /* ---------- hero ---------- */
 .hero{display:grid;grid-template-columns:1fr 1.15fr;gap:80px;align-items:center;padding:90px 0 120px}
 .hero h1{font-size:clamp(2.8rem,6vw,5rem);margin:18px 0 22px}
-.hero h1 em{font-style:italic}
+.hero h1 em{font-style:italic;color:var(--accent)}
 .hero p{color:var(--ink-soft);max-width:440px;margin-bottom:34px;font-size:1.05rem}
 .hero-actions{display:flex;gap:14px;flex-wrap:wrap}
-.hero-art{position:relative;aspect-ratio:4/5;background:var(--bg-soft);overflow:hidden;display:grid;place-items:center}
+.hero-art{position:relative;aspect-ratio:4/5;overflow:hidden;display:grid;place-items:center}
 .hero-art svg{width:85%}
-.hero-badge{position:absolute;bottom:28px;left:0;right:0;text-align:center;font-family:var(--serif);font-size:1.1rem;font-style:italic;color:var(--ink-soft)}
+.hero-badge{position:absolute;bottom:28px;left:0;right:0;text-align:center;font-family:var(--serif);font-size:1.1rem;font-style:italic;color:var(--ink)}
 
 /* ---------- promise strip ---------- */
 .promise{border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
@@ -80,7 +85,7 @@ section{padding:120px 0}
 .card .img{aspect-ratio:1;display:grid;place-items:center;overflow:hidden;position:relative}
 .card .img svg{width:78%;transition:transform .6s ease}
 .card:hover .img svg{transform:scale(1.07) rotate(-4deg)}
-.card .tag{position:absolute;top:14px;left:14px;color:var(--ink-soft);font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;padding:4px 10px}
+.card .tag{position:absolute;top:14px;left:14px;color:var(--accent);font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;padding:4px 10px}
 .add{display:block;width:100%;margin-top:14px;padding:12px;border:1px solid var(--ink);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;transition:all .25s}
 .add:hover{background:var(--ink);color:var(--white)}
 .card-info{text-align:center;margin-top:18px}
@@ -91,11 +96,11 @@ section{padding:120px 0}
 /* ---------- story ---------- */
 .story{background:var(--bg-soft)}
 .story .wrap{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
-.story-art{aspect-ratio:1;background:var(--bg);border-radius:50%;display:grid;place-items:center}
+.story-art{aspect-ratio:1;border-radius:50%;display:grid;place-items:center}
 .story-art svg{width:70%}
 .story h2{font-size:clamp(2.2rem,4vw,3.2rem);margin:12px 0 22px}
 .story p{color:var(--ink-soft);margin-bottom:16px;max-width:480px}
-.signature{font-family:var(--serif);font-style:italic;font-size:1.6rem;color:var(--ink);margin-top:12px}
+.signature{font-family:var(--serif);font-style:italic;font-size:1.6rem;color:var(--accent);margin-top:12px}
 
 /* ---------- newsletter + footer ---------- */
 .news{text-align:center}
@@ -105,16 +110,16 @@ section{padding:120px 0}
 .news input{flex:1;border:0;background:none;padding:14px 4px;font:inherit;color:var(--ink);outline:none;min-width:0}
 .news button{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;padding:0 8px}
 .news .ok{margin-top:16px;color:var(--accent);min-height:1.6em}
-footer{background:var(--ink);color:#d9cdc2;padding:64px 0 28px;font-size:.9rem}
+footer{background:var(--charcoal);color:var(--ink-soft);padding:64px 0 28px;font-size:.9rem}
 footer .cols{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px;margin-bottom:48px}
-footer .logo{color:var(--white)}
+footer .logo{color:var(--ink);text-align:left}
 footer h4{font-weight:400;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
 footer li{list-style:none;margin-bottom:8px}
-footer a:hover{color:var(--white)}
-footer .legal{border-top:1px solid #4a3d35;padding-top:22px;font-size:.78rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+footer a:hover{color:var(--ink)}
+footer .legal{border-top:1px solid var(--line);padding-top:22px;font-size:.78rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 
 /* ---------- product modal ---------- */
-.overlay{position:fixed;inset:0;background:rgba(43,33,28,.45);opacity:0;pointer-events:none;transition:opacity .3s;z-index:90}
+.overlay{position:fixed;inset:0;background:rgba(10,8,7,.65);opacity:0;pointer-events:none;transition:opacity .3s;z-index:90}
 .overlay.show{opacity:1;pointer-events:auto}
 .modal{position:fixed;z-index:100;top:50%;left:50%;width:min(920px,calc(100% - 32px));max-height:calc(100% - 32px);overflow:auto;background:var(--bg);transform:translate(-50%,-46%);opacity:0;pointer-events:none;transition:all .3s;display:grid;grid-template-columns:1fr 1fr}
 .modal.show{opacity:1;pointer-events:auto;transform:translate(-50%,-50%)}
@@ -159,7 +164,7 @@ footer .legal{border-top:1px solid #4a3d35;padding-top:22px;font-size:.78rem;dis
 .row.total{font-family:var(--serif);font-size:1.4rem;margin:8px 0 16px}
 .ship-note{font-size:.8rem;color:var(--accent-dk);margin-bottom:12px}
 .drawer-foot .btn{width:100%;text-align:center}
-.toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,20px);background:var(--ink);color:var(--white);padding:12px 24px;font-size:.85rem;opacity:0;transition:all .3s;z-index:120;pointer-events:none}
+.toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,20px);background:var(--accent);color:var(--white);padding:12px 24px;font-size:.85rem;opacity:0;transition:all .3s;z-index:120;pointer-events:none}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 
 /* ---------- phone / tablet ---------- */
@@ -219,7 +224,7 @@ footer .legal{border-top:1px solid #4a3d35;padding-top:22px;font-size:.78rem;dis
         <a href="#story" class="btn light">Our story</a>
       </div>
     </div>
-    <div class="hero-art" id="heroArt"><div class="hero-badge">Handmade, one by one</div></div>
+    <div class="hero-art wood" id="heroArt"><div class="hero-badge">Handmade, one by one</div></div>
   </div>
 
   <div class="promise">
@@ -243,7 +248,7 @@ footer .legal{border-top:1px solid #4a3d35;padding-top:22px;font-size:.78rem;dis
 
   <section class="story" id="story">
     <div class="wrap">
-      <div class="story-art" id="storyArt"></div>
+      <div class="story-art wood" id="storyArt"></div>
       <div>
         <span class="eyebrow">Our story</span>
         <h2>Small details,<br>big meaning.</h2>
@@ -315,7 +320,7 @@ function bracelet(p, uid){
   let s = `<svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg"><defs>`;
   p.colors.forEach((col,i)=> s += `<radialGradient id="g${uid}${i}" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff" stop-opacity=".85"/><stop offset=".35" stop-color="${col}"/><stop offset="1" stop-color="${col}" stop-opacity=".95"/></radialGradient>`);
   s += `<radialGradient id="gold${uid}" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff6dc"/><stop offset=".4" stop-color="#d4b06a"/><stop offset="1" stop-color="#9c7a3c"/></radialGradient></defs>`;
-  s += `<ellipse cx="150" cy="${cy+ry+26}" rx="${rx}" ry="12" fill="#000" opacity=".07"/>`;
+  s += `<ellipse cx="150" cy="${cy+ry+26}" rx="${rx}" ry="12" fill="#000" opacity=".35"/>`;
   if(p.style==="beads"){
     const n=24, beads=[];
     for(let i=0;i<n;i++){const t=i/n*Math.PI*2; beads.push({x:cx+rx*Math.cos(t), y:cy+ry*Math.sin(t), d:Math.sin(t), i});}
@@ -348,7 +353,7 @@ function renderFilters(){
 function renderGrid(){
   document.getElementById("grid").innerHTML = PRODUCTS.filter(p=>filter==="All"||p.type===filter).map(p=>`
     <article class="card" onclick="openProduct('${p.id}')">
-      <div class="img" style="background:${p.bg}">${art(p)}
+      <div class="img wood">${art(p)}
         ${p.tag?`<span class="tag">${p.tag}</span>`:""}
       </div>
       <div class="card-info"><h3>${p.name}</h3><small>${p.type} bracelet</small><span class="price">${euro(p.price)}</span></div>
@@ -366,7 +371,7 @@ function openProduct(id){
 function drawModal(){
   const p=current;
   document.getElementById("modal").innerHTML = `
-    <div class="img" style="background:${p.bg}">${art(p)}</div>
+    <div class="img wood">${art(p)}</div>
     <div class="body">
       <button class="close" onclick="closeAll()" aria-label="Close">×</button>
       <span class="eyebrow">${p.type} bracelet</span>
@@ -401,7 +406,7 @@ function renderCart(){
   const ship = sub===0||sub>=FREE_SHIP ? 0 : SHIP;
   document.getElementById("items").innerHTML = cart.length ? cart.map((l,i)=>{const p=PRODUCTS.find(x=>x.id===l.id); return `
     <div class="line">
-      <div class="thumb" style="background:${p.bg}">${art(p)}</div>
+      <div class="thumb wood">${art(p)}</div>
       <div><h4>${p.name}</h4><small>Size ${l.size} · ${euro(p.price)}</small>
         <div class="qty"><button onclick="changeQty(${i},-1)">−</button><span>${l.qty}</span><button onclick="changeQty(${i},1)">+</button></div>
       </div>
