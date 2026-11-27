@@ -213,9 +213,9 @@ footer .legal{border-top:1px solid var(--line);padding-top:22px;font-size:.78rem
 .intents .eyebrow{display:block;margin-bottom:10px}
 .intents h2{font-size:clamp(1.9rem,3.4vw,2.6rem);margin-bottom:12px}
 .intents .lead{color:var(--ink-soft);max-width:520px;margin:0 auto 40px}
-.intent-row{display:grid;grid-template-columns:repeat(var(--n,6),1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.intent-row button{padding:28px 8px;border-right:1px solid var(--line);transition:background .3s}
-.intent-row button:last-child{border-right:0}
+.intent-row{display:grid;grid-template-columns:repeat(var(--n,6),1fr);border-top:1px solid var(--line)}
+.intent-row button{padding:28px 8px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);transition:background .3s}
+.intent-row button:nth-child(5n){border-right:0}
 .intent-row button:hover,.intent-row button.on{background:var(--bg-soft)}
 .intent-row b{display:block;font-family:var(--serif);font-weight:300;font-size:1.45rem;margin-bottom:4px}
 .intent-row button.on b{color:var(--accent)}
@@ -510,8 +510,8 @@ function renderFilters(){
     + (intent ? `<button class="active-intent" onclick="setIntent('')">${intent} ×</button>` : "");
 }
 function renderIntents(){
-  const all = [...new Set(PRODUCTS.map(p=>(p.intentions||[])[0]).filter(Boolean))].slice(0,8);
-  document.getElementById("intentRow").style.setProperty("--n", all.length);
+  const all = [...new Set(PRODUCTS.map(p=>(p.intentions||[])[0]).filter(Boolean))].slice(0,12);
+  document.getElementById("intentRow").style.setProperty("--n", all.length > 6 ? Math.ceil(all.length/2) : all.length);
   document.getElementById("intentRow").innerHTML = all.map(i=>{
     const stones = PRODUCTS.filter(p=>(p.intentions||[]).includes(i)).map(p=>p.stone||p.name);
     return `<button class="${i===intent?"on":""}" onclick="setIntent('${i}',true)"><b>${i}</b><small>${stones.join(" · ")}</small></button>`;
