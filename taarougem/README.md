@@ -39,3 +39,21 @@
 - **New orders:** Stripe emails you about each payment. You can turn this on in Stripe under *Settings → Notifications*. Each order shows the bracelet, size and shipping address.
 - **Change a price or add a bracelet:** edit `products.js`. The shop and the checkout both update automatically.
 - **Discount codes:** create them in Stripe (*Product catalogue → Coupons*). Customers can enter them at checkout.
+
+## Adding your photos
+
+1. Put the pictures in a folder called `photos` inside this folder.
+2. In `products.js`:
+   - **Product photo:** add `image:"photos/name.jpg"` to a bracelet.
+   - **Instagram gallery:** list up to 6 pictures in `GALLERY`, e.g. `["photos/insta1.jpg", "photos/insta2.jpg"]`.
+   - **Instagram link:** set `instagram` to your page link and `instagramHandle` to your @name.
+
+Square photos (or close to square) look best.
+
+## Healing properties
+
+Each bracelet has `intentions` (e.g. Protection, Calm), a `stone` name and a short `meaning`.
+The first intention appears in the "Shop by intention" row on the home page.
+Keep the wording gentle: "traditionally associated with…", never "cures" or "heals", which
+consumer law doesn't allow for jewellery. A short note on the site says the meanings are shared
+for inspiration and don't replace medical advice.

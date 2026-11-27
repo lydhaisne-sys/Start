@@ -174,6 +174,37 @@ footer .legal{border-top:1px solid var(--line);padding-top:22px;font-size:.78rem
 .toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,20px);background:var(--accent);color:var(--white);padding:12px 24px;font-size:.85rem;opacity:0;transition:all .3s;z-index:120;pointer-events:none}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 
+
+/* ---------- shop by intention ---------- */
+.intents{padding:72px 0 80px;text-align:center}
+.intents .eyebrow{display:block;margin-bottom:10px}
+.intents h2{font-size:clamp(1.9rem,3.4vw,2.6rem);margin-bottom:12px}
+.intents .lead{color:var(--ink-soft);max-width:520px;margin:0 auto 40px}
+.intent-row{display:grid;grid-template-columns:repeat(6,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.intent-row button{padding:28px 8px;border-right:1px solid var(--line);transition:background .3s}
+.intent-row button:last-child{border-right:0}
+.intent-row button:hover,.intent-row button.on{background:var(--bg-soft)}
+.intent-row b{display:block;font-family:var(--serif);font-weight:300;font-size:1.45rem;margin-bottom:4px}
+.intent-row button.on b{color:var(--accent)}
+.intent-row small{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft)}
+.active-intent{display:inline-flex;gap:10px;align-items:center;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);border:1px solid var(--accent);padding:6px 14px}
+.card-info .intent{display:block;font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-top:2px}
+.meaning{background:var(--bg-soft);border-left:2px solid var(--accent);padding:16px 18px;margin:0 0 24px}
+.meaning .label{color:var(--accent);margin-bottom:6px}
+.meaning p{margin:0;font-size:.92rem}
+.note{font-size:.72rem;color:var(--ink-soft);opacity:.8;margin-top:14px}
+
+/* ---------- instagram gallery ---------- */
+.gallery{padding:110px 0}
+.gallery .section-head a{color:var(--accent)}
+.insta{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.insta a{position:relative;aspect-ratio:1;overflow:hidden;display:grid;place-items:center}
+.insta a svg{width:72%;transition:transform .8s ease}
+.insta a img{width:100%;height:100%;object-fit:cover;transition:transform .8s ease}
+.insta a:hover svg,.insta a:hover img{transform:scale(1.06)}
+.insta a::after{content:"View on Instagram";position:absolute;inset:0;display:grid;place-items:center;background:rgba(20,15,12,.45);color:#efe5d8;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;opacity:0;transition:opacity .3s}
+.insta a:hover::after{opacity:1}
+.insta-cta{text-align:center;margin-top:40px}
 /* ---------- phone / tablet ---------- */
 .menu-btn{display:none;font-size:1.5rem}
 @media (max-width:900px){
@@ -182,6 +213,8 @@ footer .legal{border-top:1px solid var(--line);padding-top:22px;font-size:.78rem
   .hero{padding-top:40px}
   .hero-art{max-width:440px;width:100%;margin:0 auto}
   footer .cols{grid-template-columns:1fr 1fr}
+  .intent-row{grid-template-columns:repeat(3,1fr)}
+  .intent-row button:nth-child(3n){border-right:0}
 }
 @media (max-width:720px){
   .nav{grid-template-columns:auto 1fr auto;height:68px}
@@ -196,6 +229,14 @@ footer .legal{border-top:1px solid var(--line);padding-top:22px;font-size:.78rem
   .grid{gap:28px 14px}
   .card-info h3{font-size:1.2rem}
   .promise .wrap{grid-template-columns:1fr}
+  .intents{padding:56px 0 60px}
+  .intents .lead{margin-bottom:28px}
+  .intent-row{grid-template-columns:repeat(3,1fr)}
+  .intent-row button{border-bottom:1px solid var(--line);padding:16px 4px}
+  .intent-row button:nth-child(n+4){border-bottom:0}
+  .intent-row b{font-size:1.15rem}
+  .intent-row small{font-size:.56rem;letter-spacing:.12em}
+  .insta{gap:4px}
   .promise div div{padding:14px}
   .modal{grid-template-columns:1fr}
   .modal .img{min-height:260px}
@@ -223,9 +264,9 @@ footer .legal{border-top:1px solid var(--line);padding-top:22px;font-size:.78rem
 <main>
   <div class="wrap hero">
     <div>
-      <span class="eyebrow">Sculptural bracelets · 2026</span>
+      <span class="eyebrow">Sculptural bracelets · Natural stones</span>
       <h1>Bold by nature, <em>sculpted</em> by hand.</h1>
-      <p>Chunky bangles and statement cuffs in deep black, creamy ivory, mother-of-pearl and gold. Made to be stacked, noticed and kept.</p>
+      <p>Chunky bangles and statement cuffs in deep black, creamy ivory, mother-of-pearl and gold. Each one chosen for its beauty, and for the intention it carries.</p>
       <div class="hero-actions">
         <a href="#shop" class="btn">Shop the collection</a>
         <a href="#story" class="btn light">Our story</a>
@@ -237,8 +278,17 @@ footer .legal{border-top:1px solid var(--line);padding-top:22px;font-size:.78rem
   <div class="promise">
     <div class="wrap">
       <div><b>Handmade</b>one piece at a time</div>
-      <div><b>Statement pieces</b>made to be stacked</div>
+      <div><b>Stones with intention</b>chosen for their meaning</div>
       <div><b>Gift-ready</b>wrapped with care</div>
+    </div>
+  </div>
+
+  <div class="intents" id="intentions">
+    <div class="wrap">
+      <span class="eyebrow">Shop by intention</span>
+      <h2>What would you like to carry with you?</h2>
+      <p class="lead">Every stone has long been linked to a feeling or an energy. Choose the one that speaks to you today.</p>
+      <div class="intent-row" id="intentRow"></div>
     </div>
   </div>
 
@@ -266,6 +316,17 @@ footer .legal{border-top:1px solid var(--line);padding-top:22px;font-size:.78rem
     </div>
   </section>
 
+  <section class="gallery" id="gallery">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Worn &amp; styled</span>
+        <h2>Follow <a id="instaHandle" target="_blank" rel="noopener"></a></h2>
+      </div>
+      <div class="insta" id="insta"></div>
+      <div class="insta-cta"><a class="btn light" id="instaBtn" target="_blank" rel="noopener">Follow us on Instagram</a></div>
+    </div>
+  </section>
+
   <section class="news linen" id="contact">
     <div class="wrap">
       <span class="eyebrow">Stay close</span>
@@ -286,8 +347,9 @@ footer .legal{border-top:1px solid var(--line);padding-top:22px;font-size:.78rem
       <div><div class="logo">TAAROUGEM</div><p style="margin-top:12px;max-width:260px">Handmade bracelets, crafted one bead at a time.</p></div>
       <div><h4>Shop</h4><ul><li><a href="#shop">All bracelets</a></li><li><a href="#shop">Bestsellers</a></li><li><a href="#shop">Gift ideas</a></li></ul></div>
       <div><h4>Help</h4><ul><li><a href="#">Shipping &amp; returns</a></li><li><a href="#">Size guide</a></li><li><a href="#">Jewellery care</a></li></ul></div>
-      <div><h4>Follow</h4><ul><li><a href="#">Instagram</a></li><li><a href="#">TikTok</a></li><li><a href="#">Pinterest</a></li></ul></div>
+      <div><h4>Follow</h4><ul><li><a href="#" id="footInsta" target="_blank" rel="noopener">Instagram</a></li><li><a href="#">TikTok</a></li><li><a href="#">Pinterest</a></li></ul></div>
     </div>
+    <p class="note" style="margin:-24px 0 24px">Stone meanings come from tradition and are shared for inspiration. They do not replace medical advice.</p>
     <div class="legal"><span>© 2026 Taarougem</span><span>Terms · Privacy</span></div>
   </div>
 </footer>
@@ -399,19 +461,45 @@ const art = p => p.image ? `<img src="${p.image}" alt="${p.name} bracelet" loadi
 
 /* ---------- shop grid ---------- */
 let filter = "All";
+let intent = "";
 function renderFilters(){
   const types = ["All", ...new Set(PRODUCTS.map(p=>p.type))];
-  document.getElementById("filters").innerHTML = types.map(t=>`<button class="${t===filter?"on":""}" onclick="filter='${t}';renderFilters();renderGrid()">${t}</button>`).join("");
+  document.getElementById("filters").innerHTML = types.map(t=>`<button class="${t===filter?"on":""}" onclick="filter='${t}';renderFilters();renderGrid()">${t}</button>`).join("")
+    + (intent ? `<button class="active-intent" onclick="setIntent('')">${intent} ×</button>` : "");
+}
+function renderIntents(){
+  const all = [...new Set(PRODUCTS.map(p=>(p.intentions||[])[0]).filter(Boolean))].slice(0,6);
+  document.getElementById("intentRow").innerHTML = all.map(i=>{
+    const stones = PRODUCTS.filter(p=>(p.intentions||[]).includes(i)).map(p=>p.stone||p.name);
+    return `<button class="${i===intent?"on":""}" onclick="setIntent('${i}',true)"><b>${i}</b><small>${stones.join(" · ")}</small></button>`;
+  }).join("");
+}
+function setIntent(i, jump){
+  intent = i; filter = "All"; renderIntents(); renderFilters(); renderGrid();
+  if(jump) document.getElementById("shop").scrollIntoView({behavior:"smooth"});
 }
 function renderGrid(){
-  document.getElementById("grid").innerHTML = PRODUCTS.filter(p=>filter==="All"||p.type===filter).map(p=>`
+  document.getElementById("grid").innerHTML = PRODUCTS.filter(p=>(filter==="All"||p.type===filter) && (!intent||(p.intentions||[]).includes(intent))).map(p=>`
     <article class="card" onclick="openProduct('${p.id}')">
       <div class="img wood">${art(p)}
         ${p.tag?`<span class="tag">${p.tag}</span>`:""}
       </div>
-      <div class="card-info"><h3>${p.name}</h3><small>${p.type} bracelet</small><span class="price">${euro(p.price)}</span></div>
+      <div class="card-info"><h3>${p.name}</h3>${p.intentions?`<span class="intent">${p.intentions.join(" · ")}</span>`:`<small>${p.type} bracelet</small>`}<span class="price">${euro(p.price)}</span></div>
       <button class="add" onclick="event.stopPropagation();addToCart('${p.id}','M',1)">Add to bag</button>
     </article>`).join("");
+}
+
+/* ---------- instagram gallery ---------- */
+function renderGallery(){
+  const link = SHOP.instagram || "#";
+  ["instaHandle","instaBtn","footInsta"].forEach(id=>document.getElementById(id).href = link);
+  document.getElementById("instaHandle").textContent = SHOP.instagramHandle || "us";
+  const G = (typeof GALLERY!=="undefined" && GALLERY.length) ? GALLERY : null;
+  const by = id => PRODUCTS.find(p=>p.id===id) || PRODUCTS[0];
+  const tiles = G ? G.slice(0,6).map(src=>`<img src="${src}" alt="Taarougem on Instagram" loading="lazy">`)
+    : [stack(["obsidienne","ivoire"].map(by),"g1"), art(by("grenat")), stack(["nacre","soleil","obsidienne"].map(by),"g3"),
+       art(by("orbes")), stack(["soleil","nacre"].map(by),"g5"), art(by("ivoire"))];
+  document.getElementById("insta").innerHTML = tiles.map(t=>`<a class="${G?"":"wood"}" href="${link}" target="_blank" rel="noopener">${t}</a>`).join("");
 }
 
 /* ---------- product popup ---------- */
@@ -430,6 +518,7 @@ function drawModal(){
       <span class="eyebrow">${p.type} bracelet</span>
       <h3>${p.name}</h3><span class="price">${euro(p.price)}</span>
       <p>${p.desc}</p>
+      ${p.meaning?`<div class="meaning"><div class="label">${p.stone||"Meaning"} · ${(p.intentions||[]).join(" & ")}</div><p>${p.meaning}</p></div>`:""}
       <div class="label">Size</div>
       <div class="sizes">${SIZES.map(s=>`<button class="${s===size?"on":""}" onclick="size='${s}';drawModal()">${s}</button>`).join("")}</div>
       <span class="size-guide" title="Wrist size">Size guide: ${SHOP.sizeGuide}</span>
@@ -438,6 +527,7 @@ function drawModal(){
         <button class="btn" onclick="addToCart('${p.id}',size,qty);closeAll()">Add to bag · ${euro(p.price*qty)}</button>
       </div>
       <ul class="details">${p.details.map(d=>`<li>${d}</li>`).join("")}</ul>
+      ${p.meaning?`<p class="note">Stone meanings come from tradition and are shared for inspiration. They do not replace medical advice.</p>`:""}
     </div>`;
 }
 
@@ -498,7 +588,7 @@ const byId = id => PRODUCTS.find(p=>p.id===id) || PRODUCTS[0];
 document.getElementById("heroArt").insertAdjacentHTML("afterbegin", stack(["ivoire","obsidienne","nacre"].map(byId), "hero"));
 document.getElementById("storyArt").innerHTML = stack(["soleil","obsidienne"].map(byId), "story");
 document.getElementById("freeFrom").textContent = euro(FREE_SHIP);
-renderFilters(); renderGrid(); renderCart();
+renderIntents(); renderGallery(); renderFilters(); renderGrid(); renderCart();
 </script>
 </body>
 </html>
