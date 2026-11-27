@@ -213,9 +213,9 @@ footer .legal{border-top:1px solid var(--line);padding-top:22px;font-size:.78rem
 .intents .eyebrow{display:block;margin-bottom:10px}
 .intents h2{font-size:clamp(1.9rem,3.4vw,2.6rem);margin-bottom:12px}
 .intents .lead{color:var(--ink-soft);max-width:520px;margin:0 auto 40px}
-.intent-row{display:grid;grid-template-columns:repeat(var(--n,6),1fr);border-top:1px solid var(--line)}
-.intent-row button{padding:28px 8px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);transition:background .3s}
-.intent-row button:nth-child(5n){border-right:0}
+.intent-row{display:grid;grid-template-columns:repeat(var(--n,6),1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.intent-row button{padding:24px 6px;background:var(--bg);transition:background .3s}
+.intent-row::after{content:"";background:var(--bg);grid-column:auto/-1}
 .intent-row button:hover,.intent-row button.on{background:var(--bg-soft)}
 .intent-row b{display:block;font-family:var(--serif);font-weight:300;font-size:1.45rem;margin-bottom:4px}
 .intent-row button.on b{color:var(--accent)}
@@ -246,8 +246,7 @@ footer .legal{border-top:1px solid var(--line);padding-top:22px;font-size:.78rem
   .hero{padding-top:40px}
   .hero-art{max-width:440px;width:100%;margin:0 auto}
   footer .cols{grid-template-columns:1fr 1fr}
-  .intent-row{display:flex;flex-wrap:wrap;justify-content:center}
-  .intent-row button{flex:0 0 25%;border-bottom:1px solid var(--line)}
+  .intent-row{grid-template-columns:repeat(4,1fr)}
 }
 @media (max-width:720px){
   .nav{grid-template-columns:auto 1fr auto;height:68px}
@@ -264,8 +263,8 @@ footer .legal{border-top:1px solid var(--line);padding-top:22px;font-size:.78rem
   .promise .wrap{grid-template-columns:1fr}
   .intents{padding:56px 0 60px}
   .intents .lead{margin-bottom:28px}
-  .intent-row button{flex:0 0 33.333%;padding:16px 4px}
-  .intent-row button:nth-child(3n){border-right:0}
+  .intent-row{grid-template-columns:repeat(3,1fr)}
+  .intent-row button{padding:16px 4px}
   .intent-row b{font-size:1.15rem}
   .intent-row small{font-size:.56rem;letter-spacing:.12em}
   .insta{gap:4px}
@@ -510,11 +509,12 @@ function renderFilters(){
     + (intent ? `<button class="active-intent" onclick="setIntent('')">${intent} ×</button>` : "");
 }
 function renderIntents(){
-  const all = [...new Set(PRODUCTS.map(p=>(p.intentions||[])[0]).filter(Boolean))].slice(0,12);
-  document.getElementById("intentRow").style.setProperty("--n", all.length > 6 ? Math.ceil(all.length/2) : all.length);
-  document.getElementById("intentRow").innerHTML = all.map(i=>{
-    const stones = PRODUCTS.filter(p=>(p.intentions||[]).includes(i)).map(p=>p.stone||p.name);
-    return `<button class="${i===intent?"on":""}" onclick="setIntent('${i}',true)"><b>${i}</b><small>${stones.join(" · ")}</small></button>`;
+  const all = [...new Set(PRODUCTS.map(p=>(p.intentions||[])[0]).filter(Boolean))];
+  const row = document.getElementById("intentRow");
+  row.style.setProperty("--n", all.length > 7 ? Math.ceil(all.length/2) : all.length);
+  row.innerHTML = all.map(i=>{
+    const n = PRODUCTS.filter(p=>(p.intentions||[]).includes(i)).length;
+    return `<button class="${i===intent?"on":""}" onclick="setIntent('${i}',true)"><b>${i}</b><small>${n} bracelet${n>1?"s":""}</small></button>`;
   }).join("");
 }
 function setIntent(i, jump){
