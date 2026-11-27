@@ -8,19 +8,31 @@
             Without one, the site shows a drawing.
    ========================================================= */
 const PRODUCTS = [
-  {id:"sable",  name:"Sable",  type:"Beaded", price:28, tag:"Bestseller", style:"beads", colors:["#d8b98f","#c49a6c","#efe0c8"], desc:"Soft sand-coloured beads with a single gold-tone accent. An everyday piece that goes with everything.", details:["Glass & wooden beads","Gold-tone accent bead","Elastic, easy to slip on"]},
-  {id:"corail", name:"Corail", type:"Beaded", price:32, tag:"New",        style:"beads", colors:["#c8603f","#e08e6d","#f3c3a8"], desc:"Warm coral tones that catch the sun. Made to be stacked or worn alone.", details:["Coral-tone glass beads","Gold-tone spacers","Elastic, easy to slip on"]},
-  {id:"nuit",   name:"Nuit",   type:"Stone",  price:38, tag:"",           style:"beads", colors:["#2d2a33","#4a4552","#7a7383"], desc:"Deep, night-sky stones with a gentle shine. Quietly elegant.", details:["Natural onyx-style stones","8 mm beads","Elastic, easy to slip on"]},
-  {id:"perle",  name:"Perle",  type:"Chain",  price:42, tag:"",           style:"chain", colors:["#c9a86a","#f6efe6"], desc:"A fine gold-tone chain dotted with small freshwater-style pearls.", details:["Gold-tone chain","Pearl-style beads","Adjustable clasp"]},
-  {id:"olive",  name:"Olive",  type:"Woven",  price:24, tag:"",           style:"woven", colors:["#7d8455","#a5a878","#c19a5b"], desc:"A hand-woven cord bracelet in olive and gold, with a sliding knot.", details:["Hand-woven waxed cord","Sliding knot, adjustable","Water-friendly"]},
-  {id:"ambre",  name:"Ambre",  type:"Stone",  price:36, tag:"Limited",    style:"beads", colors:["#c07a2c","#e0a64f","#8e5420"], desc:"Honey and amber tones, glowing like late-afternoon light.", details:["Amber-tone stones","Gold-tone accent bead","Elastic, easy to slip on"]},
+  {id:"obsidienne", name:"Obsidienne", type:"Bangle", price:68, tag:"Bestseller", style:"bangle", material:"obsidian",
+   desc:"A deep, glossy black bangle with a soft rounded profile. Bold on its own, striking when stacked.",
+   details:["Polished high-shine finish","Chunky rounded profile","Slips over the hand"]},
+  {id:"ivoire", name:"Ivoire", type:"Bangle", price:72, tag:"New", style:"bangle", material:"ivory",
+   desc:"Creamy ivory with warm amber veining, like polished stone. No two pieces share the same pattern.",
+   details:["Marbled ivory and amber","Chunky rounded profile","Each piece unique"]},
+  {id:"nacre", name:"Nacre", type:"Bangle", price:84, tag:"", style:"bangle", material:"nacre",
+   desc:"The soft glow of mother-of-pearl, shifting from blush to silver as it catches the light.",
+   details:["Pearlescent finish","Chunky rounded profile","Slips over the hand"]},
+  {id:"soleil", name:"Soleil", type:"Bangle", price:78, tag:"", style:"bangle", material:"gold",
+   desc:"A hammered gold-tone bangle that catches every ray of light. Warm, bold and made to be noticed.",
+   details:["Hand-hammered texture","Gold-tone finish","Slips over the hand"]},
+  {id:"grenat", name:"Grenat", type:"Cuff", price:95, tag:"Limited", style:"cuff", material:"polished",
+   desc:"A wide polished gold-tone cuff set with a deep garnet-red oval stone. Pure statement.",
+   details:["Faceted garnet-red stone","Polished gold-tone cuff","Gently adjustable opening"]},
+  {id:"orbes", name:"Orbes", type:"Beaded", price:48, tag:"", style:"beads",
+   desc:"Large gold-tone beads on a stretch cord. The perfect piece to slip between two bangles.",
+   details:["Large polished gold-tone beads","Stretch cord","Made to be stacked"]},
 ];
 
 const SHOP = {
   currency: "eur",
-  sizes: ["XS","S","M","L"],
-  sizeGuide: "XS 14 · S 15.5 · M 17 · L 18.5 cm",
-  freeShippingFrom: 60,   // free shipping when the bag reaches this amount
+  sizes: ["S","M","L"],
+  sizeGuide: "inner diameter · S 6 cm · M 6.5 cm · L 7 cm",
+  freeShippingFrom: 100,   // free shipping when the bag reaches this amount
   shippingPrice: 4.90,    // otherwise, this shipping price
   shippingName: "Standard shipping",
   // countries you ship to (two-letter codes)
