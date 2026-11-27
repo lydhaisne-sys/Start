@@ -65,6 +65,9 @@ header{position:sticky;top:0;z-index:50;background:rgba(30,23,19,.92);backdrop-f
 .hero-actions{display:flex;gap:14px;flex-wrap:wrap}
 .hero-art{position:relative;aspect-ratio:4/5;overflow:hidden;display:grid;place-items:center}
 .hero-art svg{width:78%}
+.hero-art img{position:absolute;inset:0}
+.hero-art::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(20,15,12,.55))}
+.hero-badge{z-index:1}
 .hero-badge{position:absolute;bottom:28px;left:0;right:0;text-align:center;font-family:var(--serif);font-size:1.1rem;font-style:italic;color:var(--ink)}
 
 /* ---------- promise strip ---------- */
@@ -92,6 +95,8 @@ section{padding:120px 0}
 .card .img{aspect-ratio:1;display:grid;place-items:center;overflow:hidden;position:relative}
 .card .img svg{width:78%;transition:transform .6s ease}
 .card:hover .img svg{transform:scale(1.07) rotate(-4deg)}
+.card .img img{transition:transform .8s ease}
+.card:hover .img img{transform:scale(1.05)}
 .card .tag{position:absolute;top:14px;left:14px;color:#f3e6d6;background:var(--garnet);padding:4px 10px;font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;padding:4px 10px}
 .add{display:block;width:100%;margin-top:14px;padding:12px;border:1px solid var(--ink);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;transition:all .25s}
 .add:hover{background:var(--ink);color:var(--white)}
@@ -103,8 +108,9 @@ section{padding:120px 0}
 /* ---------- story ---------- */
 .story{background:var(--bg-soft)}
 .story .wrap{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
-.story-art{aspect-ratio:1;border-radius:50%;overflow:hidden;display:grid;place-items:center}
+.story-art{aspect-ratio:1;border-radius:50% 50% 0 0;overflow:hidden;display:grid;place-items:center}
 .story-art svg{width:62%}
+.story-art img{width:100%;height:100%;object-fit:cover}
 .story h2{font-size:clamp(2.2rem,4vw,3.2rem);margin:12px 0 22px}
 .story p{color:var(--ink-soft);margin-bottom:16px;max-width:480px}
 .signature{font-family:var(--serif);font-style:italic;font-size:1.6rem;color:var(--accent);margin-top:12px}
@@ -132,6 +138,12 @@ footer .legal{border-top:1px solid var(--line);padding-top:22px;font-size:.78rem
 .modal.show{opacity:1;pointer-events:auto;transform:translate(-50%,-50%)}
 .modal .img{display:grid;place-items:center;min-height:360px}
 .modal .img svg{width:80%}
+.modal .img{position:relative;overflow:hidden}
+.modal .img img{position:absolute;inset:0}
+.thumbs{position:absolute;left:14px;bottom:14px;display:flex;gap:8px;z-index:1}
+.thumbs button{width:54px;height:54px;overflow:hidden;border:1px solid rgba(255,255,255,.4);opacity:.75}
+.thumbs button.on{border-color:var(--accent);opacity:1}
+.thumbs img{position:static !important}
 .modal .body{padding:44px 40px;position:relative}
 .close{position:absolute;top:14px;right:16px;font-size:1.6rem;line-height:1}
 .modal h3{font-size:2.4rem;margin:8px 0 6px}
@@ -151,6 +163,27 @@ footer .legal{border-top:1px solid var(--line);padding-top:22px;font-size:.78rem
 .details li{list-style:none;margin-bottom:4px}
 .details li::before{content:"✦ ";color:var(--gold)}
 
+.modal{width:min(1100px,calc(100% - 32px));grid-template-columns:1.1fr 1fr;align-items:start}
+.modal .img{position:relative;aspect-ratio:4/5;min-height:0}
+.modal .img video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#000}
+.thumbs button.vid{display:grid;place-items:center;background:rgba(20,15,12,.75);color:var(--accent);font-size:1.1rem}
+.combo{grid-column:1/-1;padding:44px 40px 48px;border-top:1px solid var(--line);background:var(--bg-soft);text-align:center}
+.combo h4{font-family:var(--serif);font-weight:300;font-size:2.2rem;margin:8px 0 28px}
+.combo-items{display:flex;justify-content:center;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:28px}
+.combo-item{width:180px;text-align:center}
+.combo-item.here{cursor:default}
+.combo-img{position:relative;aspect-ratio:1;overflow:hidden;margin-bottom:10px;display:grid;place-items:center}
+.combo-img img{position:absolute;inset:0}
+.combo-img svg{width:80%}
+.combo-item:not(.here):hover .combo-img img{transform:scale(1.05)}
+.combo-img img{transition:transform .6s}
+.combo-item b{display:block;font-family:var(--serif);font-weight:400;font-size:1.3rem}
+.combo-item small{display:block;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
+.combo-item span{font-family:var(--serif);font-size:1.05rem;color:var(--ink-soft)}
+.plus{font-family:var(--serif);font-size:2rem;color:var(--accent);font-weight:300}
+.combo-meaning{max-width:560px;margin:0 auto 26px}
+.combo-meaning .label{color:var(--accent);margin-bottom:8px}
+.combo-meaning p{margin:0}
 /* ---------- cart drawer ---------- */
 .drawer{position:fixed;top:0;right:0;height:100%;width:min(420px,100%);background:var(--bg);z-index:100;transform:translateX(100%);transition:transform .35s ease;display:flex;flex-direction:column}
 .drawer.show{transform:none}
@@ -180,7 +213,7 @@ footer .legal{border-top:1px solid var(--line);padding-top:22px;font-size:.78rem
 .intents .eyebrow{display:block;margin-bottom:10px}
 .intents h2{font-size:clamp(1.9rem,3.4vw,2.6rem);margin-bottom:12px}
 .intents .lead{color:var(--ink-soft);max-width:520px;margin:0 auto 40px}
-.intent-row{display:grid;grid-template-columns:repeat(6,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.intent-row{display:grid;grid-template-columns:repeat(var(--n,6),1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .intent-row button{padding:28px 8px;border-right:1px solid var(--line);transition:background .3s}
 .intent-row button:last-child{border-right:0}
 .intent-row button:hover,.intent-row button.on{background:var(--bg-soft)}
@@ -213,8 +246,8 @@ footer .legal{border-top:1px solid var(--line);padding-top:22px;font-size:.78rem
   .hero{padding-top:40px}
   .hero-art{max-width:440px;width:100%;margin:0 auto}
   footer .cols{grid-template-columns:1fr 1fr}
-  .intent-row{grid-template-columns:repeat(3,1fr)}
-  .intent-row button:nth-child(3n){border-right:0}
+  .intent-row{display:flex;flex-wrap:wrap;justify-content:center}
+  .intent-row button{flex:0 0 25%;border-bottom:1px solid var(--line)}
 }
 @media (max-width:720px){
   .nav{grid-template-columns:auto 1fr auto;height:68px}
@@ -231,15 +264,22 @@ footer .legal{border-top:1px solid var(--line);padding-top:22px;font-size:.78rem
   .promise .wrap{grid-template-columns:1fr}
   .intents{padding:56px 0 60px}
   .intents .lead{margin-bottom:28px}
-  .intent-row{grid-template-columns:repeat(3,1fr)}
-  .intent-row button{border-bottom:1px solid var(--line);padding:16px 4px}
-  .intent-row button:nth-child(n+4){border-bottom:0}
+  .intent-row button{flex:0 0 33.333%;padding:16px 4px}
+  .intent-row button:nth-child(3n){border-right:0}
   .intent-row b{font-size:1.15rem}
   .intent-row small{font-size:.56rem;letter-spacing:.12em}
   .insta{gap:4px}
   .promise div div{padding:14px}
   .modal{grid-template-columns:1fr}
-  .modal .img{min-height:260px}
+  .modal .img{position:relative;aspect-ratio:1}
+  .combo{padding:32px 18px 36px}
+  .combo-items{flex-wrap:nowrap;gap:6px}
+  .combo-item{flex:1;width:auto;min-width:0}
+  .combo-item b{font-size:1.05rem}
+  .plus{flex:none}
+  .combo-item small{display:none}
+  .plus{font-size:1.4rem}
+  .thumbs button{width:44px;height:44px}
   .modal .body{padding:28px 22px}
 }
 </style>
@@ -266,7 +306,7 @@ footer .legal{border-top:1px solid var(--line);padding-top:22px;font-size:.78rem
     <div>
       <span class="eyebrow">Sculptural bracelets · Natural stones</span>
       <h1>Bold by nature, <em>sculpted</em> by hand.</h1>
-      <p>Chunky bangles and statement cuffs in deep black, creamy ivory, mother-of-pearl and gold. Each one chosen for its beauty, and for the intention it carries.</p>
+      <p>Generous natural stones and ebony wood, threaded by hand into bold, sculptural bracelets. Each one chosen for its beauty, and for the intention it carries.</p>
       <div class="hero-actions">
         <a href="#shop" class="btn">Shop the collection</a>
         <a href="#story" class="btn light">Our story</a>
@@ -309,8 +349,8 @@ footer .legal{border-top:1px solid var(--line);padding-top:22px;font-size:.78rem
       <div>
         <span class="eyebrow">Our story</span>
         <h2>Bold shapes,<br>quiet luxury.</h2>
-        <p>Taarougem was born from a love of bold, sculptural jewellery: pieces with weight, shine and presence. Every bracelet is shaped, polished and finished by hand.</p>
-        <p>We are drawn to contrasts: deep black and creamy ivory, the glow of pearl, the warmth of gold. Wear one alone as a statement, or stack them high.</p>
+        <p>Taarougem was born from a love of bold, sculptural jewellery: pieces with weight, shine and presence. Every bracelet is designed and threaded by hand, one stone at a time.</p>
+        <p>We are drawn to what the earth makes slowly: the landscapes of jasper, the light of tiger eye, the depth of ebony. Wear one alone as a statement, or stack them high.</p>
         <div class="signature">— Taarougem</div>
       </div>
     </div>
@@ -457,7 +497,9 @@ function stack(list, u){
   return `<svg viewBox="0 -20 300 ${290+step*(list.length-1)}" xmlns="http://www.w3.org/2000/svg">${s}</svg>`;
 }
 let uidN = 0;
-const art = p => p.image ? `<img src="${p.image}" alt="${p.name} bracelet" loading="lazy" style="width:100%;height:100%;object-fit:cover">` : bracelet(p, "u"+(uidN++));
+const photo = (src, alt) => `<img src="${src}" alt="${alt}" loading="lazy" style="width:100%;height:100%;object-fit:cover">`;
+const mainImage = p => (p.images && p.images[0]) || p.image;
+const art = p => mainImage(p) ? photo(mainImage(p), p.name + " bracelet") : bracelet(p, "u"+(uidN++));
 
 /* ---------- shop grid ---------- */
 let filter = "All";
@@ -468,7 +510,8 @@ function renderFilters(){
     + (intent ? `<button class="active-intent" onclick="setIntent('')">${intent} ×</button>` : "");
 }
 function renderIntents(){
-  const all = [...new Set(PRODUCTS.map(p=>(p.intentions||[])[0]).filter(Boolean))].slice(0,6);
+  const all = [...new Set(PRODUCTS.map(p=>(p.intentions||[])[0]).filter(Boolean))].slice(0,8);
+  document.getElementById("intentRow").style.setProperty("--n", all.length);
   document.getElementById("intentRow").innerHTML = all.map(i=>{
     const stones = PRODUCTS.filter(p=>(p.intentions||[]).includes(i)).map(p=>p.stone||p.name);
     return `<button class="${i===intent?"on":""}" onclick="setIntent('${i}',true)"><b>${i}</b><small>${stones.join(" · ")}</small></button>`;
@@ -497,28 +540,54 @@ function renderGallery(){
   const G = (typeof GALLERY!=="undefined" && GALLERY.length) ? GALLERY : null;
   const by = id => PRODUCTS.find(p=>p.id===id) || PRODUCTS[0];
   const tiles = G ? G.slice(0,6).map(src=>`<img src="${src}" alt="Taarougem on Instagram" loading="lazy">`)
-    : [stack(["obsidienne","ivoire"].map(by),"g1"), art(by("grenat")), stack(["nacre","soleil","obsidienne"].map(by),"g3"),
-       art(by("orbes")), stack(["soleil","nacre"].map(by),"g5"), art(by("ivoire"))];
+    : PRODUCTS.slice(0,6).map(art);
   document.getElementById("insta").innerHTML = tiles.map(t=>`<a class="${G?"":"wood"}" href="${link}" target="_blank" rel="noopener">${t}</a>`).join("");
 }
 
 /* ---------- product popup ---------- */
-let current, size, qty;
+let current, size, qty, shown = 0;
 function openProduct(id){
-  current = PRODUCTS.find(p=>p.id===id); size="M"; qty=1;
+  current = PRODUCTS.find(p=>p.id===id); size="M"; qty=1; shown=0;
   drawModal();
   show("modal");
 }
+/* all photos + the video of a product, in order */
+const media = p => [...(p.images||[]).slice(0,5).map(src=>({type:"img",src})), ...(p.video?[{type:"video",src:p.video}]:[])];
 function drawModal(){
-  const p=current;
+  const p=current, M=media(p), cur=M[shown]||M[0];
+  const viewer = !cur ? art(p)
+    : cur.type==="video" ? `<video src="${cur.src}" poster="${(p.images||[])[0]||""}" autoplay muted loop playsinline controls></video>`
+    : photo(cur.src, p.name+" bracelet");
+  const thumbs = M.length>1 ? `<div class="thumbs">${M.map((m,i)=>`<button class="${i===shown?"on":""}${m.type==="video"?" vid":""}" onclick="shown=${i};drawModal()" aria-label="${m.type==="video"?"Video":"Photo "+(i+1)}">${m.type==="video"?"▶":photo(m.src,"")}</button>`).join("")}</div>` : "";
+  const pairs = (p.combo && p.combo.with || []).map(id=>PRODUCTS.find(x=>x.id===id)).filter(Boolean);
+  const stackItems = [p, ...pairs];
+  const together = [...new Set(stackItems.flatMap(x=>x.intentions||[]))];
+  const total = stackItems.reduce((t,x)=>t+x.price,0);
+  const combo = pairs.length ? `
+    <div class="combo">
+      <span class="eyebrow">Wear it with</span>
+      <h4>${p.combo.name||"The stack"}</h4>
+      <div class="combo-items">${stackItems.map(x=>`
+        <button class="combo-item${x===p?" here":""}" onclick="${x===p?"":`openProduct('${x.id}')`}">
+          <div class="combo-img wood">${art(x)}</div>
+          <b>${x.name}</b><small>${(x.intentions||[]).join(" · ")}</small><span>${euro(x.price)}</span>
+        </button>`).join('<span class="plus">+</span>')}
+      </div>
+      <div class="combo-meaning">
+        <div class="label">Together · ${together.join(" · ")}</div>
+        ${p.combo.text?`<p>${p.combo.text}</p>`:""}
+      </div>
+      <button class="btn" onclick="addStack();closeAll()">Add the stack to bag · ${euro(total)}</button>
+      <p class="note">Each bracelet is added in size ${size}. Choose your size above before adding the stack.</p>
+    </div>` : "";
   document.getElementById("modal").innerHTML = `
-    <div class="img wood">${art(p)}</div>
+    <div class="img wood">${viewer}${thumbs}</div>
     <div class="body">
       <button class="close" onclick="closeAll()" aria-label="Close">×</button>
-      <span class="eyebrow">${p.type} bracelet</span>
+      <span class="eyebrow">${p.stone||p.type+" bracelet"}</span>
       <h3>${p.name}</h3><span class="price">${euro(p.price)}</span>
       <p>${p.desc}</p>
-      ${p.meaning?`<div class="meaning"><div class="label">${p.stone||"Meaning"} · ${(p.intentions||[]).join(" & ")}</div><p>${p.meaning}</p></div>`:""}
+      ${p.meaning?`<div class="meaning"><div class="label">${(p.intentions||[]).join(" & ")}</div><p>${p.meaning}</p></div>`:""}
       <div class="label">Size</div>
       <div class="sizes">${SIZES.map(s=>`<button class="${s===size?"on":""}" onclick="size='${s}';drawModal()">${s}</button>`).join("")}</div>
       <span class="size-guide" title="Wrist size">Size guide: ${SHOP.sizeGuide}</span>
@@ -528,7 +597,14 @@ function drawModal(){
       </div>
       <ul class="details">${p.details.map(d=>`<li>${d}</li>`).join("")}</ul>
       ${p.meaning?`<p class="note">Stone meanings come from tradition and are shared for inspiration. They do not replace medical advice.</p>`:""}
-    </div>`;
+    </div>
+    ${combo}`;
+  document.getElementById("modal").scrollTop = 0;
+}
+function addStack(){
+  const p=current, ids=[p.id, ...(p.combo&&p.combo.with||[])].filter(id=>PRODUCTS.some(x=>x.id===id));
+  ids.forEach(id=>{ const ex=cart.find(l=>l.id===id&&l.size===size); ex?ex.qty++:cart.push({id,size,qty:1}); });
+  save(); renderCart(); toast(`${p.combo.name||"Stack"} added to your bag`);
 }
 
 /* ---------- cart ---------- */
@@ -584,9 +660,8 @@ function closeAll(){ ["modal","drawer","overlay"].forEach(i=>document.getElement
 document.addEventListener("keydown",e=>{ if(e.key==="Escape") closeAll(); });
 let tt; function toast(m){ const t=document.getElementById("toast"); t.textContent=m; t.classList.add("show"); clearTimeout(tt); tt=setTimeout(()=>t.classList.remove("show"),2400); }
 
-const byId = id => PRODUCTS.find(p=>p.id===id) || PRODUCTS[0];
-document.getElementById("heroArt").insertAdjacentHTML("afterbegin", stack(["ivoire","obsidienne","nacre"].map(byId), "hero"));
-document.getElementById("storyArt").innerHTML = stack(["soleil","obsidienne"].map(byId), "story");
+if(SHOP.heroImage) document.getElementById("heroArt").insertAdjacentHTML("afterbegin", photo(SHOP.heroImage, "Taarougem bracelets"));
+if(SHOP.storyImage) document.getElementById("storyArt").innerHTML = photo(SHOP.storyImage, "Taarougem bracelets worn");
 document.getElementById("freeFrom").textContent = euro(FREE_SHIP);
 renderIntents(); renderGallery(); renderFilters(); renderGrid(); renderCart();
 </script>

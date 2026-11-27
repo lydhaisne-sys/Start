@@ -40,15 +40,15 @@
 - **Change a price or add a bracelet:** edit `products.js`. The shop and the checkout both update automatically.
 - **Discount codes:** create them in Stripe (*Product catalogue → Coupons*). Customers can enter them at checkout.
 
-## Adding your photos
+## Adding your photos and videos
 
-1. Put the pictures in a folder called `photos` inside this folder.
-2. In `products.js`:
-   - **Product photo:** add `image:"photos/name.jpg"` to a bracelet.
-   - **Instagram gallery:** list up to 6 pictures in `GALLERY`, e.g. `["photos/insta1.jpg", "photos/insta2.jpg"]`.
-   - **Instagram link:** set `instagram` to your page link and `instagramHandle` to your @name.
-
-Square photos (or close to square) look best.
+1. Put pictures in the `photos` folder and videos in the `videos` folder.
+2. In `products.js`, for each bracelet:
+   - `images`: up to 5 photos, e.g. `["photos/desert.jpg", "photos/desert-2.jpg"]`. The first is the main photo.
+   - `video`: optional, e.g. `"videos/desert.mp4"`. Keep it short (10–20 seconds) and under about 15 MB.
+   - `combo`: the stack you suggest, e.g. `{name:"The Earth Stack", with:["tigre","ebene"], text:"..."}`.
+     The site shows the bracelets together, their combined intentions, and an "Add the stack" button.
+3. `GALLERY` lists the 6 pictures in the Instagram section. `heroImage` and `storyImage` set the big photos.
 
 ## Healing properties
 

@@ -50,7 +50,8 @@ exports.handler = async (event) => {
     form.append(`${p}[price_data][product_data][name]`, `${product.name} bracelet, size ${item.size}`);
     form.append(`${p}[price_data][product_data][metadata][product_id]`, product.id);
     form.append(`${p}[price_data][product_data][metadata][size]`, item.size);
-    if (product.image) form.append(`${p}[price_data][product_data][images][0]`, `${site}/${product.image}`);
+    const img = (product.images && product.images[0]) || product.image;
+    if (img) form.append(`${p}[price_data][product_data][images][0]`, `${site}/${img}`);
   }
 
   const shipping = subtotal >= SHOP.freeShippingFrom ? 0 : cents(SHOP.shippingPrice);
